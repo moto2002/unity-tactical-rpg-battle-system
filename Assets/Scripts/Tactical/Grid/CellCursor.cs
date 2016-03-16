@@ -35,12 +35,9 @@ namespace Tactical.Grid {
 			obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			obj.name = name;
 			obj.transform.position = position + objectOffset;
+			obj.transform.parent = wrapper.transform;
 			obj.transform.localScale = new Vector3(1f, 0.05f, 1f);
 			obj.GetComponent<Renderer>().material.color = Color.red;
-
-			if (wrapper != null) {
-				obj.transform.parent = wrapper.transform;
-			}
 		}
 	}
 }

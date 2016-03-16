@@ -44,9 +44,7 @@ namespace Tactical.Grid {
 		///
 		/// <returns>The created cursor.</returns>
 		private CellCursor CreateCellCursor (string cursorName, Vector3 cursorPosition) {
-			var newCursor = new CellCursor(cursorName, cursorPosition, cursorWrapper);
-
-			return newCursor;
+			return new CellCursor(cursorName, cursorPosition, cursorWrapper);
 		}
 	}
 

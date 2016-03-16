@@ -179,10 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8e0bb174ad441e7813d040e288d9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 0
-  vertical: 0
-  button1: 0
-  button2: 0
 --- !u!4 &872218933
 Transform:
   m_ObjectHideFlags: 0
@@ -254,6 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24aecfc0b6a4447a3a415cb3c39da320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementOnCooldown: 0
+  stopMovement: 0
 --- !u!114 &1608552194
 MonoBehaviour:
   m_ObjectHideFlags: 0
