@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Tactical.Grid {
 
-	public class GridCollection : List<List<GridCell>> {
+	public class GridCollection : List<List<Cell>> {
 
 	}
 

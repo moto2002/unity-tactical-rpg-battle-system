@@ -66,8 +66,7 @@ namespace Tactical.Grid {
 
 		private void Move (Vector3 position) {
 			if (Time.time > lastMovement + movementCooldown) {
-				var newPosition = cursor.MoveRelative(position);
-
+				cursor.MoveRelative(position);
 				lastMovement = Time.time;
 			}
 		}

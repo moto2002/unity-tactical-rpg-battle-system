@@ -14,10 +14,8 @@ namespace Tactical.Grid {
 		public GridCollection grid;
 
 		private void Start () {
-			grid = GenerateGrid(gridWidth, gridHeight);
-
 			CreateGridWrapper();
-			CreateGridCells();
+			grid = GenerateGrid(gridWidth, gridHeight);
 		}
 
 		/// <summary>
@@ -32,11 +30,11 @@ namespace Tactical.Grid {
 			var newGrid = new GridCollection();
 
 			for (int x = 0; x < width; x++) {
-				var row = new List<GridCell>();
+				var row = new List<Cell>();
 
 				for (int y = 0; y < height; y++) {
 					var cellPosition = new Vector3(x, 0, y);
-					var cell = new GridCell(cellPosition);
+					var cell = new Cell(cellPosition, gridWrapper);
 
 					row.Add(cell);
 				}
@@ -48,42 +46,11 @@ namespace Tactical.Grid {
 		}
 
 		/// <summary>
-		/// Creates an empty object as a child of the current object that will contain all grid cells later on.
+		/// Creates an empty object as a child of the current object that will wrap all grid cells later on.
 		/// </summary>
 		private void CreateGridWrapper () {
 			gridWrapper = new GameObject(wrapperName);
 			gridWrapper.transform.parent = transform;
-		}
-
-		/// <summary>
-		/// Create the grid cell objects inside the wrapper.
-		/// </summary>
-		private void CreateGridCells () {
-			for (int x = 0; x < grid.Count; x++) {
-				for (int y = 0; y < grid[x].Count; y++) {
-					GameObject cellObject = CreateGridCell(grid[x][y], new Vector3(x, 0, y));
-					cellObject.transform.parent = gridWrapper.transform;
-
-					// currentSkills.Add(cellObject);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Create a cell game object from cell data.
-		/// </summary>
-		///
-		/// <param name="cell">The cell to create the game object.</param>
-		/// <param name="position">Initial position of the cell.</param>
-		///
-		/// <returns>The created cell.</returns>
-		private GameObject CreateGridCell (GridCell cell, Vector3 position) {
-			var cellObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cellObject.name = cell.name;
-			cellObject.transform.position = position;
-			cell.obj = cellObject;
-
-			return cellObject;
 		}
 	}
 

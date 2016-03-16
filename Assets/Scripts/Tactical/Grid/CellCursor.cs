@@ -8,7 +8,7 @@ namespace Tactical.Grid {
 		public Vector3 position;
 		public GameObject obj;
 
-		private Vector3 objectOffset = new Vector3(0, 0.1f, 0);
+		private Vector3 objectOffset = new Vector3(0, 0.55f, 0);
 
 		public CellCursor (string defaultName, Vector3 defaultPosition, GameObject defaultWrapper) {
 			name = defaultName;
@@ -35,6 +35,7 @@ namespace Tactical.Grid {
 			obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			obj.name = name;
 			obj.transform.position = position + objectOffset;
+			obj.transform.localScale = new Vector3(1f, 0.05f, 1f);
 			obj.GetComponent<Renderer>().material.color = Color.red;
 
 			if (wrapper != null) {
