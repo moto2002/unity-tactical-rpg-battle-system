@@ -1,5 +1,5 @@
 using UnityEngine;
-using Tactical.Grid;
+using System.Collections.Generic;
 
 namespace Tactical.Grid {
 
@@ -44,7 +44,13 @@ namespace Tactical.Grid {
 		///
 		/// <returns>The created cursor.</returns>
 		private CellCursor CreateCellCursor (string cursorName, Vector3 cursorPosition) {
-			return new CellCursor(cursorName, cursorPosition, cursorWrapper);
+			var obj = new CellCursor(cursorName, cursorPosition, cursorWrapper);
+			obj.perimeter = new GridPerimeter {
+				x = new GridRange { min = 0f, max = grid.Count },
+				y = new GridRange { min = 0f, max = grid[0].Count }
+			};
+
+			return obj;
 		}
 	}
 

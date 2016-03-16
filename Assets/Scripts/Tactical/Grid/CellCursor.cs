@@ -7,18 +7,37 @@ namespace Tactical.Grid {
 		public string name;
 		public Vector3 position;
 		public GameObject obj;
+		public GridPerimeter perimeter;
 
 		private Vector3 objectOffset = new Vector3(0, 0.55f, 0);
 
-		public CellCursor (string defaultName, Vector3 defaultPosition, GameObject defaultWrapper) {
-			name = defaultName;
-			position = defaultPosition;
+		public CellCursor (string _name, Vector3 _position, GameObject _wrapper) {
+			name = _name;
+			position = _position;
 
-			CreateObject(defaultWrapper);
+			// TODO: Destroy the game object in the destructor or something.
+			CreateObject(_wrapper);
 		}
 
-		public Vector3 MoveRelative (Vector3 movement) {
-			position = position + movement;
+		/// <summary>
+		/// Move the cursor relatively to its current position (except if it's
+		/// going out of the perimeter).
+		/// </summary>
+		///
+		/// <param name="offset">The offset to add to the current position.</param>
+		///
+		/// <returns>The new grid position of the cursor.</returns>
+		public Vector3 MoveRelative (Vector3 offset) {
+			var newPosition = position + offset;
+
+			if (
+				newPosition.x < perimeter.x.min || newPosition.x >= perimeter.x.max ||
+				newPosition.z < perimeter.y.min || newPosition.z >= perimeter.y.max
+			) {
+				return position;
+			}
+
+			position = newPosition;
 			obj.transform.position = position + objectOffset;
 
 			return position;

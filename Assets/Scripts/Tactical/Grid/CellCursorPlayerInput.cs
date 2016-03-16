@@ -7,7 +7,7 @@ namespace Tactical.Grid {
 		public CellCursor cursor;
 
 		private const float baseMovement = 1f;
-		private const float movementCooldown = 0.06f;
+		private const float movementCooldown = 0.1f;
 		public bool movementOnCooldown;
 		private float lastMovement;
 
@@ -27,7 +27,7 @@ namespace Tactical.Grid {
 			movementOnCooldown = Time.time > lastMovement + movementCooldown;
 		}
 
-		private void MoveTo (Vector3 position) {
+		private void MoveRelative (Vector3 position) {
 			if (movementOnCooldown) {
 				cursor.MoveRelative(position);
 				lastMovement = Time.time;
@@ -35,19 +35,19 @@ namespace Tactical.Grid {
 		}
 
 		private void MoveUp () {
-			MoveTo(new Vector3(baseMovement, 0, 0));
+			MoveRelative(new Vector3(baseMovement, 0, 0));
 		}
 
 		private void MoveRight () {
-			MoveTo(new Vector3(0, 0, -baseMovement));
+			MoveRelative(new Vector3(0, 0, -baseMovement));
 		}
 
 		private void MoveDown () {
-			MoveTo(new Vector3(-baseMovement, 0, 0));
+			MoveRelative(new Vector3(-baseMovement, 0, 0));
 		}
 
 		private void MoveLeft () {
-			MoveTo(new Vector3(0, 0, baseMovement));
+			MoveRelative(new Vector3(0, 0, baseMovement));
 		}
 
 		/// <summary>
