@@ -12,7 +12,7 @@ namespace Tactical.Grid {
 	public class CellOverlay : MonoBehaviour {
 
 		private const string objectName = "Overlay";
-		private Color materialColor = new Color(1f, 1f, 1f, 0.3f);
+		private Color materialColor = new Color(1f, 1f, 1f, 0.01f);
 		private GameObject obj;
 
 		private void OnEnable () {

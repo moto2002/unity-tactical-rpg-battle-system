@@ -251,7 +251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementOnCooldown: 0
-  stopMovement: 0
 --- !u!114 &1608552194
 MonoBehaviour:
   m_ObjectHideFlags: 0
