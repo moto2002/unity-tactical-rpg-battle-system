@@ -1,0 +1,16 @@
+<cellTerrainCollection>
+	<cellTerrains>
+		<cellTerrain id="1" type="1">
+			<name>Dirt 1</name>
+			<color>#6D524B</color>
+		</cellTerrain>
+		<cellTerrain id="2" type="1">
+			<name>Dirt 2</name>
+			<color>#575A34</color>
+		</cellTerrain>
+		<cellTerrain id="3" type="2">
+			<name>Water 1</name>
+			<color>#4285F4</color>
+		</cellTerrain>
+	</cellTerrains>
+</cellTerrainCollection>
