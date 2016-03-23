@@ -41,7 +41,7 @@ namespace Tactical.Grid {
 			var cellOverlay = obj.AddComponent<CellOverlay>();
 
 			// Add Terrain component.
-			CellTerrain.CreateComponent(obj, cellTerrainId);
+			// CellTerrain.CreateComponent(obj);
 		}
 
 	}

@@ -19,14 +19,16 @@ namespace Tactical.Data {
 		[XmlAttribute]
 		public TerrainType type;
 
-		[XmlIgnore]
-		public Color color;
+		public string material;
 
-		[XmlElement(ElementName = "color")]
-		public string color_XmlSurrogate {
-			get { return ColorConverter.ColorToHex(color); }
-			set { color = ColorConverter.HexToColor(value); }
-		}
+		// [XmlIgnore]
+		// public Color color;
+
+		// [XmlElement(ElementName = "color")]
+		// public string color_XmlSurrogate {
+		// 	get { return ColorConverter.ColorToHex(color); }
+		// 	set { color = ColorConverter.HexToColor(value); }
+		// }
 
 	}
 

@@ -27,7 +27,7 @@ namespace Tactical {
       DontDestroyOnLoad(gameObject);
 
 			dataManager = GetComponent<DataManager>();
-			dataManager.Load();
+			dataManager.LoadAll();
 
 			UnityEngine.SceneManagement.SceneManager.LoadScene(firstSceneName);
 		}
