@@ -1,26 +1,27 @@
 using UnityEngine;
-using Tactical.Terrain;
+using System;
 using Tactical.Grid;
 
 namespace Tactical.Grid {
 
-	public class Cell {
+	[Serializable]
+	public class GridCell {
 
-		public string name;
 		public Vector3 position;
 		public GameObject obj;
 
 		private Vector3 objectOffset = new Vector3(0, 0, 0);
 
-		public static Cell CreateInstance (int cellTerrainId, Vector3 position, GameObject wrapper) {
-
-			var cell = new Cell {
-				name = "Cell_" + position.x + "_" + position.z,
-				position = position
-			};
-			cell.CreateObject(cellTerrainId, wrapper);
-
-			return cell;
+		/// <summary>
+		/// Convert a position to a position in the grid.
+		/// </summary>
+		///
+		/// <param name="position">The source position.</param>
+		///
+		/// <returns>The position of the cell in the grid.</returns>
+		public static Vector3 PositionToGridPosition (Vector3 position) {
+			var gridPosition = position;
+			return gridPosition;
 		}
 
 		/// <summary>
@@ -30,10 +31,9 @@ namespace Tactical.Grid {
 		/// <param name="wrapper">The wrapper game object to create into.</param>
 		///
 		/// <returns>The cell game object.</returns>
-		private void CreateObject (int cellTerrainId, GameObject wrapper) {
+		private void CreateGameObject (GameObject wrapper) {
 			// Create the object.
 			obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			obj.name = name;
 			obj.transform.position = position + objectOffset;
 			obj.transform.parent = wrapper.transform;
 

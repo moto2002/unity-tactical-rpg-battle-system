@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Tactical.Grid {
 
@@ -7,7 +8,7 @@ namespace Tactical.Grid {
 		public string name;
 		public Vector3 position;
 		public GameObject obj;
-		public GridPerimeter perimeter;
+		public List<Vector3> allowedPositions;
 
 		private Vector3 objectOffset = new Vector3(0, 0.55f, 0);
 
@@ -30,10 +31,7 @@ namespace Tactical.Grid {
 		public Vector3 MoveRelative (Vector3 offset) {
 			var newPosition = position + offset;
 
-			if (
-				newPosition.x < perimeter.x.min || newPosition.x >= perimeter.x.max ||
-				newPosition.z < perimeter.y.min || newPosition.z >= perimeter.y.max
-			) {
+			if (!CanMoveTo(newPosition)) {
 				return position;
 			}
 
@@ -41,6 +39,10 @@ namespace Tactical.Grid {
 			obj.transform.position = position + objectOffset;
 
 			return position;
+		}
+
+		private bool CanMoveTo (Vector3 targetPosition) {
+			return allowedPositions.Contains(targetPosition);
 		}
 
 		/// <summary>

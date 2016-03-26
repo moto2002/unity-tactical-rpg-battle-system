@@ -5,25 +5,27 @@ namespace Tactical.Grid {
 
 	public class CursorController : MonoBehaviour {
 
-		private const string wrapperName = "Cursor";
-
-		private GameObject cursorWrapper;
-
 		public CellCursor mainCursor;
-		public GridCollection grid = new GridCollection();
+		public GridPerimeter cursorPerimeter = new GridPerimeter {
+			x = new GridRange { min = 0f, max = 0f },
+			y = new GridRange { min = 0f, max = 0f }
+		};
+
+		private List<Vector3> allowedPositions = new List<Vector3>();
+		private const string wrapperName = "Cursor";
+		private GameObject cursorWrapper;
+		private GridController gridController;
+
 
 		private void Start () {
+			gridController = GetComponent<GridController>();
 			CreateCursorWrapper();
 		}
 
 		private void Update () {
-			if (grid.Count == 0) {
-				grid = GetComponent<GridController>().grid;
-			}
-
-			// TODO: Create the cursor when needed (player input).
-			if (grid.Count > 0 && mainCursor == null) {
-				mainCursor = CreateCellCursor("MainCursor", grid[2][4].position);
+			// // TODO: Create the cursor when needed (player input).
+			if (mainCursor == null && gridController != null) {
+				mainCursor = CreateCellCursor("MainCursor", new Vector3());
 			}
 		}
 
@@ -45,10 +47,7 @@ namespace Tactical.Grid {
 		/// <returns>The created cursor.</returns>
 		private CellCursor CreateCellCursor (string cursorName, Vector3 cursorPosition) {
 			var obj = new CellCursor(cursorName, cursorPosition, cursorWrapper);
-			obj.perimeter = new GridPerimeter {
-				x = new GridRange { min = 0f, max = grid.Count },
-				y = new GridRange { min = 0f, max = grid[0].Count }
-			};
+			obj.allowedPositions = gridController.GetAllowedPositions();
 
 			return obj;
 		}
