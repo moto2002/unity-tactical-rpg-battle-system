@@ -10,10 +10,10 @@ namespace Tactical.Terrain {
 
 		public CellTerrainData terrain;
 
-		private Renderer renderer;
+		private Renderer rendererComponent;
 
 		private void Start () {
-			renderer = GetComponent<Renderer>();
+			rendererComponent = GetComponent<Renderer>();
 		}
 
 		private void OnRenderObject () {
@@ -21,9 +21,9 @@ namespace Tactical.Terrain {
 		}
 
 		private void UpdateMaterialColor () {
-			if (terrain == null || renderer == null || renderer.sharedMaterial.name == terrain.material) { return; }
+			if (terrain == null || rendererComponent == null || rendererComponent.sharedMaterial.name == terrain.material) { return; }
 
-			renderer.sharedMaterial = Resources.Load("Materials/" + terrain.material, typeof(Material)) as Material;
+			rendererComponent.sharedMaterial = Resources.Load("Materials/" + terrain.material, typeof(Material)) as Material;
 		}
 	}
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+
 using System.Collections.Generic;
 
 namespace Tactical.Grid {
@@ -6,16 +7,10 @@ namespace Tactical.Grid {
 	public class CursorController : MonoBehaviour {
 
 		public CellCursor mainCursor;
-		public GridPerimeter cursorPerimeter = new GridPerimeter {
-			x = new GridRange { min = 0f, max = 0f },
-			y = new GridRange { min = 0f, max = 0f }
-		};
 
-		private List<Vector3> allowedPositions = new List<Vector3>();
 		private const string wrapperName = "Cursor";
 		private GameObject cursorWrapper;
 		private GridController gridController;
-
 
 		private void Start () {
 			gridController = GetComponent<GridController>();

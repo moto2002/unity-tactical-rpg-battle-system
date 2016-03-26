@@ -38,7 +38,7 @@ namespace Tactical.Grid {
 			obj.transform.parent = wrapper.transform;
 
 			// Add CellOverlay component.
-			var cellOverlay = obj.AddComponent<CellOverlay>();
+			obj.AddComponent<CellOverlay>();
 
 			// Add Terrain component.
 			// CellTerrain.CreateComponent(obj);
