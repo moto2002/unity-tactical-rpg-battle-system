@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEditor;
+using Tactical.Data;
 
 namespace Tactical.Terrain {
-
-	using Data;
 
 	[ExecuteInEditMode]
 	public class CellTerrain : MonoBehaviour {

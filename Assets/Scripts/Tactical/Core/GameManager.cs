@@ -1,8 +1,8 @@
 using UnityEngine;
+using Tactical.Data;
+using Tactical.Battle;
 
-namespace Tactical {
-
-	using Data;
+namespace Tactical.Core {
 
 	public class GameManager : MonoBehaviour {
 
@@ -10,6 +10,7 @@ namespace Tactical {
 		public string firstSceneName = "Level1";
 
 		private DataManager dataManager;
+		public BattleManager battleManager;
 
 		private void Awake() {
 			// Check if instance already exists
@@ -30,6 +31,9 @@ namespace Tactical {
       // Get the data manager and load all the data.
 			dataManager = GetComponent<DataManager>();
 			dataManager.LoadAll();
+
+      // Get the combat manager.
+			battleManager = GetComponent<BattleManager>();
 
 			UnityEngine.SceneManagement.SceneManager.LoadScene(firstSceneName);
 		}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.IO;
 using System.Collections.Generic;
 using Tactical.Terrain;
 
@@ -12,7 +11,6 @@ namespace Tactical.Data {
 
 		public void LoadAll () {
 			cellTerrains = DataLoader.LoadCellTerrains();
-			Debug.Log("Data loaded.");
 		}
 	}
 

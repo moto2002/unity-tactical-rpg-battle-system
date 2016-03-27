@@ -10,8 +10,6 @@ namespace Tactical.Grid {
 		public List<Vector3> allowedPositions;
 		public GameObject obj;
 
-		private Vector3 objectOffset = new Vector3(0, 0.55f, 0);
-
 		public CellCursor (
 			string cursorName,
 			Vector3 cursorPosition,

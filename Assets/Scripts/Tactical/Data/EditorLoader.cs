@@ -19,7 +19,6 @@ namespace Tactical.Data {
 		private static void LoadAll () {
 			cellTerrains = DataLoader.LoadCellTerrains();
 			jobs = DataLoader.LoadJobs();
-			Debug.Log("Editor data loaded.");
 		}
 	}
 }

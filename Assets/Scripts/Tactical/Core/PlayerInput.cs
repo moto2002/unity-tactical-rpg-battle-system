@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tactical {
+namespace Tactical.Core {
 
 	public class PlayerInput: MonoBehaviour {
 

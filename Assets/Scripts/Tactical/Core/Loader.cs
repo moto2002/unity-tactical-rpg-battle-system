@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tactical {
+namespace Tactical.Core {
 
 	public class Loader : MonoBehaviour {
 		public GameObject gameManager; // GameManager prefab to instantiate.

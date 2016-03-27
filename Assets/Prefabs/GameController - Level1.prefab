@@ -19,8 +19,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010160687562}
-  - 114: {fileID: 114000011128576440}
+  - 114: {fileID: 114000013870842306}
   - 114: {fileID: 114000011308915712}
+  - 114: {fileID: 114000011819616104}
+  - 114: {fileID: 114000012416742658}
+  - 114: {fileID: 114000012234880406}
   m_Layer: 0
   m_Name: GameController - Level1
   m_TagString: Untagged
@@ -41,19 +44,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114000011128576440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013241430758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318889fd4ab284937b10929701f69ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  informationController: {fileID: 0}
-  firstSceneName: Level1
 --- !u!114 &114000011308915712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,3 +56,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellTerrains: []
+--- !u!114 &114000011819616104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af76a46d94854407c9985e16edd6f041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012234880406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebcde98312a642c1a9ba62498505f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  units: []
+--- !u!114 &114000012416742658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55dfa224bf68d4a7ea2e211401870e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  turnCount: 0
+--- !u!114 &114000013870842306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef4cce54e28a43e281177fa099a486a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstSceneName: Level1
+  battleManager: {fileID: 0}
