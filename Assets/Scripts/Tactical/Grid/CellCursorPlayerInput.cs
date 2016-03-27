@@ -4,11 +4,11 @@ namespace Tactical.Grid {
 
 	public class CellCursorPlayerInput : MonoBehaviour {
 
-		public CellCursor cursor;
+		public CellCursorMovement movementComponent;
+		public bool movementOnCooldown;
 
 		private const float baseMovement = 1f;
 		private const float movementCooldown = 0.1f;
-		public bool movementOnCooldown;
 		private float lastMovement;
 
 		private void OnEnable () {
@@ -20,8 +20,8 @@ namespace Tactical.Grid {
 		}
 
 		private void Update () {
-			if (cursor == null) {
-				cursor = GetComponent<CursorController>().mainCursor;
+			if (movementComponent == null) {
+				movementComponent = GetComponent<CellCursorMovement>();
 			}
 
 			movementOnCooldown = Time.time > lastMovement + movementCooldown;
@@ -29,7 +29,7 @@ namespace Tactical.Grid {
 
 		private void MoveRelative (Vector3 position) {
 			if (movementOnCooldown) {
-				cursor.MoveRelative(position);
+				movementComponent.MoveRelative(position);
 				lastMovement = Time.time;
 			}
 		}

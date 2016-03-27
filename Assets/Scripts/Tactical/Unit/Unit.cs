@@ -1,4 +1,5 @@
 using UnityEngine;
+using Tactical.Grid;
 
 namespace Tactical.Unit {
 
@@ -11,31 +12,6 @@ namespace Tactical.Unit {
 		public Vector3 gridPosition;
 
 		/// <summary>
-		/// Move the cursor relatively to its current position (except if it's
-		/// going out of the perimeter).
-		/// </summary>
-		///
-		/// <param name="offset">The offset to add to the current position.</param>
-		///
-		/// <returns>The new grid position of the cursor.</returns>
-		public Vector3 MoveRelative (Vector3 offset) {
-			var newPosition = gridPosition + offset;
-
-			if (!CanMoveTo(newPosition)) {
-				return gridPosition;
-			}
-
-			gridPosition = newPosition;
-
-			return gridPosition;
-		}
-
-		private bool CanMoveTo (Vector3 targetPosition) {
-			// TODO: Check if the player can move there.
-			return true;
-		}
-
-		/// <summary>
 		/// Get the full name of the unit.
 		/// </summary>
 		///
@@ -44,12 +20,27 @@ namespace Tactical.Unit {
 			return firstName + " " + lastName;
 		}
 
+		private void OnEnable () {
+			CellCursorMovement.OnCursorMoved += CheckCursorPosition;
+		}
+
+		private void OnDisable () {
+			CellCursorMovement.OnCursorMoved -= CheckCursorPosition;
+		}
+
 		private void Update () {
 			UpdatePosition(gridPosition);
 		}
 
 		private void UpdatePosition (Vector3 targetPosition) {
-			transform.position = Grid.GridController.GridToUnitPosition(targetPosition);
+			transform.position = GridController.GridToUnitPosition(targetPosition);
+		}
+
+		private void CheckCursorPosition (Vector3 position) {
+			if (gridPosition == position) {
+				UIManager.instance.informationController.title = GetFullName();
+				UIManager.instance.informationController.visible = true;
+			}
 		}
 
 	}

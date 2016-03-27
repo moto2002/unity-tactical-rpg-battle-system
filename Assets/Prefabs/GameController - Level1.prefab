@@ -22,7 +22,7 @@ GameObject:
   - 114: {fileID: 114000011128576440}
   - 114: {fileID: 114000011308915712}
   m_Layer: 0
-  m_Name: GameController - Grid
+  m_Name: GameController - Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318889fd4ab284937b10929701f69ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
+  informationController: {fileID: 0}
+  firstSceneName: Level1
 --- !u!114 &114000011308915712
 MonoBehaviour:
   m_ObjectHideFlags: 1

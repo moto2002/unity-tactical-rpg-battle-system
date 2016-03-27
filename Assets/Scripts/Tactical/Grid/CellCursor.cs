@@ -6,43 +6,23 @@ namespace Tactical.Grid {
 	public class CellCursor {
 
 		public string name;
-		public Vector3 position;
-		public GameObject obj;
+		public Vector3 gridPosition;
 		public List<Vector3> allowedPositions;
+		public GameObject obj;
 
 		private Vector3 objectOffset = new Vector3(0, 0.55f, 0);
 
-		public CellCursor (string _name, Vector3 _position, GameObject _wrapper) {
-			name = _name;
-			position = _position;
+		public CellCursor (
+			string cursorName,
+			Vector3 cursorPosition,
+			GameObject cursorWrapper,
+			GridController gridController
+		) {
+			name = cursorName;
+			gridPosition = cursorPosition;
 
 			// TODO: Destroy the game object in the destructor or something.
-			CreateObject(_wrapper);
-		}
-
-		/// <summary>
-		/// Move the cursor relatively to its current position (except if it's
-		/// going out of the perimeter).
-		/// </summary>
-		///
-		/// <param name="offset">The offset to add to the current position.</param>
-		///
-		/// <returns>The new grid position of the cursor.</returns>
-		public Vector3 MoveRelative (Vector3 offset) {
-			var newPosition = position + offset;
-
-			if (!CanMoveTo(newPosition)) {
-				return position;
-			}
-
-			position = newPosition;
-			obj.transform.position = position + objectOffset;
-
-			return position;
-		}
-
-		private bool CanMoveTo (Vector3 targetPosition) {
-			return allowedPositions.Contains(targetPosition);
+			CreateGameObject(cursorWrapper, gridController);
 		}
 
 		/// <summary>
@@ -50,15 +30,24 @@ namespace Tactical.Grid {
 		/// </summary>
 		///
 		/// <param name="wrapper">The wrapper game object to create into.</param>
+		/// <param name="gridController">The grid controller to use inside the components.</param>
 		///
 		/// <returns>The cursor game object.</returns>
-		private void CreateObject (GameObject wrapper) {
+		private void CreateGameObject (GameObject wrapper, GridController gridController) {
 			obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			obj.name = name;
-			obj.transform.position = position + objectOffset;
 			obj.transform.parent = wrapper.transform;
 			obj.transform.localScale = new Vector3(1f, 0.05f, 1f);
+
+			// Set a basic material.
 			obj.GetComponent<Renderer>().material.color = Color.red;
+
+			// Add the movement component.
+			var cellCursorPlayerInput = obj.AddComponent<CellCursorMovement>();
+			cellCursorPlayerInput.gridController = gridController;
+
+			// Add the player input component.
+			obj.AddComponent<CellCursorPlayerInput>();
 		}
 	}
 }

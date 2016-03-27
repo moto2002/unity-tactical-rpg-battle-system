@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using System.Collections.Generic;
-
 namespace Tactical.Grid {
 
 	public class CursorController : MonoBehaviour {
@@ -41,8 +39,7 @@ namespace Tactical.Grid {
 		///
 		/// <returns>The created cursor.</returns>
 		private CellCursor CreateCellCursor (string cursorName, Vector3 cursorPosition) {
-			var obj = new CellCursor(cursorName, cursorPosition, cursorWrapper);
-			obj.allowedPositions = gridController.GetAllowedPositions();
+			var obj = new CellCursor(cursorName, cursorPosition, cursorWrapper, gridController);
 
 			return obj;
 		}
