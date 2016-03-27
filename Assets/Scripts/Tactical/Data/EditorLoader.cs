@@ -1,6 +1,8 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEditor;
+using System.Collections.Generic;
+using Tactical.Terrain;
+using Tactical.Unit;
 
 namespace Tactical.Data {
 
@@ -8,6 +10,7 @@ namespace Tactical.Data {
 	public static class EditorLoader {
 
 		public static List<CellTerrainData> cellTerrains = new List<CellTerrainData>();
+		public static List<JobData> jobs = new List<JobData>();
 
 		static EditorLoader () {
 			LoadAll();
@@ -15,11 +18,8 @@ namespace Tactical.Data {
 
 		private static void LoadAll () {
 			cellTerrains = DataLoader.LoadCellTerrains();
+			jobs = DataLoader.LoadJobs();
 			Debug.Log("Editor data loaded.");
-		}
-
-		private static List<CellTerrainData> LoadAndGetCellTerrains () {
-			return DataLoader.LoadCellTerrains();
 		}
 	}
 }

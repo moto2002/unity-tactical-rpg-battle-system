@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Serialization;
 
-namespace Tactical.Data {
+namespace Tactical.Terrain {
 
 	public enum TerrainType {
 		[XmlEnumAttribute("1")] Solid,
@@ -14,13 +14,11 @@ namespace Tactical.Data {
 
 	[Serializable]
 	public class CellTerrainData {
-
 		[XmlAttribute] public int id;
 		[XmlAttribute] public TerrainType type;
 		[XmlElement]   public string name;
 		[XmlElement]   public string material;
 		[XmlElement]   public CellInformation informations;
-
 	}
 
 }

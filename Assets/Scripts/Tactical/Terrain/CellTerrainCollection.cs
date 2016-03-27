@@ -1,12 +1,13 @@
  using System.Collections.Generic;
  using System.Xml.Serialization;
  using System.IO;
+ using Tactical.Terrain;
 
-namespace Tactical.Data {
+namespace Tactical.Terrain {
 
 	[XmlRoot("cellTerrainCollection")]
-	public class CellTerrainCollection
-	{
+	public class CellTerrainCollection {
+
 		[XmlArray("cellTerrains")]
 		[XmlArrayItem("cellTerrain")]
 		public List<CellTerrainData> cellTerrains = new List<CellTerrainData>();

@@ -7,9 +7,11 @@ namespace Tactical.Unit {
 	[DisallowMultipleComponent]
 	public class Unit : MonoBehaviour {
 
+		public Vector3 gridPosition;
 		public string firstName;
 		public string lastName;
-		public Vector3 gridPosition;
+
+		private HasJob jobComponent;
 
 		/// <summary>
 		/// Get the full name of the unit.
@@ -21,14 +23,18 @@ namespace Tactical.Unit {
 		}
 
 		private void OnEnable () {
-			CellCursorMovement.OnCursorMoved += CheckCursorPosition;
+			CellCursorMovement.OnCursorMoved += ShowInformation;
 		}
 
 		private void OnDisable () {
-			CellCursorMovement.OnCursorMoved -= CheckCursorPosition;
+			CellCursorMovement.OnCursorMoved -= ShowInformation;
 		}
 
 		private void Update () {
+			if (jobComponent == null) {
+				jobComponent = GetComponent<HasJob>();
+			}
+
 			UpdatePosition(gridPosition);
 		}
 
@@ -36,10 +42,14 @@ namespace Tactical.Unit {
 			transform.position = GridController.GridToUnitPosition(targetPosition);
 		}
 
-		private void CheckCursorPosition (Vector3 position) {
+		private void ShowInformation (Vector3 position) {
 			if (gridPosition == position) {
-				UIManager.instance.informationController.title = GetFullName();
 				UIManager.instance.informationController.visible = true;
+				UIManager.instance.informationController.title = GetFullName();
+
+				if (jobComponent) {
+					UIManager.instance.informationController.subtitle = jobComponent.job.name;
+				}
 			}
 		}
 
