@@ -23,6 +23,7 @@ GameObject:
   - 23: {fileID: 23000011689354978}
   - 114: {fileID: 114000013908520680}
   - 114: {fileID: 114000010112555000}
+  - 114: {fileID: 114000014209321266}
   m_Layer: 0
   m_Name: Dirt
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010211622644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3457718, y: 1.0647392, z: -0.14240646}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain:
     id: 1
-    name: Dirt 1
     type: 0
+    name: Dirt
     material: Brown
+--- !u!114 &114000014209321266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010211622644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b30c59aea5b4efe900e0c7d613dfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0, z: 0}
