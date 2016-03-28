@@ -19,7 +19,6 @@ namespace Tactical.Grid {
 			name = cursorName;
 			gridPosition = cursorPosition;
 
-			// TODO: Destroy the game object in the destructor or something.
 			CreateGameObject(cursorWrapper, gridController);
 		}
 
@@ -43,6 +42,7 @@ namespace Tactical.Grid {
 			// Add the movement component.
 			var cellCursorPlayerInput = obj.AddComponent<CellCursorMovement>();
 			cellCursorPlayerInput.gridController = gridController;
+			cellCursorPlayerInput.gridPosition = gridPosition;
 
 			// Add the player input component.
 			obj.AddComponent<CellCursorPlayerInput>();

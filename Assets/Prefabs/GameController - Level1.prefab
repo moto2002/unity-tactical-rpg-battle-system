@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000012416742658}
   - 114: {fileID: 114000012234880406}
   - 114: {fileID: 114000010743918402}
+  - 114: {fileID: 114000012796899512}
   m_Layer: 0
   m_Name: GameController - Level1
   m_TagString: Untagged
@@ -106,6 +107,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55dfa224bf68d4a7ea2e211401870e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentActionIndex: 0
+--- !u!114 &114000012796899512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9ef749ccf234f9eb758215f81d17d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000013870842306

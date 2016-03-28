@@ -15,6 +15,14 @@ namespace Tactical.Editor {
       EditorWindow.GetWindow(typeof(BattleWindow), false, "Battle");
     }
 
+		private void OnEnable () {
+			PlayerInput.OnButton1Pressed += StartBattle;
+		}
+
+		private void OnDisable () {
+			PlayerInput.OnButton1Pressed -= StartBattle;
+		}
+
     private void OnInspectorUpdate () {
 			UpdateManagers();
 			Repaint();
@@ -35,6 +43,12 @@ namespace Tactical.Editor {
 
 			battleManager = GameManager.instance.battleManager;
 			turnManager = GameManager.instance.battleManager.turnManager;
+		}
+
+		private void StartBattle () {
+			if (battleManager != null) {
+				battleManager.StartBattle();
+			}
 		}
 
 		private void CreateBattleUI () {
@@ -87,8 +101,7 @@ namespace Tactical.Editor {
 		private void CreateStartEndBattleButton () {
 			var text = battleManager.inProgress ? "Stop" : "Start";
 
-			var button = GUILayout.Button(text);
-			if (button) {
+			if (GUILayout.Button(text)) {
 				if (battleManager.inProgress) {
 					battleManager.StopBattle();
 				} else {

@@ -1,4 +1,6 @@
 using UnityEngine;
+using Tactical.Battle;
+using Tactical.Unit;
 
 namespace Tactical.Grid {
 
@@ -7,41 +9,38 @@ namespace Tactical.Grid {
 		public CellCursor mainCursor;
 
 		private const string wrapperName = "Cursor";
-		private GameObject cursorWrapper;
 		private GridController gridController;
 
+		private void OnEnable () {
+			TurnManager.OnPlayerActionStarted += CreateMainCursor;
+			PlayerActionManager.OnActionEnded += DeleteMainCursor;
+		}
+
+		private void OnDisable () {
+			TurnManager.OnPlayerActionStarted -= CreateMainCursor;
+			PlayerActionManager.OnActionEnded -= DeleteMainCursor;
+		}
+
 		private void Start () {
-			gridController = GetComponent<GridController>();
-			CreateCursorWrapper();
+			gridController = GameObject.Find("Grid").GetComponent<GridController>();
 		}
 
-		private void Update () {
-			// // TODO: Create the cursor when needed (player input).
-			if (mainCursor == null && gridController != null) {
-				mainCursor = CreateCellCursor("MainCursor", new Vector3());
-			}
+		private void CreateMainCursor (GameObject unit, PlayerControllable.Player player) {
+			if (mainCursor != null) { return; }
+
+			mainCursor = CreateCellCursor(
+				"MainCursor",
+				unit.GetComponent<UnitCore>().gridPosition
+			);
 		}
 
-		/// <summary>
-		/// Creates an empty object as a child of the current object that will contain all grid cells later on.
-		/// </summary>
-		private void CreateCursorWrapper () {
-			cursorWrapper = new GameObject(wrapperName);
-			cursorWrapper.transform.parent = transform;
+		private void DeleteMainCursor () {
+			Destroy(mainCursor.obj);
+			mainCursor = null;
 		}
 
-		/// <summary>
-		/// Create a grid cursor with its game object.
-		/// </summary>
-		///
-		/// <param name="cursorName">The name of the cursor.</param>
-		/// <param name="cursorPosition">The initial position of the cursor.</param>
-		///
-		/// <returns>The created cursor.</returns>
 		private CellCursor CreateCellCursor (string cursorName, Vector3 cursorPosition) {
-			var obj = new CellCursor(cursorName, cursorPosition, cursorWrapper, gridController);
-
-			return obj;
+			return new CellCursor(cursorName, cursorPosition, gameObject, gridController);
 		}
 	}
 

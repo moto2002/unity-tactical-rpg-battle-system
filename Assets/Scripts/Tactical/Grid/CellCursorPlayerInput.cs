@@ -8,6 +8,9 @@ namespace Tactical.Grid {
 		public CellCursorMovement movementComponent;
 		public bool movementOnCooldown;
 
+		public delegate void CellSelectedAction(Vector3 gridPosition);
+		public static event CellSelectedAction OnCellSelected;
+
 		private const float baseMovement = 1f;
 		private const float movementCooldown = 0.1f;
 		private float lastMovement;
@@ -51,14 +54,21 @@ namespace Tactical.Grid {
 			MoveRelative(new Vector3(0, 0, baseMovement));
 		}
 
+		private void SelectCell () {
+			if (OnCellSelected != null) {
+				OnCellSelected(movementComponent.gridPosition);
+			}
+		}
+
 		/// <summary>
-		/// Registers the input actions.
+		/// Register the input actions.
 		/// </summary>
 		private void RegisterInputsActions () {
 			PlayerInput.OnButtonUpPressed += MoveUp;
 			PlayerInput.OnButtonRightPressed += MoveRight;
 			PlayerInput.OnButtonDownPressed += MoveDown;
 			PlayerInput.OnButtonLeftPressed += MoveLeft;
+			PlayerInput.OnButton1Pressed += SelectCell;
 		}
 
 		/// <summary>
@@ -69,6 +79,7 @@ namespace Tactical.Grid {
 			PlayerInput.OnButtonRightPressed -= MoveRight;
 			PlayerInput.OnButtonDownPressed -= MoveDown;
 			PlayerInput.OnButtonLeftPressed -= MoveLeft;
+			PlayerInput.OnButton1Pressed -= SelectCell;
 		}
 
 	}

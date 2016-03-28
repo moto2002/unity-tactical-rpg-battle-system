@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Tactical.Unit;
+using Tactical.Grid;
 
 namespace Tactical.Battle {
 
@@ -10,13 +11,16 @@ namespace Tactical.Battle {
 		public static event ActionEndedAction OnActionEnded;
 
 		private TurnManager turnManager;
+		private GameObject unit;
 
 		private void OnEnable () {
 			TurnManager.OnPlayerActionStarted += StartAction;
+			CellCursorPlayerInput.OnCellSelected += MoveTo;
 		}
 
 		private void OnDisable () {
 			TurnManager.OnPlayerActionStarted -= StartAction;
+			CellCursorPlayerInput.OnCellSelected -= MoveTo;
 		}
 
 		private void Update () {
@@ -26,18 +30,19 @@ namespace Tactical.Battle {
 			}
 		}
 
-		public void StartAction (GameObject unit, PlayerControllable.Player player) {
-			Debug.Log("Player action [start]");
-			// TODO: make the UI appear and call EndAction when we are done.
+		private void MoveTo (Vector3 gridPosition) {
+			unit.GetComponent<UnitMovement>().Move(gridPosition);
+			EndAction();
+		}
 
-			// StartCoroutine(EndAction());
+		public void StartAction (GameObject actionUnit, PlayerControllable.Player player) {
+			unit = actionUnit;
+			Debug.Log("Player action [start]");
 		}
 
 		public static void EndAction () {
 			Debug.Log("Player action [end]");
-			if (OnActionEnded != null) {
-				OnActionEnded();
-			}
+			if (OnActionEnded != null) { OnActionEnded(); }
 		}
 
 	}
