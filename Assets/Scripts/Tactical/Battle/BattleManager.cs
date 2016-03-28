@@ -34,7 +34,8 @@ namespace Tactical.Battle {
 
 			inProgress = true;
 
-			Debug.Log("Battle [start]");
+			StartCoroutine(ShowBattleStatus("Battle start", 1f));
+
 			turnManager.StartTurn(unitManager.units);
 		}
 
@@ -42,7 +43,7 @@ namespace Tactical.Battle {
 			inProgress = false;
 			currentTurn = 0;
 
-			Debug.Log("Battle [end]");
+			StartCoroutine(ShowBattleStatus("Battle end", 1f));
 		}
 
 		private void OnEnable () {
@@ -65,6 +66,13 @@ namespace Tactical.Battle {
 			if (unitManager == null) {
 				unitManager = GetComponent<UnitManager>();
 			}
+		}
+
+		private IEnumerator ShowBattleStatus (string message, float duration) {
+			UIManager.instance.battleStatus.visible = true;
+			UIManager.instance.battleStatus.title = message;
+			yield return new WaitForSeconds(duration);
+			UIManager.instance.battleStatus.visible = false;
 		}
 
 		private void HandleTurnStarted () {

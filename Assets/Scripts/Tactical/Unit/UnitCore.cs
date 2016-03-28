@@ -38,14 +38,14 @@ namespace Tactical.Unit {
 
 		private void ShowInformation (Vector3 position) {
 			if (gridPosition == position) {
-				UIManager.instance.informationController.visible = true;
+				UIManager.instance.unitInfo.visible = true;
 
 				if (nameComponent) {
-					UIManager.instance.informationController.title = nameComponent.GetFullName();
+					UIManager.instance.unitInfo.title = nameComponent.GetFullName();
 				}
 
 				if (jobComponent) {
-					UIManager.instance.informationController.subtitle = jobComponent.job.name;
+					UIManager.instance.unitInfo.subtitle = jobComponent.job.name;
 				}
 			}
 		}

@@ -18,7 +18,7 @@ namespace Tactical.AI {
 		// TODO: Remove this code and use real AI to play for this action.
 		private IEnumerator HandleNPCActionStarted (GameObject unit) {
 			Debug.Log(string.Format("{0} action [start]", "NPC"));
-			yield return new WaitForSeconds(1f);
+			yield return null;
 			unit.GetComponent<UnitMovement>().Move(
 			 new Vector3(Mathf.Floor(Random.Range(0f, 4f)), 0, Mathf.Floor(Random.Range(0f, 4f)))
 			);

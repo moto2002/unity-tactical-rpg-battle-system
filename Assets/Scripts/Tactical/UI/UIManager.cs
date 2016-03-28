@@ -6,13 +6,13 @@ namespace Tactical {
 	public class UIManager : MonoBehaviour {
 
 		public static UIManager instance;
-		public InformationController informationController;
+		[HideInInspector] public InformationController unitInfo;
+		[HideInInspector] public InformationController battleStatus;
 
 		private void Awake() {
 			// Check if instance already exists
 			if (instance == null) {
 				// if not, set instance to this
-				informationController = transform.FindChild("Information").GetComponent<InformationController>();
 				instance = this;
 			}
 			// If instance already exists and it's not this
@@ -21,6 +21,9 @@ namespace Tactical {
 				// there can only ever be one instance of a UIManager.
 				Destroy(gameObject);
 			}
+
+			unitInfo = transform.FindChild("UnitInfo").GetComponent<InformationController>();
+			battleStatus = transform.FindChild("BattleStatus").GetComponent<InformationController>();
 
 			// Sets this to not be destroyed when reloading scene.
 			DontDestroyOnLoad(gameObject);

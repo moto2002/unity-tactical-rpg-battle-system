@@ -4,15 +4,22 @@ using UnityEngine.UI;
 namespace Tactical.UI {
 
 	[DisallowMultipleComponent]
+	[RequireComponent (typeof (Canvas))]
 	public class InformationController : MonoBehaviour {
 
-		public bool visible;
+		[HideInInspector] public bool visible;
+		[HideInInspector] public string title;
+		[HideInInspector] public string subtitle;
 
-		public string title;
-		public Text titleText;
+		private Text titleText;
+		private Text subtitleText;
+		private Canvas canvas;
 
-		public string subtitle;
-		public Text subtitleText;
+		private void Start () {
+			canvas = gameObject.GetComponent<Canvas>();
+			titleText = GameObject.Find("Title").GetComponent<Text>();
+			subtitleText = GameObject.Find("Subtitle").GetComponent<Text>();
+		}
 
 		private void Update () {
 			UpdateVisibility();
@@ -23,12 +30,16 @@ namespace Tactical.UI {
 		}
 
 		private void UpdateVisibility () {
-			gameObject.GetComponent<Canvas>().enabled = visible;
+			canvas.enabled = visible;
 		}
 
 		private void UpdateInformations () {
-			titleText.text = title;
-			subtitleText.text = subtitle;
+			if (titleText != null) {
+				titleText.text = title;
+			}
+			if (subtitleText != null) {
+				subtitleText.text = subtitle;
+			}
 		}
 
 	}

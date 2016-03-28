@@ -42,7 +42,7 @@ namespace Tactical.Grid {
 
 			gridPosition = destination;
 
-			UIManager.instance.informationController.visible = false;
+			UIManager.instance.unitInfo.visible = false;
 
 			if (OnCursorMoved != null) {
 				OnCursorMoved(gridPosition);

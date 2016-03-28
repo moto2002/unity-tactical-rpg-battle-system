@@ -55,7 +55,7 @@ namespace Tactical.Grid {
 		}
 
 		private void SelectCell () {
-			if (OnCellSelected != null) {
+			if (OnCellSelected != null && movementComponent != null) {
 				OnCellSelected(movementComponent.gridPosition);
 			}
 		}
