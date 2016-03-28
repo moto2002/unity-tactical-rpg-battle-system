@@ -8,9 +8,9 @@ namespace Tactical.Core {
 
 		public static GameManager instance;
 		public string firstSceneName = "Level1";
+		[HideInInspector] public BattleManager battleManager;
 
 		private DataManager dataManager;
-		public BattleManager battleManager;
 
 		private void Awake() {
 			// Check if instance already exists

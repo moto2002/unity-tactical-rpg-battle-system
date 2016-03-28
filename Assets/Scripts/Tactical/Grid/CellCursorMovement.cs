@@ -28,6 +28,13 @@ namespace Tactical.Grid {
 			return Move(newPosition);
 		}
 
+		/// <summary>
+		/// Move the cursor to the destination expect if it is going out of range.
+		/// </summary>
+		///
+		/// <param name="destination">The destination to move the cursor to.</param>
+		///
+		/// <returns>The new position of the cursor.</returns>
 		public Vector3 Move (Vector3 destination) {
 			if (!CanMoveTo(destination)) {
 				return gridPosition;

@@ -4,11 +4,11 @@ using Tactical.Data;
 
 namespace Tactical.Unit {
 
-	[CustomEditor(typeof(HasJob))]
-	public class HasJobEditor : Editor {
+	[CustomEditor(typeof(UnitJob))]
+	public class UnitJobEditor : Editor {
 
 		public override void OnInspectorGUI () {
-			var myTarget = (HasJob) target;
+			var myTarget = (UnitJob) target;
 
 			var selectedIds = myTarget.job != null ? myTarget.job.id : 1;
 			var names = EditorLoader.jobs.ConvertAll(item => item.name).ToArray();

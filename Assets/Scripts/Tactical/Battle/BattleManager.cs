@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Tactical.Unit;
 
 namespace Tactical.Battle {
@@ -19,12 +20,12 @@ namespace Tactical.Battle {
 		/// @todo: Pass the battle options here ?
 		public void StartBattle () {
 			if (turnManager == null) {
-				Debug.LogError("TurnManager not initialized");
+				Debug.LogError("TurnManager not initialized.");
 				return;
 			}
 
 			if (unitManager == null) {
-				Debug.LogError("TurnManager not initialized");
+				Debug.LogError("TurnManager not initialized.");
 				return;
 			}
 
@@ -33,7 +34,7 @@ namespace Tactical.Battle {
 
 			inProgress = true;
 
-			Debug.Log("Battle start!");
+			Debug.Log("Battle [start]");
 			turnManager.StartTurn(unitManager.units);
 		}
 
@@ -41,17 +42,19 @@ namespace Tactical.Battle {
 			inProgress = false;
 			currentTurn = 0;
 
-			Debug.Log("Battle end!");
+			Debug.Log("Battle [end]");
 		}
 
 		private void OnEnable () {
 			TurnManager.OnTurnStarted += HandleTurnStarted;
 			TurnManager.OnTurnEnded += HandleTurnEnded;
+			TurnManager.OnPCActionStarted += HandlePCActionStarted;
 		}
 
 		private void OnDisable () {
 			TurnManager.OnTurnStarted -= HandleTurnStarted;
 			TurnManager.OnTurnEnded -= HandleTurnEnded;
+			TurnManager.OnPCActionStarted -= HandlePCActionStarted;
 		}
 
 		private void Update () {
@@ -66,14 +69,24 @@ namespace Tactical.Battle {
 			}
 		}
 
+		private IEnumerator HandlePCActionStarted (GameObject unit, PlayerControllable.Player player) {
+			// TODO: Pass the control to the player.
+			Debug.Log(string.Format("{0} action [start]", player));
+      yield return new WaitForSeconds(1f);
+			unit.GetComponent<UnitMovement>().Move(
+        new Vector3(Mathf.Floor(Random.Range(0f, 4f)), 0, Mathf.Floor(Random.Range(0f, 4f)))
+      );
+      Debug.Log(string.Format("{0} action [end]", player));
+		}
+
 		private void HandleTurnStarted () {
 			currentTurn += 1;
 			playerTurnInProgress = true;
-			Debug.Log("-- Turn #" + currentTurn + " inProgress.");
+			Debug.Log(string.Format("Turn #{0} [start]", currentTurn));
 		}
 
 		private void HandleTurnEnded () {
-			Debug.Log("-- Turn #" + currentTurn + " ended.");
+			Debug.Log(string.Format("Turn #{0} [end]", currentTurn));
 			playerTurnInProgress = false;
 
 			// TODO: Handle battle end conditions here.

@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000011819616104}
   - 114: {fileID: 114000012416742658}
   - 114: {fileID: 114000012234880406}
+  - 114: {fileID: 114000010743918402}
   m_Layer: 0
   m_Name: GameController - Level1
   m_TagString: Untagged
@@ -44,6 +45,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010743918402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013241430758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ca0275a7f9447fa3c9aedb05e18d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011308915712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +79,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af76a46d94854407c9985e16edd6f041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
+  unitManager: {fileID: 0}
+  inProgress: 0
+  playerTurnInProgress: 0
+  currentTurn: 0
+  maxTurns: 2
 --- !u!114 &114000012234880406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,8 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dfa224bf68d4a7ea2e211401870e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions: []
-  turnCount: 0
 --- !u!114 &114000013870842306
 MonoBehaviour:
   m_ObjectHideFlags: 1

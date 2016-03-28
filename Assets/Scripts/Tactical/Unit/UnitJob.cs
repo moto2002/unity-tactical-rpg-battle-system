@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Tactical.Unit {
 
-	public class HasJob : MonoBehaviour {
+	public class UnitJob : MonoBehaviour {
 
 		public JobData job;
 

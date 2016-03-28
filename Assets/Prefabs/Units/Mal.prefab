@@ -23,11 +23,12 @@ GameObject:
   - 136: {fileID: 136000013729006630}
   - 23: {fileID: 23000010979448678}
   - 114: {fileID: 114000014007394092}
-  - 114: {fileID: 114000013461013410}
+  - 114: {fileID: 114000012810572550}
   - 114: {fileID: 114000010599421212}
+  - 114: {fileID: 114000013461013410}
   m_Layer: 0
   m_Name: Mal
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,12 +88,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010552018288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30656e9928ff44dfba8b76845c756c38, type: 3}
+  m_Script: {fileID: 11500000, guid: e085437053c194f1c9de63c8fefae7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   job:
     id: 1
     name: Squire
+--- !u!114 &114000012810572550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010552018288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34672d4a4a7d46d49468467f02144a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstName: Malcolm
+  lastName: Reynolds
 --- !u!114 &114000013461013410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,12 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010552018288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256ad745374c940c8b743f4472776d13, type: 3}
+  m_Script: {fileID: 11500000, guid: 0662b501abcde4cf7ae120291e9397f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 3, y: 0, z: 3}
-  firstName: Malcolm
-  lastName: Reynolds
 --- !u!136 &136000013729006630
 CapsuleCollider:
   m_ObjectHideFlags: 1
