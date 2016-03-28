@@ -21,7 +21,7 @@ namespace Tactical.Battle {
 		public delegate IEnumerator NPCActionStartedAction(GameObject unit);
 		public static event NPCActionStartedAction OnNPCActionStarted;
 
-		private int currentActionIndex;
+		public int currentActionIndex;
 
 		/// <summary>
 		/// Start the current turn with the given units.
@@ -38,7 +38,6 @@ namespace Tactical.Battle {
 		}
 
 		private void PrepareActions (List<GameObject> units) {
-			currentActionIndex = 0;
 			actions.Clear();
 
 			foreach (GameObject unit in units) {
@@ -58,6 +57,7 @@ namespace Tactical.Battle {
 
 		public void EndTurn () {
 			if (OnTurnEnded != null) { OnTurnEnded(); }
+			currentActionIndex = 0;
 		}
 
 		public void NextTurn (List<GameObject> units) {
@@ -65,7 +65,7 @@ namespace Tactical.Battle {
 		}
 
 		private IEnumerator NextAction () {
-			if (currentActionIndex >= actions.Count - 1) {
+			if (currentActionIndex >= actions.Count) {
 				EndTurn();
 				yield break;
 			}

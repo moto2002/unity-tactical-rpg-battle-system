@@ -48,7 +48,7 @@ namespace Tactical.Editor {
 			}
 
 			CreateBattleSection();
-			if (battleManager.inProgress && !battleManager.playerTurnInProgress) {
+			if (battleManager.inProgress) {
 				CreateTurnSection();
 			}
 		}
@@ -62,6 +62,17 @@ namespace Tactical.Editor {
 		private void CreateTurnSection () {
 			GUILayout.Label("Turn #" + battleManager.currentTurn);
 			CreateNextTurnButton();
+			CreateActionsList();
+		}
+
+		private void CreateActionsList () {
+			for (var i = 0; i <= turnManager.actions.Count - 1; i++) {
+				GUILayout.Toggle(turnManager.currentActionIndex == i, string.Format(
+					"Action #{0} ({1})",
+					i,
+					turnManager.actions[i].isNPC ? "NPC" : "PC"
+				));
+			}
 		}
 
 		private void CreateStartEndBattleButton () {
