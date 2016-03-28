@@ -8,6 +8,7 @@ namespace Tactical.Battle {
 		public GameObject unit;
 		public bool isNPC;
 		public PlayerControllable.Player player;
+
 	}
 
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using Tactical.Unit;
 using Tactical.Grid;
 
@@ -12,6 +11,17 @@ namespace Tactical.Battle {
 
 		private TurnManager turnManager;
 		private GameObject unit;
+
+		public void StartAction (GameObject actionUnit, PlayerControllable.Player player) {
+			Debug.Log("Player action [start]");
+			unit = actionUnit;
+			OpenActionMenu();
+		}
+
+		public static void EndAction () {
+			Debug.Log("Player action [end]");
+			if (OnActionEnded != null) { OnActionEnded(); }
+		}
 
 		private void OnEnable () {
 			TurnManager.OnPlayerActionStarted += StartAction;
@@ -35,14 +45,8 @@ namespace Tactical.Battle {
 			EndAction();
 		}
 
-		public void StartAction (GameObject actionUnit, PlayerControllable.Player player) {
-			unit = actionUnit;
-			Debug.Log("Player action [start]");
-		}
-
-		public static void EndAction () {
-			Debug.Log("Player action [end]");
-			if (OnActionEnded != null) { OnActionEnded(); }
+		private void OpenActionMenu () {
+			Debug.Log("OpenActionMenu");
 		}
 
 	}

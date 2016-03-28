@@ -17,8 +17,8 @@ namespace Tactical.UI {
 
 		private void Start () {
 			canvas = gameObject.GetComponent<Canvas>();
-			titleText = GameObject.Find("Title").GetComponent<Text>();
-			subtitleText = GameObject.Find("Subtitle").GetComponent<Text>();
+			titleText = transform.Find("Title").GetComponent<Text>();
+			subtitleText = transform.Find("Subtitle").GetComponent<Text>();
 		}
 
 		private void Update () {
@@ -27,6 +27,7 @@ namespace Tactical.UI {
 			if (visible) {
 				UpdateInformations();
 			}
+			Debug.Log("titleText.text"+ titleText.text);
 		}
 
 		private void UpdateVisibility () {

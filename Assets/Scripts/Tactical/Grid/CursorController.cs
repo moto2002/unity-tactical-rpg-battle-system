@@ -12,12 +12,12 @@ namespace Tactical.Grid {
 		private GridController gridController;
 
 		private void OnEnable () {
-			TurnManager.OnPlayerActionStarted += CreateMainCursor;
+			PlayerTurnAction.OnMovementStarted += CreateMainCursor;
 			PlayerActionManager.OnActionEnded += DeleteMainCursor;
 		}
 
 		private void OnDisable () {
-			TurnManager.OnPlayerActionStarted -= CreateMainCursor;
+			PlayerTurnAction.OnMovementStarted -= CreateMainCursor;
 			PlayerActionManager.OnActionEnded -= DeleteMainCursor;
 		}
 
@@ -25,12 +25,13 @@ namespace Tactical.Grid {
 			gridController = GameObject.Find("Grid").GetComponent<GridController>();
 		}
 
-		private void CreateMainCursor (GameObject unit, PlayerControllable.Player player) {
+		// private void CreateMainCursor (GameObject unit, PlayerControllable.Player player) {
+		private void CreateMainCursor () {
 			if (mainCursor != null) { return; }
 
 			mainCursor = CreateCellCursor(
 				"MainCursor",
-				unit.GetComponent<UnitCore>().gridPosition
+				new Vector3()
 			);
 		}
 
