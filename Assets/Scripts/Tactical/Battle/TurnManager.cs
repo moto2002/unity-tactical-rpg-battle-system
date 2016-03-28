@@ -8,6 +8,7 @@ namespace Tactical.Battle {
 	public class TurnManager : MonoBehaviour {
 
 		public List<TurnAction> actions = new List<TurnAction>();
+		public int currentActionIndex;
 
 		public delegate void TurnStartedAction();
 		public static event TurnStartedAction OnTurnStarted;
@@ -15,13 +16,15 @@ namespace Tactical.Battle {
 		public delegate void TurnEndedAction();
 		public static event TurnEndedAction OnTurnEnded;
 
-		public delegate IEnumerator PCActionStartedAction(GameObject unit, PlayerControllable.Player player);
-		public static event PCActionStartedAction OnPCActionStarted;
+		public delegate void PlayerActionStartedAction(GameObject unit, PlayerControllable.Player player);
+		public static event PlayerActionStartedAction OnPlayerActionStarted;
 
 		public delegate IEnumerator NPCActionStartedAction(GameObject unit);
 		public static event NPCActionStartedAction OnNPCActionStarted;
 
-		public int currentActionIndex;
+		public bool CurrentActionIsPlayer () {
+			return !actions[currentActionIndex].isNPC;
+		}
 
 		/// <summary>
 		/// Start the current turn with the given units.
@@ -34,7 +37,28 @@ namespace Tactical.Battle {
 			// Prepare the actions of this turn.
 			PrepareActions(units);
 			// Execute all actions in order.
-			StartCoroutine(NextAction());
+			StartCoroutine(StartAction(0));
+		}
+
+		public void EndTurn () {
+			if (OnTurnEnded != null) { OnTurnEnded(); }
+			currentActionIndex = 0;
+		}
+
+		public void NextTurn (List<GameObject> units) {
+			StartTurn(units);
+		}
+
+		private void OnEnable () {
+			PlayerActionManager.OnActionEnded += EndCurrentAction;
+		}
+
+		private void OnDisable () {
+			PlayerActionManager.OnActionEnded -= EndCurrentAction;
+		}
+
+		private void Update () {
+
 		}
 
 		private void PrepareActions (List<GameObject> units) {
@@ -55,39 +79,40 @@ namespace Tactical.Battle {
 			}
 		}
 
-		public void EndTurn () {
-			if (OnTurnEnded != null) { OnTurnEnded(); }
-			currentActionIndex = 0;
-		}
-
-		public void NextTurn (List<GameObject> units) {
-			StartTurn(units);
-		}
-
-		private IEnumerator NextAction () {
-			if (currentActionIndex >= actions.Count) {
+		private IEnumerator StartAction (int actionIndex) {
+			if (actionIndex >= actions.Count) {
 				EndTurn();
 				yield break;
 			}
 
-			var action = actions[currentActionIndex];
+			var action = actions[actionIndex];
 
 			if (OnNPCActionStarted == null) {
 				throw new UnityException("OnNPCActionStarted handler missing.");
 			}
-			if (OnPCActionStarted == null) {
-				throw new UnityException("OnPCActionStarted handler missing.");
+			if (OnPlayerActionStarted == null) {
+				throw new UnityException("OnPlayerActionStarted handler missing.");
 			}
 
 			if (action.isNPC) {
+				// TODO: Convert OnNPCActionStarted to be a void method like OnPlayerActionStarted
 				yield return OnNPCActionStarted(action.unit);
 			} else {
-				yield return OnPCActionStarted(action.unit, action.player);
+				OnPlayerActionStarted(action.unit, action.player);
+				// TODO: Send an event to start the player action (UI, etc).
+				yield break;
 			}
 
-			currentActionIndex += 1;
-
 			yield return NextAction();
+		}
+
+		private IEnumerator NextAction () {
+			currentActionIndex += 1;
+			yield return StartAction(currentActionIndex);
+		}
+
+		private void EndCurrentAction () {
+			StartCoroutine(NextAction());
 		}
 
 	}

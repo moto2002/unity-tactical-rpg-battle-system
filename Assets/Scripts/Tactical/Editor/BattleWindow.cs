@@ -61,17 +61,26 @@ namespace Tactical.Editor {
 
 		private void CreateTurnSection () {
 			GUILayout.Label("Turn #" + battleManager.currentTurn);
-			CreateNextTurnButton();
 			CreateActionsList();
 		}
 
 		private void CreateActionsList () {
 			for (var i = 0; i <= turnManager.actions.Count - 1; i++) {
-				GUILayout.Toggle(turnManager.currentActionIndex == i, string.Format(
-					"Action #{0} ({1})",
-					i,
-					turnManager.actions[i].isNPC ? "NPC" : "PC"
+				var isCurrent = turnManager.currentActionIndex == i;
+				var isNPC = turnManager.actions[i].isNPC;
+
+				GUILayout.BeginHorizontal();
+				GUILayout.Toggle(isCurrent, string.Format(
+					"Action #{0} ({1})", i,
+					isNPC ? "NPC" : "PC"
 				));
+
+				if (isCurrent && !isNPC) {
+					if (GUILayout.Button("End")) {
+						PlayerActionManager.EndAction();
+					}
+				}
+				GUILayout.EndHorizontal();
 			}
 		}
 
@@ -85,14 +94,6 @@ namespace Tactical.Editor {
 				} else {
 					battleManager.StartBattle();
 				}
-			}
-		}
-
-		private void CreateNextTurnButton () {
-			var nextTurnButton = GUILayout.Button("NextTurn");
-
-			if (nextTurnButton) {
-				turnManager.NextTurn(battleManager.unitManager.units);
 			}
 		}
 
