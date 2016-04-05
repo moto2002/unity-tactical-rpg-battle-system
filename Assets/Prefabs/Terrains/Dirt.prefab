@@ -21,9 +21,7 @@ GameObject:
   - 4: {fileID: 4000012349173256}
   - 33: {fileID: 33000012083232924}
   - 23: {fileID: 23000011689354978}
-  - 114: {fileID: 114000013908520680}
-  - 114: {fileID: 114000010112555000}
-  - 114: {fileID: 114000014209321266}
+  - 114: {fileID: 114000011481797818}
   m_Layer: 0
   m_Name: Dirt
   m_TagString: Untagged
@@ -39,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1000010211622644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +76,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010211622644}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114000010112555000
+--- !u!114 &114000011481797818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,34 +84,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010211622644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9046fb6f2d9484e70a4765f54581438c, type: 3}
+  m_Script: {fileID: 11500000, guid: b019c55e9c092439a9e1c9a24ec7e519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000013908520680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010211622644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb025177fdb4e4e7fa5f9b11c64ebc08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain:
-    id: 1
-    type: 0
-    name: Dirt
-    material: Brown
---- !u!114 &114000014209321266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010211622644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b30c59aea5b4efe900e0c7d613dfef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridPosition: {x: 0, y: 0, z: 0}
+  pos:
+    x: 0
+    y: 0
+  height: 0
