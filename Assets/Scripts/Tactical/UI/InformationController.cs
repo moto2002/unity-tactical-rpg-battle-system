@@ -27,7 +27,6 @@ namespace Tactical.UI {
 			if (visible) {
 				UpdateInformations();
 			}
-			Debug.Log("titleText.text"+ titleText.text);
 		}
 
 		private void UpdateVisibility () {
