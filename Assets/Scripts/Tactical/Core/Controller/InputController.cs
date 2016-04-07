@@ -37,8 +37,8 @@ namespace Tactical.Core.Controller {
 
 	class Repeater {
 
-		private const float threshold = 0.5f;
-		private const float rate = 0.25f;
+		private const float threshold = 0.3f;
+		private const float rate = 0.15f;
 		private float _next;
 		private bool _hold;
 		private string _axis;
