@@ -22,8 +22,8 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void SpawnTestUnits () {
-			var components = new System.Type[] { /*typeof(WalkMovement),*/ typeof(FlyMovement), typeof(TeleportMovement) };
-			for (int i = 0; i < 2; ++i) {
+			var components = new System.Type[] { typeof(WalkMovement), typeof(FlyMovement), typeof(TeleportMovement) };
+			for (int i = 0; i < 3; ++i) {
 				var instance = Instantiate(owner.heroPrefab) as GameObject;
 				instance.transform.parent = transform;
 
@@ -35,7 +35,7 @@ namespace Tactical.Battle.BattleState {
 
         Movement m = instance.AddComponent(components[i]) as Movement;
         m.range = 5;
-        m.jumpHeight = 1;
+        m.jumpHeight = 2;
 			}
 		}
 	}
