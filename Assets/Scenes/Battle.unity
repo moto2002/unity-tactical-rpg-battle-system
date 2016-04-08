@@ -369,6 +369,8 @@ MonoBehaviour:
   pos:
     x: 0
     y: 0
+  heroPrefab: {fileID: 1000011331138220, guid: 9d3037b94e7a34433807394972e2bcac, type: 2}
+  currentUnit: {fileID: 0}
 --- !u!4 &1594789435
 Transform:
   m_ObjectHideFlags: 0
@@ -424,15 +426,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011003535472, guid: 1bf3b77dca96c45c4a96e826319ca704, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000013987489246, guid: 1bf3b77dca96c45c4a96e826319ca704,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 82096aab38f01cb40a1cbf8629a810ba, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bf3b77dca96c45c4a96e826319ca704, type: 2}
   m_IsPrefabParent: 0

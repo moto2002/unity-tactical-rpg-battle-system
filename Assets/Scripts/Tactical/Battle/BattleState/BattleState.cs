@@ -57,7 +57,7 @@ namespace Tactical.Battle.BattleState {
 			}
 
 			pos = p;
-			tileSelectionIndicator.localPosition = board.tiles[p].center;
+			tileSelectionIndicator.localPosition = board.tiles[p].center + new Vector3(0f, tileSelectionIndicator.lossyScale.y / 2f, 0f);
 		}
 
 	}

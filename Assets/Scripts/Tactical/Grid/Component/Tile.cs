@@ -1,19 +1,20 @@
 using UnityEngine;
+using Tactical.Grid.Model;
 
 namespace Tactical.Grid.Component {
-
-	using Model;
 
 	[ExecuteInEditMode]
 	public class Tile : MonoBehaviour {
 
 		public const float STEP_HEIGHT = 0.25f;
-
 		public Point pos;
 		public int height;
 		public Vector3 center {
 			get { return new Vector3(pos.x, height * STEP_HEIGHT, pos.y); }
 		}
+		public GameObject content;
+		[HideInInspector] public Tile prev;
+		[HideInInspector] public int distance;
 
 		public void Grow () {
 			height++;

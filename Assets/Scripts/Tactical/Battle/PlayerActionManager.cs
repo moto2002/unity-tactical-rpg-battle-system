@@ -41,8 +41,8 @@ namespace Tactical.Battle {
 		}
 
 		private void MoveTo (Vector3 gridPosition) {
-			unit.GetComponent<UnitMovement>().Move(gridPosition);
-			EndAction();
+			// unit.GetComponent<UnitMovement>().Move(gridPosition);
+			// EndAction();
 		}
 
 		private void OpenActionMenu () {
