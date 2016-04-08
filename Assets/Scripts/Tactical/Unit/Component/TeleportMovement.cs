@@ -21,7 +21,7 @@ namespace Tactical.Unit.Component {
 				yield return null;
 			}
 
-			transform.position = tile.center + new Vector3(0f, originalScale.y, 0f);
+			transform.position = tile.center;
 
 			Tweener grow = transform.ScaleTo(originalScale, 0.5f, EasingEquations.EaseOutBack);
 			while (grow != null) {

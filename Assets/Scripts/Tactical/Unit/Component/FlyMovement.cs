@@ -15,14 +15,12 @@ namespace Tactical.Unit.Component {
 			unit.Place(tile);
 
 			// Fly high enough not to clip through any ground tiles
-			float y = Tile.STEP_HEIGHT * 10;
-			Debug.Log(string.Format("y: {0}", y));
+			const float y = Tile.STEP_HEIGHT * 10;
 			float duration = (y - jumper.position.y) * 0.5f;
-			// FIXME: Find out why this isn't working!
 			Tweener tweener = jumper.MoveToLocal(new Vector3(0, y, 0), duration, EasingEquations.EaseInOutQuad);
-			// while (tweener != null) {
-			// 	yield return null;
-			// }
+			while (tweener != null) {
+				yield return null;
+			}
 
 			// Turn to face the general direction
 			Direction dir;
@@ -36,7 +34,7 @@ namespace Tactical.Unit.Component {
 
 			// Move to the correct position
 			duration = dist * 0.5f;
-			tweener = transform.MoveTo(tile.center + new Vector3(0, transform.lossyScale.y, 0), duration, EasingEquations.EaseInOutQuad);
+			tweener = transform.MoveTo(tile.center, duration, EasingEquations.EaseInOutQuad);
 			while (tweener != null) {
 				yield return null;
 			}

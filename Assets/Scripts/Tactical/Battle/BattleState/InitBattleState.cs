@@ -25,6 +25,7 @@ namespace Tactical.Battle.BattleState {
 			var components = new System.Type[] { /*typeof(WalkMovement),*/ typeof(FlyMovement), typeof(TeleportMovement) };
 			for (int i = 0; i < 2; ++i) {
 				var instance = Instantiate(owner.heroPrefab) as GameObject;
+				instance.transform.parent = transform;
 
 				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
 

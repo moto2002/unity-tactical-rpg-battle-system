@@ -24,7 +24,7 @@ namespace Tactical.Unit.Component {
 		}
 
 		public void Match () {
-			transform.localPosition = tile.center + new Vector3(0f, transform.lossyScale.y, 0f);
+			transform.localPosition = tile.center;
 			transform.localEulerAngles = dir.ToEuler();
 		}
 
