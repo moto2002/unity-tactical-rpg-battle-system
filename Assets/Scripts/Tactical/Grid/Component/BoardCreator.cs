@@ -91,10 +91,10 @@ namespace Tactical.Grid.DevTools {
 		}
 
 		private Rect RandomRect () {
-			int x = UnityEngine.Random.Range(0, width - 2);
-			int y = UnityEngine.Random.Range(0, height - 2);
-			int w = UnityEngine.Random.Range(1, width - x);
-			int h = UnityEngine.Random.Range(1, depth - y);
+			int x = UnityEngine.Random.Range(0, width);
+			int y = UnityEngine.Random.Range(0, depth);
+			int w = UnityEngine.Random.Range(1, width - x + 1);
+			int h = UnityEngine.Random.Range(1, depth - y + 1);
 			return new Rect(x, y, w, h);
 		}
 
