@@ -10,20 +10,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fb3dab6f710b4b1fb369ce655aee224, type: 3}
   m_Name: Battle1 - Intro
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   list:
   - messages:
-    - Ramza, watch out! Don't rush them!
-    speaker: {fileID: 0}
-    anchor: 5
-  - messages:
-    - Don't patronize me, Delita!
-    - I'm also a Beoulve!!
-    speaker: {fileID: 0}
-    anchor: 3
-  - messages:
     - What's this? Just a bunch of kids! What luck!
-    - OK, all we have to do is kill these keds! Then, we can escape!
-    - Don't you worry,! We'll kill everyone of you!
-    speaker: {fileID: 0}
+    - OK, all we have to do is kill these kids! Then, we can escape!
+    - Don't you worry! We'll kill everyone of you!
+    speaker: {fileID: 21300000, guid: 977bcb1cdd826448b8e3ca2878a9193c, type: 3}
     anchor: 3

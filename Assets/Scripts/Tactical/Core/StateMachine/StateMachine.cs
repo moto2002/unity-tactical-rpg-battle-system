@@ -8,7 +8,7 @@ namespace	Tactical.Core.StateMachine {
 			get { return _currentState; }
 			set { Transition(value); }
 		}
-		protected State _currentState;
+		[SerializeField] protected State _currentState;
 		protected bool _inTransition;
 
 		public virtual T GetState<T>() where T : State {
