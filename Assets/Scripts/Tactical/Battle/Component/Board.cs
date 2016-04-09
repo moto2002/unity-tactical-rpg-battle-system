@@ -17,8 +17,7 @@ namespace Tactical.Battle.Component {
 			new Point(1, 0),
 			new Point(-1, 0)
 		};
-		private Color selectedTileColor = new Color(0, 1, 1, 1);
-		private Color defaultTileColor = new Color(1, 1, 1, 1);
+		private Color selectedTileColor = new Color(0.15f, 0.15f, 0.4f, 1);
 
 		public void Load (LevelData data) {
 			for (int i = 0; i < data.tiles.Count; ++i) {
@@ -32,13 +31,14 @@ namespace Tactical.Battle.Component {
 
 		public void SelectTiles (List<Tile> tiles) {
 			for (int i = tiles.Count - 1; i >= 0; --i) {
+				tiles[i].GetComponent<Renderer>().material.SetColor("_DefaultColor", tiles[i].GetComponent<Renderer>().material.color);
 				tiles[i].GetComponent<Renderer>().material.SetColor("_Color", selectedTileColor);
 			}
 		}
 
 		public void DeSelectTiles (List<Tile> tiles) {
 			for (int i = tiles.Count - 1; i >= 0; --i) {
-				tiles[i].GetComponent<Renderer>().material.SetColor("_Color", defaultTileColor);
+				tiles[i].GetComponent<Renderer>().material.SetColor("_Color", tiles[i].GetComponent<Renderer>().material.GetColor("_DefaultColor"));
 			}
 		}
 

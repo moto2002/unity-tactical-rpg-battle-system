@@ -31,8 +31,6 @@ namespace Tactical.Battle.BattleState {
 		protected override void OnFire (object sender, InfoEventArgs<int> e) {
 			if (tiles.Contains(owner.currentTile)) {
 				owner.ChangeState<MoveSequenceState>();
-			} else {
-				Debug.Log(string.Format("Out of range"));
 			}
 		}
 
