@@ -36,7 +36,10 @@ namespace Tactical.Battle.BattleState {
         Movement m = instance.AddComponent(components[i]) as Movement;
         m.range = 5;
         m.jumpHeight = 2;
+
+				units.Add(unit);
 			}
+
 		}
 	}
 

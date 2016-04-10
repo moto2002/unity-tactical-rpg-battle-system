@@ -1,22 +1,21 @@
-using UnityEngine;
-using Tactical.Grid.Model;
-using Tactical.Unit.Component;
-using Tactical.Core.EventArgs;
+using System.Collections;
 
 namespace Tactical.Battle.BattleState {
 
 	public class SelectUnitState : BattleState {
 
-		protected override void OnMove (object sender, InfoEventArgs<Point> e) {
-			SelectTile(e.info + pos);
+		private int index = -1;
+
+		public override void Enter () {
+			base.Enter();
+			StartCoroutine("ChangeCurrentUnit");
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
-			GameObject content = owner.currentTile.content;
-			if (content != null) {
-				owner.currentUnit = content.GetComponent<UnitCore>();
-				owner.ChangeState<MoveTargetState>();
-			}
+		private IEnumerator ChangeCurrentUnit () {
+			index = (index + 1) % units.Count;
+			turn.Change(units[index]);
+			yield return null;
+			owner.ChangeState<CommandSelectionState>();
 		}
 
 	}

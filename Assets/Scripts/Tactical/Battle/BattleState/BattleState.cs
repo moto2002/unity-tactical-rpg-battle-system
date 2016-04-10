@@ -1,10 +1,14 @@
 using UnityEngine;
-using Tactical.Grid.Model;
+using System.Collections.Generic;
 using Tactical.Core.EventArgs;
 using Tactical.Core.StateMachine;
 using Tactical.Core.Controller;
+using Tactical.Grid.Model;
+using Tactical.Unit.Component;
+using Tactical.Battle.Model;
 using Tactical.Battle.Controller;
 using Tactical.Battle.Component;
+using Tactical.UI.Controller;
 
 namespace Tactical.Battle.BattleState {
 
@@ -26,6 +30,11 @@ namespace Tactical.Battle.BattleState {
 			get { return owner.pos; }
 			set { owner.pos = value; }
 		}
+		public ActionMenuPanelController actionMenuPanelController {
+			get { return owner.actionMenuPanelController; }
+		}
+		public Turn turn { get { return owner.turn; }}
+		public List<UnitCore> units { get { return owner.units; }}
 
 		protected BattleController owner;
 
