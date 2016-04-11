@@ -20,12 +20,6 @@
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
-# Plugins
-Assets/SampleAssets
-Assets/UnityTestTools
-Assets/Gamelogic*
-Assets/TK2DROOT*
-
 # Docs
 docs
 
