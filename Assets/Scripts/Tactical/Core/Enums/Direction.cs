@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Tactical.Core {
 
 	public enum Direction {
