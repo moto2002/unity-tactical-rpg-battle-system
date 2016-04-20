@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tactical.Item.Component {
+namespace Tactical.Core.Component {
 
 	public abstract class Feature : MonoBehaviour {
 

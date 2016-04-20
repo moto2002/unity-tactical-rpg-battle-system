@@ -2,7 +2,7 @@ using UnityEngine;
 using Tactical.Core;
 using Tactical.Unit.Component;
 
-namespace Tactical.Item.Component {
+namespace Tactical.Core.Component {
 
 	public class StatModifierFeature : Feature {
 

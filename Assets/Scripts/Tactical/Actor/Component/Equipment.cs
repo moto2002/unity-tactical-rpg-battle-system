@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Tactical.Core;
+using Tactical.Core.Component;
 using Tactical.Item.Component;
 
 namespace Tactical.Actor.Component {

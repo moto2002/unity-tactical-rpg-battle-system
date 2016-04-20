@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core;
+using Tactical.Core.Component;
 using Tactical.Actor.Component;
 using Tactical.Unit.Component;
 using Tactical.Item.Component;
