@@ -13,7 +13,7 @@ namespace Tactical.Battle.BattleState {
 		protected override void Awake () {
 			base.Awake();
 			conversationController = owner.GetComponentInChildren<ConversationController>();
-			data = Resources.Load<ConversationData>("Conversations/Battle1 - Intro");
+			// data = Resources.Load<ConversationData>("Conversations/Battle1 - Intro");
 		}
 
 		protected override void OnDestroy () {
@@ -25,7 +25,9 @@ namespace Tactical.Battle.BattleState {
 
 		public override void Enter () {
 			base.Enter();
-			conversationController.Show(data);
+			if (data != null) {
+				conversationController.Show(data);
+			}
 		}
 
 		protected override void AddListeners () {
