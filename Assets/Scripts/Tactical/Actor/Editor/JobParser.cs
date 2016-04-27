@@ -35,6 +35,11 @@ namespace Tactical.Actor.Editor {
 
 		private static void PartsStartingStats (string line) {
 			string[] elements = line.Split(',');
+			if (elements[0] == "") {
+				Debug.LogError("Invalid line: " + line);
+				return;
+			}
+
 			GameObject obj = GetOrCreate(elements[0]);
 			Job job = obj.GetComponent<Job>();
 			for (int i = 1; i < Job.statOrder.Length + 1; ++i) {
