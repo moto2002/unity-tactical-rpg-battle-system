@@ -10,14 +10,19 @@ namespace Tactical.Unit.Component {
 
 	public abstract class Movement : MonoBehaviour {
 
-		public int range;
-		public int jumpHeight;
+		public int range { get { return stats[StatType.MOV]; }}
+		public int jumpHeight { get { return stats[StatType.JMP]; }}
+		protected Stats stats;
 		protected UnitCore unit;
 		protected Transform jumper;
 
 		protected virtual void Awake () {
 			unit = GetComponent<UnitCore>();
 			jumper = transform.FindChild("Jumper");
+		}
+
+		protected virtual void Start () {
+			stats = GetComponent<Stats>();
 		}
 
 		public virtual List<Tile> GetTilesInRange (Board board) {

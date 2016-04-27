@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using Tactical.Core;
+using Tactical.Actor.Component;
 using Tactical.Grid.Model;
 using Tactical.Unit.Component;
 
@@ -22,24 +24,34 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void SpawnTestUnits () {
-			var components = new System.Type[] { typeof(WalkMovement), typeof(FlyMovement), typeof(TeleportMovement) };
-			for (int i = 0; i < 3; ++i) {
-				var instance = Instantiate(owner.heroPrefab) as GameObject;
-				instance.transform.parent = transform;
+			var jobs = new string[] {"Rogue", "Warrior", "Wizard"};
+			for (int i = 0; i < jobs.Length; ++i) {
+				var instance = Instantiate(owner.heroPrefab);
+
+				Stats s = instance.AddComponent<Stats>();
+				s[StatType.LVL] = 1;
+
+				GameObject jobPrefab = Resources.Load<GameObject>( "Jobs/" + jobs[i] );
+				var jobInstance = Instantiate(jobPrefab);
+				jobInstance.transform.SetParent(instance.transform);
+
+				Job job = jobInstance.GetComponent<Job>();
+				job.Employ();
+				job.LoadDefaultStats();
 
 				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
 
-				var unit = instance.GetComponent<UnitCore>();
+				UnitCore unit = instance.GetComponent<UnitCore>();
 				unit.Place(board.GetTile(p));
 				unit.Match();
 
-        Movement m = instance.AddComponent(components[i]) as Movement;
-        m.range = 5;
-        m.jumpHeight = 2;
+				instance.AddComponent<WalkMovement>();
 
 				units.Add(unit);
-			}
 
+				ExperienceRank rank = instance.AddComponent<ExperienceRank>();
+				rank.Init(10);
+			}
 		}
 	}
 
