@@ -23,5 +23,7 @@ sysinfo.txt
 # Docs
 docs
 
-# TODO
 *.todo
+
+# Generated resources
+Assets/Resources/Jobs/*
