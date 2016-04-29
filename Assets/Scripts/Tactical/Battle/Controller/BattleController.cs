@@ -23,6 +23,7 @@ namespace Tactical.Battle.Controller {
 		public ActionMenuPanelController actionMenuPanelController;
 		public Turn turn = new Turn();
 		public List<UnitCore> units = new List<UnitCore>();
+		public StatPanelController statPanelController;
 
 		private void Start () {
 			ChangeState<InitBattleState>();

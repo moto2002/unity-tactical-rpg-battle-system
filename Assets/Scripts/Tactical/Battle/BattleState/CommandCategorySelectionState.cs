@@ -4,6 +4,16 @@ namespace Tactical.Battle.BattleState {
 
 	public class CommandCategorySelectionState : BaseActionMenuState {
 
+		public override void Enter () {
+			base.Enter();
+			statPanelController.ShowPrimary(turn.actor.gameObject);
+		}
+
+		public override void Exit () {
+			base.Exit();
+			statPanelController.HidePrimary();
+		}
+
 		protected override void LoadMenu () {
 			if (menuOptions == null) {
 				menuTitle = "Action";

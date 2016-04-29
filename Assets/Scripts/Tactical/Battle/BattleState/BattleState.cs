@@ -4,6 +4,7 @@ using Tactical.Core.EventArgs;
 using Tactical.Core.StateMachine;
 using Tactical.Core.Controller;
 using Tactical.Grid.Model;
+using Tactical.Grid.Component;
 using Tactical.Unit.Component;
 using Tactical.Battle.Model;
 using Tactical.Battle.Controller;
@@ -33,8 +34,15 @@ namespace Tactical.Battle.BattleState {
 		public ActionMenuPanelController actionMenuPanelController {
 			get { return owner.actionMenuPanelController; }
 		}
-		public Turn turn { get { return owner.turn; }}
-		public List<UnitCore> units { get { return owner.units; }}
+		public StatPanelController statPanelController {
+			get { return owner.statPanelController; }
+		}
+		public Turn turn {
+			get { return owner.turn; }
+		}
+		public List<UnitCore> units {
+			get { return owner.units; }
+		}
 
 		protected BattleController owner;
 
@@ -67,6 +75,30 @@ namespace Tactical.Battle.BattleState {
 
 			pos = p;
 			tileSelectionIndicator.localPosition = board.tiles[p].center;
+		}
+
+		protected virtual UnitCore GetUnit (Point p) {
+			Tile t = board.GetTile(p);
+			GameObject content = t != null ? t.content : null;
+			return content != null ? content.GetComponent<UnitCore>() : null;
+		}
+
+		protected virtual void RefreshPrimaryStatPanel (Point p) {
+			var target = GetUnit(p);
+			if (target != null) {
+				statPanelController.ShowPrimary(target.gameObject);
+			} else {
+				statPanelController.HidePrimary();
+			}
+		}
+
+		protected virtual void RefreshSecondaryStatPanel (Point p) {
+			var target = GetUnit(p);
+			if (target != null) {
+				statPanelController.ShowSecondary(target.gameObject);
+			} else {
+				statPanelController.HideSecondary();
+			}
 		}
 
 	}

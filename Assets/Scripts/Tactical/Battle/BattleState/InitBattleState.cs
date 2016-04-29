@@ -38,6 +38,7 @@ namespace Tactical.Battle.BattleState {
 				Job job = jobInstance.GetComponent<Job>();
 				job.Employ();
 				job.LoadDefaultStats();
+				instance.name = string.Format("Character #{0}", i+1);
 
 				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
 

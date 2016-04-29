@@ -14,6 +14,11 @@ namespace Tactical.Battle.BattleState {
 			base.Awake();
 			conversationController = owner.GetComponentInChildren<ConversationController>();
 			// data = Resources.Load<ConversationData>("Conversations/Battle1 - Intro");
+
+			if (data == null) {
+				Debug.Log("No cutscene data, changing to SelectUnitState.");
+				owner.ChangeState<SelectUnitState>();
+			}
 		}
 
 		protected override void OnDestroy () {
@@ -41,14 +46,13 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		protected override void OnFire (object sender, InfoEventArgs<int> e) {
-			base.OnFire (sender, e);
+			base.OnFire(sender, e);
 			conversationController.Next();
 		}
 
 		private void OnCompleteConversation (object sender, System.EventArgs e) {
 			owner.ChangeState<SelectUnitState>();
 		}
-
 
 	}
 

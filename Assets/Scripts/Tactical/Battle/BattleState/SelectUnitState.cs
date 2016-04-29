@@ -11,9 +11,15 @@ namespace Tactical.Battle.BattleState {
 			StartCoroutine("ChangeCurrentUnit");
 		}
 
+		public override void Exit () {
+			base.Exit();
+			statPanelController.HidePrimary();
+		}
+
 		private IEnumerator ChangeCurrentUnit () {
 			index = (index + 1) % units.Count;
 			turn.Change(units[index]);
+			RefreshPrimaryStatPanel(pos);
 			yield return null;
 			owner.ChangeState<CommandSelectionState>();
 		}
