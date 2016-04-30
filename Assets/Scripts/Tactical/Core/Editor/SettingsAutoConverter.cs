@@ -13,6 +13,7 @@ namespace Tactical.Core.Editor {
 			parsers = new Dictionary<string, Action>();
 			parsers.Add("JobStartingStats.csv", Tactical.Actor.Editor.JobParser.Parse);
 			parsers.Add("JobGrowthStats.csv", Tactical.Actor.Editor.JobParser.Parse);
+			parsers.Add("Enemies.csv", EnemyParser.Parse);
 		}
 
 		private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
