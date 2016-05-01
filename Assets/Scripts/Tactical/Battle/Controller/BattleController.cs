@@ -22,7 +22,7 @@ namespace Tactical.Battle.Controller {
 		public Tile currentTile { get { return board.GetTile(pos); }}
 		public ActionMenuPanelController actionMenuPanelController;
 		public Turn turn = new Turn();
-		public List<UnitCore> units = new List<UnitCore>();
+		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;
 
 		private void Start () {

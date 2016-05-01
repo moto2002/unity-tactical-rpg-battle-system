@@ -4,7 +4,7 @@ using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {
 
-	public class UnitCore : MonoBehaviour {
+	public class Unit : MonoBehaviour {
 
 		public Tile tile { get; protected set; }
 		public Direction dir;

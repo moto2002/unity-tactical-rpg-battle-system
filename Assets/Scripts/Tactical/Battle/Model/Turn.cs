@@ -6,7 +6,7 @@ namespace Tactical.Battle.Model {
 
 	public class Turn {
 
-		public UnitCore actor;
+		public Unit actor;
 		public bool hasUnitMoved;
 		public bool hasUnitActed;
 		public bool lockMove;
@@ -14,7 +14,7 @@ namespace Tactical.Battle.Model {
 		private Tile startTile;
 		private Direction startDir;
 
-		public void Change (UnitCore current) {
+		public void Change (Unit current) {
 			actor = current;
 			hasUnitMoved = false;
 			hasUnitActed = false;

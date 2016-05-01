@@ -41,7 +41,7 @@ namespace Tactical.Battle.BattleState {
 
 				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
 
-				UnitCore unit = instance.GetComponent<UnitCore>();
+				Unit unit = instance.GetComponent<Unit>();
 				unit.Place(board.GetTile(p));
 				unit.Match();
 

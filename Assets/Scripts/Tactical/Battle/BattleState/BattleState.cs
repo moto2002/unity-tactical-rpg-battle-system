@@ -40,7 +40,7 @@ namespace Tactical.Battle.BattleState {
 		public Turn turn {
 			get { return owner.turn; }
 		}
-		public List<UnitCore> units {
+		public List<Unit> units {
 			get { return owner.units; }
 		}
 
@@ -77,10 +77,10 @@ namespace Tactical.Battle.BattleState {
 			tileSelectionIndicator.localPosition = board.tiles[p].center;
 		}
 
-		protected virtual UnitCore GetUnit (Point p) {
+		protected virtual Unit GetUnit (Point p) {
 			Tile t = board.GetTile(p);
 			GameObject content = t != null ? t.content : null;
-			return content != null ? content.GetComponent<UnitCore>() : null;
+			return content != null ? content.GetComponent<Unit>() : null;
 		}
 
 		protected virtual void RefreshPrimaryStatPanel (Point p) {

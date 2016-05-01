@@ -12,11 +12,11 @@ namespace Tactical.Actor.Component {
 		public int range { get { return stats[StatType.MOV]; }}
 		public int jumpHeight { get { return stats[StatType.JMP]; }}
 		protected Stats stats;
-		protected UnitCore unit;
+		protected Unit unit;
 		protected Transform jumper;
 
 		protected virtual void Awake () {
-			unit = GetComponent<UnitCore>();
+			unit = GetComponent<Unit>();
 			jumper = transform.FindChild("Jumper");
 		}
 
