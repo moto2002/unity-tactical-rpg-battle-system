@@ -1,7 +1,7 @@
 using UnityEngine;
 using Tactical.Core;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class ExperienceRank : MonoBehaviour {
 

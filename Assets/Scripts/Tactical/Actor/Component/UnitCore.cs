@@ -2,7 +2,7 @@ using UnityEngine;
 using Tactical.Core;
 using Tactical.Grid.Component;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class UnitCore : MonoBehaviour {
 

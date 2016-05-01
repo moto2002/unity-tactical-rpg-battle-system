@@ -1,11 +1,11 @@
 using UnityEngine;
 using NUnit.Framework;
 using Tactical.Core;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 using Party = System.Collections.Generic.List<UnityEngine.GameObject>;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class ExperienceRankTests : MonoBehaviour {
 

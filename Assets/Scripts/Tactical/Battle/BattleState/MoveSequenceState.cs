@@ -1,5 +1,5 @@
 using System.Collections;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 namespace Tactical.Battle.BattleState {
 

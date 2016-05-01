@@ -1,6 +1,4 @@
-using UnityEngine;
 using Tactical.Grid.Model;
-using Tactical.Unit.Component;
 using Tactical.Core.EventArgs;
 
 namespace Tactical.Battle.BattleState {

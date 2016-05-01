@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Tactical.Core;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 namespace Tactical.UI.Component {
 

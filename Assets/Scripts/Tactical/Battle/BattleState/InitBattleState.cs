@@ -3,7 +3,6 @@ using System.Collections;
 using Tactical.Core;
 using Tactical.Actor.Component;
 using Tactical.Grid.Model;
-using Tactical.Unit.Component;
 
 namespace Tactical.Battle.BattleState {
 
@@ -24,7 +23,7 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void SpawnTestUnits () {
-			var jobs = new string[] {"Rogue", "Warrior", "Wizard"};
+			string[] jobs = {"Rogue", "Warrior", "Wizard"};
 			for (int i = 0; i < jobs.Length; ++i) {
 				var instance = Instantiate(owner.heroPrefab);
 

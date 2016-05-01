@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 using Party = System.Collections.Generic.List<UnityEngine.GameObject>;
 
-namespace Tactical.Unit.Controller {
+namespace Tactical.Actor.Controller {
 
 	public static class ExperienceController {
 

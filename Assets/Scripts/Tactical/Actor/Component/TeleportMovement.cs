@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class TeleportMovement : Movement {
 

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class Stats : MonoBehaviour {
 
@@ -17,12 +17,6 @@ namespace Tactical.Unit.Component {
 		private int[] _data = new int[ (int) StatType.Count ];
 		private static Dictionary<StatType, string> _willChangeNotifications = new Dictionary<StatType, string>();
 		private static Dictionary<StatType, string> _didChangeNotifications = new Dictionary<StatType, string>();
-
-		// DEBUG ONLY: Set placeholder stats.
-		// TODO: Remove this.
-		private void OnEnable () {
-			this[StatType.LVL] = 1;
-		}
 
 		public void SetValue (StatType type, int value, bool allowExceptions) {
 			int oldValue = this[type];

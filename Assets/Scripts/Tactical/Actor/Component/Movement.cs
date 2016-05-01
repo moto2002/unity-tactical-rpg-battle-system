@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Tactical.Core;
 using Tactical.Grid.Component;
 using Tactical.Battle.Component;
-using Tactical.Unit.Component;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public abstract class Movement : MonoBehaviour {
 

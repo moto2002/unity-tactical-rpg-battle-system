@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 using Tactical.Core.EventArgs;
 
 namespace Tactical.Battle.BattleState {

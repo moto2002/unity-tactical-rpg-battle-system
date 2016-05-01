@@ -1,6 +1,5 @@
-using UnityEngine;
 using Tactical.Core;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 namespace Tactical.Core.Component {
 

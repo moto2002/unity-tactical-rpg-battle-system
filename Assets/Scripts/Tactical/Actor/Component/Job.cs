@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Tactical.Core;
 using Tactical.Core.Component;
 using Tactical.Item.Component;
-using Tactical.Unit.Component;
 
 namespace Tactical.Actor.Component {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tactical.Core.StateMachine;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 using Tactical.Battle.Model;
 using Tactical.Battle.Component;
 using Tactical.Battle.BattleState;

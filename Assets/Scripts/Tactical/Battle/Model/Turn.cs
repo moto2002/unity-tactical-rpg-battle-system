@@ -1,6 +1,6 @@
 using Tactical.Core;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
 namespace Tactical.Battle.Model {
 

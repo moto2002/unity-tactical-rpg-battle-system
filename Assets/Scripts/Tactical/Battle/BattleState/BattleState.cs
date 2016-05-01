@@ -5,7 +5,7 @@ using Tactical.Core.StateMachine;
 using Tactical.Core.Controller;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 using Tactical.Battle.Model;
 using Tactical.Battle.Controller;
 using Tactical.Battle.Component;

@@ -24,24 +24,20 @@ namespace Tactical.UI.Controller {
 		}
 
 		public void ShowPrimary (GameObject obj) {
-			Debug.Log("ShowPrimary");
 			primaryPanel.Display(obj);
 			MovePanel(primaryPanel, ShowKey, ref primaryTransition);
 		}
 
 		public void HidePrimary () {
-			Debug.Log("HidePrimary");
 			MovePanel(primaryPanel, HideKey, ref primaryTransition);
 		}
 
 		public void ShowSecondary (GameObject obj) {
-			Debug.Log("ShowSecondary");
 			secondaryPanel.Display(obj);
 			MovePanel(secondaryPanel, ShowKey, ref secondaryTransition);
 		}
 
 		public void HideSecondary () {
-			Debug.Log("HideSecondary");
 			MovePanel(secondaryPanel, HideKey, ref secondaryTransition);
 		}
 

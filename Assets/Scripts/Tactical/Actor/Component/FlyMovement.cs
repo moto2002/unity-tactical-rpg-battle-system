@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using Tactical.Core;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
+using Tactical.Actor.Component;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class FlyMovement : Movement {
 

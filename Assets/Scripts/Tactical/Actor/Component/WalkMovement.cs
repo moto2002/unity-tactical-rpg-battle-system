@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core;
 using Tactical.Grid.Component;
-using Tactical.Unit.Component;
 
-namespace Tactical.Unit.Component {
+namespace Tactical.Actor.Component {
 
 	public class WalkMovement : Movement {
 
