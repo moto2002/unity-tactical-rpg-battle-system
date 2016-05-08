@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Grid.Component;
+using Tactical.Grid.Model;
 
 namespace Tactical.Core {
 
@@ -18,9 +19,23 @@ namespace Tactical.Core {
 			return Direction.West;
 		}
 
+		public static Direction GetDirection (this Point p) {
+			if (p.y > 0) {
+				return Direction.North;
+			}
+			if (p.x > 0) {
+				return Direction.East;
+			}
+			if (p.y < 0) {
+				return Direction.South;
+			}
+			return Direction.West;
+		}
+
 		public static Vector3 ToEuler (this Direction d) {
 			return new Vector3(0, (int)d * 90, 0);
 		}
+
 	}
 
 }

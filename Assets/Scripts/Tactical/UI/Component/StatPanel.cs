@@ -19,7 +19,7 @@ namespace Tactical.UI.Component {
 
 		public void Display (GameObject obj) {
 			// TODO: Choose the sprites depending on the actor.
-			background.sprite = UnityEngine.Random.value > 0.5f ? enemyBackground : allyBackground;
+			background.sprite = allyBackground;
 			// avatar.sprite = null; Need a component which provides this data
 
 			nameLabel.text = obj.name;

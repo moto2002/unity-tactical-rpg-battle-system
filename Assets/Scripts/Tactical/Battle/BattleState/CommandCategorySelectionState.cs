@@ -1,4 +1,6 @@
+using UnityEngine;
 using System.Collections.Generic;
+using Tactical.Actor.Component;
 
 namespace Tactical.Battle.BattleState {
 
@@ -44,15 +46,12 @@ namespace Tactical.Battle.BattleState {
 			owner.ChangeState<CommandSelectionState>();
 		}
 
-		void Attack () {
-			turn.hasUnitActed = true;
-			if (turn.hasUnitMoved) {
-				turn.lockMove = true;
-			}
-			owner.ChangeState<CommandSelectionState>();
+		private void Attack () {
+			turn.ability = turn.actor.GetComponentInChildren<AbilityRange>().gameObject;
+    	owner.ChangeState<AbilityTargetState>();
 		}
 
-		void SetCategory (int index) {
+		private void SetCategory (int index) {
 			ActionSelectionState.category = index;
 			owner.ChangeState<ActionSelectionState>();
 		}

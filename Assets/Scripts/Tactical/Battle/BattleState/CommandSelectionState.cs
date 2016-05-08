@@ -38,7 +38,7 @@ namespace Tactical.Battle.BattleState {
 				owner.ChangeState<CommandCategorySelectionState>();
 				break;
 			case 2: // Wait
-				owner.ChangeState<SelectUnitState>();
+				owner.ChangeState<EndFacingState>();
 				break;
 			}
 		}

@@ -1,3 +1,5 @@
+using UnityEngine;
+using System.Collections.Generic;
 using Tactical.Core;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
@@ -10,6 +12,8 @@ namespace Tactical.Battle.Model {
 		public bool hasUnitMoved;
 		public bool hasUnitActed;
 		public bool lockMove;
+		public GameObject ability;
+		public List<Tile> targets;
 
 		private Tile startTile;
 		private Direction startDir;
