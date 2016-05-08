@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.StateMachine;
 using Tactical.Grid.Model;
@@ -24,6 +25,7 @@ namespace Tactical.Battle.Controller {
 		public Turn turn = new Turn();
 		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;
+		public IEnumerator round;
 
 		private void Start () {
 			ChangeState<InitBattleState>();

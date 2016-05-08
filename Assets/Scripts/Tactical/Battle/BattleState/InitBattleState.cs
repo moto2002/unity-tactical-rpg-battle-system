@@ -3,6 +3,7 @@ using System.Collections;
 using Tactical.Core;
 using Tactical.Actor.Component;
 using Tactical.Grid.Model;
+using Tactical.Battle.Controller;
 
 namespace Tactical.Battle.BattleState {
 
@@ -19,6 +20,7 @@ namespace Tactical.Battle.BattleState {
 			SelectTile(p);
 			SpawnTestUnits();
 			yield return null;
+			owner.round = owner.gameObject.AddComponent<TurnOrderController>().Round();
 			owner.ChangeState<CutSceneState>();
 		}
 
