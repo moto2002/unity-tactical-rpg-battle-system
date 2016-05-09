@@ -9,8 +9,8 @@ public class AddValueModifier : ValueModifier {
 		this.toAdd = toAdd;
 	}
 
-	public override float Modify (float value) {
-		return value + toAdd;
+	public override float Modify (float fromValue, float toValue) {
+		return toValue + toAdd;
 	}
 
 }

@@ -9,8 +9,8 @@ public class MultiplyValueModifier : ValueModifier {
 		this.toMultiply = toMultiply;
 	}
 
-	public override float Modify (float value) {
-		return value * toMultiply;
+	public override float Modify (float fromValue, float toValue) {
+		return toValue * toMultiply;
 	}
 
 }

@@ -14,6 +14,7 @@ namespace Tactical.Battle.Controller {
 		const int actionCost = 20;
 
 		public const string RoundBeganNotification = "TurnOrderController.roundBegan";
+		public const string TurnBeganNotification = "TurnOrderController.TurnBeganNotification";
 		public const string TurnCheckNotification = "TurnOrderController.turnCheck";
 		public const string TurnCompletedNotification = "TurnOrderController.turnCompleted";
 		public const string RoundEndedNotification = "TurnOrderController.roundEnded";
@@ -37,7 +38,7 @@ namespace Tactical.Battle.Controller {
 				for (int i = units.Count - 1; i >= 0; --i) {
 					if (CanTakeTurn(units[i])) {
 						Stats s = units[i].GetComponent<Stats>();
-						Debug.Log(string.Format("{0}: {1}", units[i].name, s[StatType.CTR]));
+						units[i].PostNotification(TurnBeganNotification);
 						bc.turn.Change(units[i]);
 						yield return units[i];
 
