@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Tactical.Grid.Model {
 
 	[System.Serializable]
@@ -46,6 +48,11 @@ namespace Tactical.Grid.Model {
 		public override string ToString () {
 			return string.Format ("({0},{1})", x, y);
 		}
+
+		public static implicit operator Vector2(Point p) {
+			return new Vector2(p.x, p.y);
+		}
+
 	}
 
 }

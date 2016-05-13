@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Core;
+using Tactical.Core.Extensions;
 using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core;
+using Tactical.Core.Extensions;
 using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {

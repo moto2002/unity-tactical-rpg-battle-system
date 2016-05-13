@@ -2,7 +2,7 @@ using UnityEngine;
 using Tactical.Grid.Component;
 using Tactical.Grid.Model;
 
-namespace Tactical.Core {
+namespace Tactical.Core.Extensions {
 
 	public static class DirectionExtensions {
 
@@ -34,6 +34,19 @@ namespace Tactical.Core {
 
 		public static Vector3 ToEuler (this Direction d) {
 			return new Vector3(0, (int)d * 90, 0);
+		}
+
+		public static Point GetNormal (this Direction dir) {
+			switch (dir) {
+			case Direction.North:
+				return new Point(0, 1);
+			case Direction.East:
+				return new Point(1, 0);
+			case Direction.South:
+				return new Point(0, -1);
+			default: // Direction.West:
+				return new Point(-1, 0);
+			}
 		}
 
 	}
