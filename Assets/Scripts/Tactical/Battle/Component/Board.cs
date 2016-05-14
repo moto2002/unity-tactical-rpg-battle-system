@@ -15,6 +15,8 @@ namespace Tactical.Battle.Component {
 		public Point max {
 			get { return _max; }
 		}
+		public Transform tilesContainer;
+		public Transform unitsContainer;
 
 		[SerializeField] private GameObject tilePrefab;
 		private Point[] dirs = new Point[4] {
@@ -33,6 +35,7 @@ namespace Tactical.Battle.Component {
 
 			for (int i = 0; i < data.tiles.Count; ++i) {
 				GameObject instance = Instantiate(tilePrefab) as GameObject;
+				instance.transform.parent = tilesContainer;
 				Tile t = instance.GetComponent<Tile>();
 				t.Load(data.tiles[i]);
 				tiles.Add(t.pos, t);

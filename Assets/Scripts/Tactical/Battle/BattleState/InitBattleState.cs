@@ -40,6 +40,7 @@ namespace Tactical.Battle.BattleState {
 				job.Employ();
 				job.LoadDefaultStats();
 				instance.name = string.Format("Character #{0}", i+1);
+				instance.transform.parent = owner.board.unitsContainer;
 
 				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
 
