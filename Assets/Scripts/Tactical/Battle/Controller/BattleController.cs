@@ -22,6 +22,7 @@ namespace Tactical.Battle.Controller {
 		public GameObject heroPrefab;
 		public Tile currentTile { get { return board.GetTile(pos); }}
 		public ActionMenuPanelController actionMenuPanelController;
+		public TurnOrderPanelController turnOrderPanelController;
 		public Turn turn = new Turn();
 		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;

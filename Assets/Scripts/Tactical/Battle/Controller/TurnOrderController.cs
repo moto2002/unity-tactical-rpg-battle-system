@@ -8,10 +8,10 @@ namespace Tactical.Battle.Controller {
 
 	public class TurnOrderController : MonoBehaviour {
 
-		const int turnActivation = 100;
-		const int turnCost = 50;
-		const int moveCost = 30;
-		const int actionCost = 20;
+		private const int turnActivation = 100;
+		private const int turnCost = 50;
+		private const int moveCost = 30;
+		private const int actionCost = 20;
 
 		public const string RoundBeganNotification = "TurnOrderController.roundBegan";
 		public const string TurnBeganNotification = "TurnOrderController.TurnBeganNotification";
@@ -38,7 +38,7 @@ namespace Tactical.Battle.Controller {
 				for (int i = units.Count - 1; i >= 0; --i) {
 					if (CanTakeTurn(units[i])) {
 						Stats s = units[i].GetComponent<Stats>();
-						units[i].PostNotification(TurnBeganNotification);
+						units[i].PostNotification(TurnBeganNotification, units);
 						bc.turn.Change(units[i]);
 						yield return units[i];
 

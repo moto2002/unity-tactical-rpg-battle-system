@@ -11,16 +11,24 @@ namespace Tactical.Battle.BattleState {
 
 		public override void Enter () {
 			base.Enter();
-			StartCoroutine(Init());
+			StartCoroutine("Init");
 		}
 
 		private IEnumerator Init () {
+			// Load the board.
 			board.Load(levelData);
+
+			// Select the tile at [0,0].
 			var p = new Point((int)levelData.tiles[0].x, (int)levelData.tiles[0].z);
 			SelectTile(p);
+
+			// Spawn test units.
+			// TODO: Use a real system to spawn units depending on the situation.
 			SpawnTestUnits();
 			yield return null;
 			owner.round = owner.gameObject.AddComponent<TurnOrderController>().Round();
+
+			// Load the Cut scene state.
 			owner.ChangeState<CutSceneState>();
 		}
 

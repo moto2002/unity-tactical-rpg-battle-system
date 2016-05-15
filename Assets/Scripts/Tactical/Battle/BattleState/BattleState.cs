@@ -34,6 +34,9 @@ namespace Tactical.Battle.BattleState {
 		public ActionMenuPanelController actionMenuPanelController {
 			get { return owner.actionMenuPanelController; }
 		}
+		public TurnOrderPanelController turnOrderPanelController {
+			get { return owner.turnOrderPanelController; }
+		}
 		public StatPanelController statPanelController {
 			get { return owner.statPanelController; }
 		}

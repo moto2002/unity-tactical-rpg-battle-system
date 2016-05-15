@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using Tactical.Core;
 using Tactical.Core.Component;
 using Tactical.Battle.Controller;
