@@ -1,10 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using Tactical.Core;
-using Tactical.Core.EventArgs;
-using Tactical.Grid.Model;
-using Tactical.Grid.Component;
+using Tactical.Core.Enums;
 using Tactical.Actor.Component;
 
 namespace Tactical.Battle.BattleState {

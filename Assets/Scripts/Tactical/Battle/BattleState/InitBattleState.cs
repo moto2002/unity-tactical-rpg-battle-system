@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Actor.Component;
 using Tactical.Grid.Model;
 using Tactical.Battle.Controller;

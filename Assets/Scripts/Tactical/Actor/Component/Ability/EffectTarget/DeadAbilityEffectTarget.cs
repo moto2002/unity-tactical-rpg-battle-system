@@ -1,4 +1,4 @@
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {

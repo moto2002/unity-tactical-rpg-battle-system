@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.IO;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Core.Component;
 using Tactical.Actor.Component;
 
@@ -46,11 +46,17 @@ namespace Tactical.Actor.Editor {
 				job.baseStats[i - 1] = Convert.ToInt32(elements[i]);
 			}
 
+			StatModifierFeature evade = GetFeature (obj, StatType.EVD);
+			evade.amount = Convert.ToInt32(elements[8]);
+
+			StatModifierFeature res = GetFeature (obj, StatType.RES);
+			res.amount = Convert.ToInt32(elements[9]);
+
 			StatModifierFeature move = GetFeature (obj, StatType.MOV);
-			move.amount = Convert.ToInt32(elements[8]);
+			move.amount = Convert.ToInt32(elements[10]);
 
 			StatModifierFeature jump = GetFeature (obj, StatType.JMP);
-			jump.amount = Convert.ToInt32(elements[9]);
+			jump.amount = Convert.ToInt32(elements[11]);
 		}
 
 		private static void ParseGrowthStats () {
@@ -93,7 +99,7 @@ namespace Tactical.Actor.Editor {
 		}
 
 		private static GameObject Create (string fullPath) {
-			GameObject instance = new GameObject ("temp");
+			var instance = new GameObject ("temp");
 			instance.AddComponent<Job>();
 			GameObject prefab = PrefabUtility.CreatePrefab( fullPath, instance );
 			GameObject.DestroyImmediate(instance);

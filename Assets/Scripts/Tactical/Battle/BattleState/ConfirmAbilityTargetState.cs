@@ -26,7 +26,11 @@ namespace Tactical.Battle.BattleState {
 			board.SelectTiles(tiles);
 			FindTargets();
 			RefreshPrimaryStatPanel(turn.actor.tile.pos);
-			SetTarget(0);
+
+			if (turn.targets.Count > 0) {
+				hitIndicatorPanelController.Show();
+				SetTarget(0);
+			}
 		}
 
 		public override void Exit () {
@@ -34,6 +38,7 @@ namespace Tactical.Battle.BattleState {
 			board.DeSelectTiles(tiles);
 			statPanelController.HidePrimary();
 			statPanelController.HideSecondary();
+			hitIndicatorPanelController.Hide();
 		}
 
 		protected override void OnMove (object sender, InfoEventArgs<Point> e) {
@@ -85,7 +90,25 @@ namespace Tactical.Battle.BattleState {
 			}
 			if (turn.targets.Count > 0) {
 				RefreshSecondaryStatPanel(turn.targets[index].pos);
+				UpdateHitIndicator();
 			}
+		}
+
+		private void UpdateHitIndicator () {
+			int chance = CalculateHitRate();
+			int amount = EstimateDamage();
+			hitIndicatorPanelController.SetStats(chance, amount);
+		}
+
+		private int CalculateHitRate () {
+			Unit target = turn.targets[index].content.GetComponent<Unit>();
+			HitRate hr = turn.ability.GetComponentInChildren<HitRate>();
+			return hr.Calculate(turn.actor, target);
+		}
+
+		// TODO: Replace this placeholder function with some real calculation.
+		private int EstimateDamage () {
+			return 50;
 		}
 
 	}

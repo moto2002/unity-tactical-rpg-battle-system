@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Actor.Component;
 
 namespace Tactical.UI.Component {

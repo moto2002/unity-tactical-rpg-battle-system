@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core;
+using Tactical.Core.Enums;
 
 namespace Tactical.Actor.Component {
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tactical.Core {
+namespace Tactical.Core.Enums {
 
 	public enum StatType {
 		LVL, // Level

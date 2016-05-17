@@ -1,6 +1,6 @@
 using UnityEngine;
 using NUnit.Framework;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Actor.Component;
 
 using Party = System.Collections.Generic.List<UnityEngine.GameObject>;

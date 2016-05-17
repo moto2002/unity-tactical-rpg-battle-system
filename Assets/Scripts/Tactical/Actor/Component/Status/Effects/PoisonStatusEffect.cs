@@ -1,5 +1,5 @@
 using UnityEngine;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Battle.Controller;
 
 namespace Tactical.Actor.Component {
