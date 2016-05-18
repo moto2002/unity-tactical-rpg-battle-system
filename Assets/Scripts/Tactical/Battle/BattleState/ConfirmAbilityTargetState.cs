@@ -103,7 +103,7 @@ namespace Tactical.Battle.BattleState {
 		private int CalculateHitRate () {
 			Unit target = turn.targets[index].content.GetComponent<Unit>();
 			HitRate hr = turn.ability.GetComponentInChildren<HitRate>();
-			return hr.Calculate(turn.actor, target);
+			return hr.Calculate(target.tile);
 		}
 
 		// TODO: Replace this placeholder function with some real calculation.

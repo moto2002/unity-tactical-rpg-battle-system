@@ -1,9 +1,10 @@
 using UnityEngine;
+using System;
 
 namespace Tactical.Grid.Model {
 
 	[System.Serializable]
-	public struct Point {
+	public struct Point : IEquatable<Point> {
 
 		public int x;
 		public int y;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Actor.Model;
+using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {
 
@@ -22,25 +23,31 @@ namespace Tactical.Actor.Component {
 		/// </summary>
 		public const string StatusCheckNotification = "HitRate.StatusCheckNotification";
 
+		protected Unit attacker;
+
+		protected virtual void Start () {
+			attacker = GetComponentInParent<Unit>();
+		}
+
 		/// <summary>
 		/// Returns a value in the range of 0 to 100 as a percent chance of
 		/// an ability succeeding to hit.
 		/// </summary>
-		public abstract int Calculate (Unit attacker, Unit target);
+		public abstract int Calculate (Tile target);
 
-		protected virtual bool AutomaticHit (Unit attacker, Unit target) {
+		protected virtual bool AutomaticHit (Unit target) {
 			var exc = new MatchException(attacker, target);
 			this.PostNotification(AutomaticHitCheckNotification, exc);
 			return exc.toggle;
 		}
 
-		protected virtual bool AutomaticMiss (Unit attacker, Unit target) {
+		protected virtual bool AutomaticMiss (Unit target) {
 			var exc = new MatchException(attacker, target);
 			this.PostNotification(AutomaticMissCheckNotification, exc);
 			return exc.toggle;
 		}
 
-		protected virtual int AdjustForStatusEffects (Unit attacker, Unit target, int rate) {
+		protected virtual int AdjustForStatusEffects (Unit target, int rate) {
 			var args = new HitRateInfo(attacker, target, rate);
 			this.PostNotification(StatusCheckNotification, args);
 			return args.rate;
