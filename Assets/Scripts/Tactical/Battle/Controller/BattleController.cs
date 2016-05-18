@@ -26,6 +26,7 @@ namespace Tactical.Battle.Controller {
 		public ActionMenuPanelController actionMenuPanelController;
 		public TurnOrderPanelController turnOrderPanelController;
 		public HitIndicatorPanelController hitIndicatorPanelController;
+		public UnitDirectionController unitDirectionController;
 		public Turn turn = new Turn();
 		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;

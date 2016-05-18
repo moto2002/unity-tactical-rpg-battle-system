@@ -1,4 +1,5 @@
 using UnityEngine;
+using Tactical.Core.Enums;
 using Tactical.Grid.Component;
 using Tactical.Grid.Model;
 

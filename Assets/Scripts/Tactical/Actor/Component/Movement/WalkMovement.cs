@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Core.Extensions;
 using Tactical.Grid.Component;
 

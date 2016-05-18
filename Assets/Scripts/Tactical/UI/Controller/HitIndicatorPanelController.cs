@@ -15,7 +15,7 @@ namespace Tactical.UI.Controller {
 		[SerializeField] private Text label;
 		private Tweener transition;
 
-		void Start () {
+		private void Start () {
 			panel.SetPosition(HideKey, false);
 			canvas.gameObject.SetActive(false);
 		}

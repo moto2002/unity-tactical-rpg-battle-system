@@ -43,6 +43,9 @@ namespace Tactical.Battle.BattleState {
 		public StatPanelController statPanelController {
 			get { return owner.statPanelController; }
 		}
+		public UnitDirectionController unitDirectionController {
+			get { return owner.unitDirectionController; }
+		}
 		public Turn turn {
 			get { return owner.turn; }
 		}
