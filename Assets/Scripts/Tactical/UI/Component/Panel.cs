@@ -80,7 +80,7 @@ namespace Tactical.UI.Component {
 			}
 
 			if (InTransition) {
-				Transition.easingControl.Stop();
+				Transition.Stop();
 			}
 
 			if (animated) {

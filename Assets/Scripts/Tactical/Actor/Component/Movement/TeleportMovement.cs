@@ -10,8 +10,8 @@ namespace Tactical.Actor.Component {
 			unit.Place(tile);
 
 			Tweener spin = jumper.RotateToLocal(new Vector3(0, 360, 0), 0.5f, EasingEquations.EaseInOutQuad);
-			spin.easingControl.loopCount = 1;
-			spin.easingControl.loopType = EasingControl.LoopType.PingPong;
+			spin.loopCount = 1;
+			spin.loopType = EasingControl.LoopType.PingPong;
 			var originalScale = transform.lossyScale;
 
 			Tweener shrink = transform.ScaleTo(Vector3.zero, 0.5f, EasingEquations.EaseInBack);

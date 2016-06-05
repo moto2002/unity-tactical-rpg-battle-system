@@ -71,7 +71,7 @@ namespace Tactical.Core.Controller {
 				}
 
 				MovePanel(currentPanel, hide);
-				transition.easingControl.completedEvent += delegate(object sender, System.EventArgs e) {
+				transition.completedEvent += delegate(object sender, System.EventArgs e) {
 					conversation.MoveNext();
 				};
 
@@ -86,8 +86,8 @@ namespace Tactical.Core.Controller {
 
 		private void MovePanel (ConversationPanel obj, string pos) {
 			transition = obj.panel.SetPosition(pos, true);
-			transition.easingControl.duration = 0.5f;
-			transition.easingControl.equation = EasingEquations.EaseOutQuad;
+			transition.duration = 0.5f;
+			transition.equation = EasingEquations.EaseOutQuad;
 		}
 
 	}

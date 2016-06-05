@@ -35,8 +35,8 @@ namespace Tactical.UI.Controller {
 		}
 
 		private void SetPanelPos (string pos) {
-			if (transition != null && transition.easingControl.IsPlaying) {
-				transition.easingControl.Stop();
+			if (transition != null && transition.IsPlaying) {
+				transition.Stop();
 			}
 
 			transition = panel.SetPosition(pos, false);

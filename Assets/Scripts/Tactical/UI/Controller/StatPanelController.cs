@@ -44,12 +44,12 @@ namespace Tactical.UI.Controller {
 		private void MovePanel (StatPanel obj, string pos, ref Tweener t) {
 			Panel.Position target = obj.panel[pos];
 			if (obj.panel.CurrentPosition != target) {
-				if (t != null && t.easingControl != null) {
-					t.easingControl.Stop();
+				if (t != null && t != null) {
+					t.Stop();
 				}
 				t = obj.panel.SetPosition(pos, true);
-				t.easingControl.duration = 0.5f;
-				t.easingControl.equation = EasingEquations.EaseOutQuad;
+				t.duration = 0.5f;
+				t.equation = EasingEquations.EaseOutQuad;
 			}
 		}
 
