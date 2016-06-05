@@ -13,6 +13,7 @@ namespace Tactical.Battle.BattleState {
 		private List<Tile> tiles;
 		private AbilityArea aa;
 		private int index;
+		private AbilityEffectTarget[] targeters;
 
 		public override void Enter () {
 			base.Enter();
@@ -61,7 +62,7 @@ namespace Tactical.Battle.BattleState {
 
 		private void FindTargets () {
 			turn.targets = new List<Tile>();
-			AbilityEffectTarget[] targeters = turn.ability.GetComponentsInChildren<AbilityEffectTarget>();
+			targeters = turn.ability.GetComponentsInChildren<AbilityEffectTarget>();
 			if (targeters.Length == 0) {
 				throw new Exception(string.Format("Missing AbilityEffectTarget for Ability \"{0}\"", turn.ability.name));
 			}
@@ -95,20 +96,22 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void UpdateHitIndicator () {
-			int chance = CalculateHitRate();
-			int amount = EstimateDamage();
+			int chance = 0;
+			int amount = 0;
+			Tile target = turn.targets[index];
+
+			for (int i = 0; i < targeters.Length; ++i) {
+				if (targeters[i].IsTarget(target)) {
+					HitRate hitRate = targeters[i].GetComponent<HitRate>();
+					chance = hitRate.Calculate(target);
+
+					BaseAbilityEffect effect = targeters[i].GetComponent<BaseAbilityEffect>();
+					amount = effect.Predict(target);
+					break;
+				}
+			}
+
 			hitIndicatorPanelController.SetStats(chance, amount);
-		}
-
-		private int CalculateHitRate () {
-			Unit target = turn.targets[index].content.GetComponent<Unit>();
-			HitRate hr = turn.ability.GetComponentInChildren<HitRate>();
-			return hr.Calculate(target.tile);
-		}
-
-		// TODO: Replace this placeholder function with some real calculation.
-		private int EstimateDamage () {
-			return 50;
 		}
 
 	}

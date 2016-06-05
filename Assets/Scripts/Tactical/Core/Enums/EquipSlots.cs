@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Tactical.Core {
+namespace Tactical.Core.Enums {
 
 	[System.Flags]
 	public enum EquipSlots {

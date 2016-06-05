@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Tactical.Core;
-using Tactical.Core.Component;
+using Tactical.Core.Enums;
 using Tactical.Item.Component;
 
 namespace Tactical.Actor.Component {
@@ -41,6 +40,16 @@ namespace Tactical.Actor.Component {
 					UnEquip(item);
 				}
 			}
+		}
+
+		public Equippable GetItem (EquipSlots slots) {
+			for (int i = _items.Count - 1; i >= 0; --i) {
+				Equippable item = _items[i];
+				if ( (item.slots & slots) != EquipSlots.None ) {
+					return item;
+				}
+			}
+			return null;
 		}
 
 	}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Core;
+using Tactical.Core.Enums;
 using Tactical.Core.Component;
 
 namespace Tactical.Item.Component {
