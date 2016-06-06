@@ -10,45 +10,41 @@ namespace Tactical.Actor.Component {
 		protected abstract int GetPower ();
 
 		private void OnEnable () {
-			this.AddObserver(OnGetBaseAttack, DamageAbilityEffect.GetAttackNotification);
-			this.AddObserver(OnGetBaseDefense, DamageAbilityEffect.GetDefenseNotification);
-			this.AddObserver(OnGetPower, DamageAbilityEffect.GetPowerNotification);
+			this.AddObserver(OnGetBaseAttack, BaseAbilityEffect.GetAttackNotification);
+			this.AddObserver(OnGetBaseDefense, BaseAbilityEffect.GetDefenseNotification);
+			this.AddObserver(OnGetPower, BaseAbilityEffect.GetPowerNotification);
 		}
 
 		private void OnDisable () {
-			this.RemoveObserver(OnGetBaseAttack, DamageAbilityEffect.GetAttackNotification);
-			this.RemoveObserver(OnGetBaseDefense, DamageAbilityEffect.GetDefenseNotification);
-			this.RemoveObserver(OnGetPower, DamageAbilityEffect.GetPowerNotification);
+			this.RemoveObserver(OnGetBaseAttack, BaseAbilityEffect.GetAttackNotification);
+			this.RemoveObserver(OnGetBaseDefense, BaseAbilityEffect.GetDefenseNotification);
+			this.RemoveObserver(OnGetPower, BaseAbilityEffect.GetPowerNotification);
 		}
 
 		private void OnGetBaseAttack (object sender, object args) {
-			var info = args as AbilityPowerInfo;
-			if (info == null || info.attacker != GetComponentInParent<Unit>()) {
-				return;
+			if (IsMyEffect(sender)) {
+				var info = args as BaseAbilityEffectInfo;
+				info.mods.Add( new AddValueModifier(0, GetBaseAttack()) );
 			}
-
-			var mod = new AddValueModifier(0, GetBaseAttack());
-			info.mods.Add(mod);
 		}
 
 		private void OnGetBaseDefense (object sender, object args) {
-			var info = args as AbilityPowerInfo;
-			if (info == null || info.attacker != GetComponentInParent<Unit>()) {
-				return;
+			if (IsMyEffect(sender)) {
+				var info = args as BaseAbilityEffectInfo;
+				info.mods.Add( new AddValueModifier(0, GetBaseDefense(info.target)) );
 			}
-
-			var mod = new AddValueModifier(0, GetBaseDefense(info.target));
-			info.mods.Add(mod);
 		}
 
 		private void OnGetPower (object sender, object args) {
-			var info = args as AbilityPowerInfo;
-			if (info == null || info.attacker != GetComponentInParent<Unit>()) {
-				return;
+			if (IsMyEffect(sender)) {
+				var info = args as BaseAbilityEffectInfo;
+				info.mods.Add( new AddValueModifier(0, GetPower()) );
 			}
+		}
 
-			var mod = new AddValueModifier(0, GetPower());
-			info.mods.Add(mod);
+		private bool IsMyEffect (object sender) {
+			var obj = sender as MonoBehaviour;
+			return (obj != null && obj.transform.parent == transform);
 		}
 
 	}

@@ -5,28 +5,28 @@ using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {
 
-	public class StatusEffectHitRate : HitRate {
+	public class AttackHitRate : HitRate {
 
 		public override int Calculate (Tile target) {
 			Unit defender = target.content.GetComponent<Unit>();
-			if (AutomaticMiss(defender)) {
-				return Final(100);
-			}
-
 			if (AutomaticHit(defender)) {
 				return Final(0);
 			}
 
-			int res = GetResistance(defender);
-			res = AdjustForStatusEffects(defender, res);
-			res = AdjustForRelativeFacing(defender, res);
-			res = Mathf.Clamp(res, 0, 100);
-			return Final(res);
+			if (AutomaticMiss(defender)) {
+				return Final(100);
+			}
+
+			int evade = GetEvade(defender);
+			evade = AdjustForRelativeFacing(defender, evade);
+			evade = AdjustForStatusEffects(defender, evade);
+			evade = Mathf.Clamp(evade, 5, 95);
+			return Final(evade);
 		}
 
-		private int GetResistance (Unit target) {
+		private int GetEvade (Unit target) {
 			Stats s = target.GetComponentInParent<Stats>();
-			return s[StatType.RES];
+			return Mathf.Clamp(s[StatType.EVD], 0, 100);
 		}
 
 		private int AdjustForRelativeFacing (Unit target, int rate) {
@@ -34,9 +34,9 @@ namespace Tactical.Actor.Component {
 			case Facing.Front:
 				return rate;
 			case Facing.Side:
-				return rate - 10;
+				return rate / 2;
 			default:
-				return rate - 20;
+				return rate / 4;
 			}
 		}
 

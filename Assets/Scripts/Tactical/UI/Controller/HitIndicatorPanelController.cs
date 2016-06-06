@@ -22,7 +22,8 @@ namespace Tactical.UI.Controller {
 
 		public void SetStats (int chance, int amount) {
 			arrow.fillAmount = (chance / 100f);
-			label.text = string.Format("{0}% {1} dmg", chance, amount);
+			string sign = (amount < 0) ? "" : "+";
+			label.text = string.Format("{0}% {1}{2} {3}", chance, sign, Mathf.Abs(amount), "HP");
 		}
 
 		public void Show () {

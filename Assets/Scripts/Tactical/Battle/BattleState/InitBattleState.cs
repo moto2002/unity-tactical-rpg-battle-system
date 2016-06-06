@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using Tactical.Core.Enums;
-using Tactical.Actor.Component;
-using Tactical.Grid.Model;
 using Tactical.Battle.Controller;
+using Tactical.Grid.Model;
+using Tactical.Actor.Component;
 
 namespace Tactical.Battle.BattleState {
 
@@ -60,8 +60,13 @@ namespace Tactical.Battle.BattleState {
 
 				units.Add(unit);
 
+				// Add rank component
 				ExperienceRank rank = instance.AddComponent<ExperienceRank>();
 				rank.Init(10);
+
+				// Add HP / MP components
+				instance.AddComponent<Health>();
+				instance.AddComponent<Mana>();
 			}
 		}
 	}

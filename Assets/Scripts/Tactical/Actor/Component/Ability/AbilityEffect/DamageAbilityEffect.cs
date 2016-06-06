@@ -1,20 +1,10 @@
 using UnityEngine;
-using System.Collections.Generic;
 using Tactical.Core.Enums;
 using Tactical.Grid.Component;
-using Tactical.Actor.Model;
 
 namespace Tactical.Actor.Component {
 
 	public class DamageAbilityEffect : BaseAbilityEffect {
-
-		public const string GetAttackNotification = "DamageAbilityEffect.GetAttackNotification";
-		public const string GetDefenseNotification = "DamageAbilityEffect.GetDefenseNotification";
-		public const string GetPowerNotification = "DamageAbilityEffect.GetPowerNotification";
-		public const string TweakDamageNotification = "DamageAbilityEffect.TweakDamageNotification";
-
-		private const int minDamage = -999;
-		private const int maxDamage = 999;
 
 		public override int Predict (Tile target) {
 			Unit attacker = GetComponentInParent<Unit>();
@@ -37,7 +27,6 @@ namespace Tactical.Actor.Component {
 
 			// Apply power bonus
 			damage = power * damage / 100;
-			// TODO: don't cap the damage ?
 			damage = Mathf.Max(damage, 1);
 
 			// Tweak the damage based on a variety of other checks like
@@ -46,40 +35,25 @@ namespace Tactical.Actor.Component {
 
 			// Clamp the damage to a range
 			damage = Mathf.Clamp(damage, minDamage, maxDamage);
-			return damage;
+			return -damage;
 		}
 
-		public override void Apply (Tile target) {
+		protected override int OnApply (Tile target) {
 			Unit defender = target.content.GetComponent<Unit>();
 
 			// Start with the predicted damage value
 			int value = Predict(target);
 
 			// Add some random variance
-			value *= Mathf.FloorToInt(Random.Range(0.9f, 1.1f));
+			value = Mathf.FloorToInt(value * UnityEngine.Random.Range(0.9f, 1.1f));
 
 			// Clamp the damage to a range
 			value = Mathf.Clamp(value, minDamage, maxDamage);
 
 			// Apply the damage to the target
 			Stats s = defender.GetComponent<Stats>();
-			s[StatType.HP] -= value;
-		}
-
-		private int GetStat (Unit attacker, Unit target, string notification, int startValue) {
-			var mods = new List<ValueModifier>();
-			var info = new DamageAbilityEffectInfo(attacker, target, mods);
-			this.PostNotification(notification, info);
-			mods.Sort();
-
-			float value = startValue;
-			for (int i = 0; i < mods.Count; ++i) {
-				value = mods[i].Modify(startValue, value);
-			}
-
-			int retValue = Mathf.FloorToInt(value);
-			retValue = Mathf.Clamp(retValue, minDamage, maxDamage);
-			return retValue;
+			s[StatType.HP] += value;
+			return value;
 		}
 
 	}

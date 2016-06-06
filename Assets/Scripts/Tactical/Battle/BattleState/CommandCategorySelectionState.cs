@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using Tactical.Actor.Component;
 
@@ -18,27 +19,31 @@ namespace Tactical.Battle.BattleState {
 
 		protected override void LoadMenu () {
 			if (menuOptions == null) {
-				menuTitle = "Action";
-				menuOptions = new List<string>(3);
-				menuOptions.Add("Attack");
-				menuOptions.Add("White Magic");
-				menuOptions.Add("Black Magic");
+				menuOptions = new List<string>();
+			} else {
+				menuOptions.Clear();
+			}
+
+			menuTitle = "Action";
+			menuOptions.Add("Attack");
+
+			AbilityCatalog catalog = turn.actor.GetComponentInChildren<AbilityCatalog>();
+			if (catalog == null) {
+				throw new Exception("Missing component AbilityCatalog in children.");
+			}
+
+			for (int i = 0; i < catalog.CategoryCount(); ++i) {
+				menuOptions.Add( catalog.GetCategory(i).name );
 			}
 
 			actionMenuPanelController.Show(menuTitle, menuOptions);
 		}
 
 		protected override void Confirm () {
-			switch (actionMenuPanelController.selection) {
-			case 0:
+			if (actionMenuPanelController.selection == 0) {
 				Attack();
-				break;
-			case 1:
-				SetCategory(0);
-				break;
-			case 2:
-				SetCategory(1);
-				break;
+			} else {
+				SetCategory(actionMenuPanelController.selection - 1);
 			}
 		}
 
@@ -47,8 +52,8 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void Attack () {
-			turn.ability = turn.actor.GetComponentInChildren<AbilityRange>().gameObject;
-    	owner.ChangeState<AbilityTargetState>();
+			turn.ability = turn.actor.GetComponentInChildren<Ability>();
+			owner.ChangeState<AbilityTargetState>();
 		}
 
 		private void SetCategory (int index) {

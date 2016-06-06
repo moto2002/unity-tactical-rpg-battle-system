@@ -14,11 +14,11 @@ namespace Tactical.Actor.Component {
 			return 0;
 		}
 
-		public override void Apply (Tile target) {
+		protected override int OnApply (Tile target) {
 			Type statusType = Type.GetType(statusName);
 			if (statusType == null || !statusType.IsSubclassOf(typeof(StatusEffect))) {
-				Debug.LogError(string.Format("Invalid StatusType: {0}", statusName));
-				return;
+				Debug.LogError("Invalid Status Type");
+				return 0;
 			}
 
 			MethodInfo mi = typeof(Status).GetMethod("Add");
@@ -30,6 +30,7 @@ namespace Tactical.Actor.Component {
 
 			var condition = retValue as DurationStatusCondition;
 			condition.duration = duration;
+			return 0;
 		}
 
 	}

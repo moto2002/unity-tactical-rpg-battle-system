@@ -35,6 +35,12 @@ namespace Tactical.Actor.Component {
 		/// </summary>
 		public abstract int Calculate (Tile target);
 
+		public virtual bool RollForHit (Tile target) {
+			int roll = Random.Range(0, 101);
+			int chance = Calculate(target);
+			return roll <= chance;
+		}
+
 		protected virtual bool AutomaticHit (Unit target) {
 			var exc = new MatchException(attacker, target);
 			this.PostNotification(AutomaticHitCheckNotification, exc);

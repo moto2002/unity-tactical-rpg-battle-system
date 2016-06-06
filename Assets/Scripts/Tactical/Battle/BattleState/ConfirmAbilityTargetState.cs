@@ -13,16 +13,10 @@ namespace Tactical.Battle.BattleState {
 		private List<Tile> tiles;
 		private AbilityArea aa;
 		private int index;
-		private AbilityEffectTarget[] targeters;
 
 		public override void Enter () {
 			base.Enter();
-
 			aa = turn.ability.GetComponent<AbilityArea>();
-			if (aa == null) {
-				throw new Exception(string.Format("Missing AbilityArea for Ability \"{0}\"", turn.ability.name));
-			}
-
 			tiles = aa.GetTilesInArea(board, pos);
 			board.SelectTiles(tiles);
 			FindTargets();
@@ -62,22 +56,20 @@ namespace Tactical.Battle.BattleState {
 
 		private void FindTargets () {
 			turn.targets = new List<Tile>();
-			targeters = turn.ability.GetComponentsInChildren<AbilityEffectTarget>();
-			if (targeters.Length == 0) {
-				throw new Exception(string.Format("Missing AbilityEffectTarget for Ability \"{0}\"", turn.ability.name));
-			}
 			for (int i = 0; i < tiles.Count; ++i)
-				if (IsTarget(tiles[i], targeters)) {
+				if (IsTarget(tiles[i])) {
 					turn.targets.Add(tiles[i]);
 				}
 		}
 
-		private bool IsTarget (Tile tile, AbilityEffectTarget[] list) {
-			for (int i = 0; i < list.Length; ++i)
-				if (list[i].IsTarget(tile)) {
+		private bool IsTarget (Tile tile) {
+			Transform obj = turn.ability.transform;
+			for (int i = 0; i < obj.childCount; ++i) {
+				AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+				if (targeter.IsTarget(tile)) {
 					return true;
 				}
-
+			}
 			return false;
 		}
 
@@ -89,23 +81,29 @@ namespace Tactical.Battle.BattleState {
 			if (index >= turn.targets.Count) {
 				index = 0;
 			}
+
 			if (turn.targets.Count > 0) {
 				RefreshSecondaryStatPanel(turn.targets[index].pos);
-				UpdateHitIndicator();
+				UpdateHitSuccessIndicator ();
 			}
 		}
 
-		private void UpdateHitIndicator () {
+		private void UpdateHitSuccessIndicator () {
 			int chance = 0;
 			int amount = 0;
 			Tile target = turn.targets[index];
 
-			for (int i = 0; i < targeters.Length; ++i) {
-				if (targeters[i].IsTarget(target)) {
-					HitRate hitRate = targeters[i].GetComponent<HitRate>();
+			Transform obj = turn.ability.transform;
+			for (int i = 0; i < obj.childCount; ++i) {
+				AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+				if (targeter.IsTarget(target)) {
+					HitRate hitRate = targeter.GetComponent<HitRate>();
 					chance = hitRate.Calculate(target);
 
-					BaseAbilityEffect effect = targeters[i].GetComponent<BaseAbilityEffect>();
+					BaseAbilityEffect effect = targeter.GetComponent<BaseAbilityEffect>();
+					if (effect == null) {
+						throw new Exception("Missing AbilityEffect component.");
+					}
 					amount = effect.Predict(target);
 					break;
 				}
