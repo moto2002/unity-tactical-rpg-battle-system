@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Tactical.Core.Enums;
 using Tactical.Battle.Controller;
 using Tactical.Grid.Model;
+using Tactical.Grid.Component;
 using Tactical.Actor.Component;
+using Tactical.Actor.Factory;
 
 namespace Tactical.Battle.BattleState {
 
@@ -19,7 +22,7 @@ namespace Tactical.Battle.BattleState {
 			board.Load(levelData);
 
 			// Select the tile at [0,0].
-			var p = new Point((int)levelData.tiles[0].x, (int)levelData.tiles[0].z);
+			var p = new Point((int)levelData.tiles[0].x, (int) levelData.tiles[0].z);
 			SelectTile(p);
 
 			// Spawn test units.
@@ -33,41 +36,33 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void SpawnTestUnits () {
-			string[] jobs = {"Rogue", "Warrior", "Wizard"};
-			for (int i = 0; i < jobs.Length; ++i) {
-				var instance = Instantiate(owner.heroPrefab);
+			string[] recipes = {
+				"Ramza",
+				"Delita",
+				"Ovelia",
+				"Enemy Warrior",
+				"Enemy Rogue",
+				"Enemy Wizard"
+			};
 
-				Stats s = instance.AddComponent<Stats>();
-				s[StatType.LVL] = 1;
+			var locations = new List<Tile>(board.tiles.Values);
+			for (int i = 0; i < recipes.Length; ++i) {
+				int level = Random.Range(9, 12);
+				GameObject instance = UnitFactory.Create(recipes[i], level);
 
-				GameObject jobPrefab = Resources.Load<GameObject>( "Jobs/" + jobs[i] );
-				var jobInstance = Instantiate(jobPrefab);
-				jobInstance.transform.SetParent(instance.transform);
-
-				Job job = jobInstance.GetComponent<Job>();
-				job.Employ();
-				job.LoadDefaultStats();
-				instance.name = string.Format("Character #{0}", i+1);
-				instance.transform.parent = owner.board.unitsContainer;
-
-				var p = new Point((int)levelData.tiles[i].x, (int)levelData.tiles[i].z);
+				int random = Random.Range(0, locations.Count);
+				Tile randomTile = locations[ random ];
+				locations.RemoveAt(random);
 
 				Unit unit = instance.GetComponent<Unit>();
-				unit.Place(board.GetTile(p));
+				unit.Place(randomTile);
+				unit.dir = (Direction) Random.Range(0, 4);
 				unit.Match();
 
-				instance.AddComponent<WalkMovement>();
-
 				units.Add(unit);
-
-				// Add rank component
-				ExperienceRank rank = instance.AddComponent<ExperienceRank>();
-				rank.Init(10);
-
-				// Add HP / MP components
-				instance.AddComponent<Health>();
-				instance.AddComponent<Mana>();
 			}
+
+			SelectTile(units[0].tile.pos);
 		}
 	}
 
