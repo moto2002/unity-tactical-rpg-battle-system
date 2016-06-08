@@ -11,6 +11,7 @@ namespace Tactical.Actor.Component {
 			}
 
 			Stats s = tile.content.GetComponent<Stats>();
+			// TODO: Use a minHP (Health) value instead of hard coded 0.
 			return s != null && s[StatType.HP] <= 0;
 		}
 

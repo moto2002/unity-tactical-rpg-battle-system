@@ -4,13 +4,14 @@ using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {
 
-	public abstract class ReviveAbilityEffect : BaseAbilityEffect {
+	public class ReviveAbilityEffect : BaseAbilityEffect {
 
-		public float percent;
+		[Range(0,100)]
+		public int percent;
 
 		public override int Predict (Tile target) {
 			Stats s = target.content.GetComponent<Stats>();
-			return Mathf.FloorToInt(s[StatType.MHP] * percent);
+			return Mathf.FloorToInt(s[StatType.MHP] * percent / 100);
 		}
 
 		protected override int OnApply (Tile target) {

@@ -7,7 +7,6 @@ namespace Tactical.Actor.Component {
 	public class HealAbilityEffect : BaseAbilityEffect {
 
 		public override int Predict (Tile target) {
-			Debug.Log("Predict HealAbilityEffect");
 			Unit attacker = GetComponentInParent<Unit>();
 			Unit defender = target.content.GetComponent<Unit>();
 			return GetStat(attacker, defender, GetPowerNotification, 0);

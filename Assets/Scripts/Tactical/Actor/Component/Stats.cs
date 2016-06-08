@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
-using Tactical.Core;
 using Tactical.Core.Enums;
 
 namespace Tactical.Actor.Component {
@@ -15,7 +13,7 @@ namespace Tactical.Actor.Component {
 			set { SetValue(s, value, true); }
 		}
 
-		private int[] _data = new int[ (int) StatType.Count ];
+		[SerializeField] private int[] _data = new int[ (int) StatType.Count ];
 		private static Dictionary<StatType, string> _willChangeNotifications = new Dictionary<StatType, string>();
 		private static Dictionary<StatType, string> _didChangeNotifications = new Dictionary<StatType, string>();
 
