@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
+using Tactical.Grid.Model;
+using Tactical.Grid.Component;
 
-namespace Tactical.Grid.DevTools {
-
-	using Model;
-	using Component;
+namespace Tactical.Grid.Editor {
 
 	public class BoardCreator : MonoBehaviour {
 
@@ -23,7 +21,7 @@ namespace Tactical.Grid.DevTools {
 		public Transform marker {
 			get {
 				if (_marker == null) {
-					GameObject instance = Instantiate(tileSelectionIndicatorPrefab) as GameObject;
+					var instance = Instantiate(tileSelectionIndicatorPrefab) as GameObject;
 					_marker = instance.transform;
 					_marker.parent = transform;
 				}
@@ -91,17 +89,17 @@ namespace Tactical.Grid.DevTools {
 		}
 
 		private Rect RandomRect () {
-			int x = UnityEngine.Random.Range(0, width);
-			int y = UnityEngine.Random.Range(0, depth);
-			int w = UnityEngine.Random.Range(1, width - x + 1);
-			int h = UnityEngine.Random.Range(1, depth - y + 1);
+			int x = Random.Range(0, width);
+			int y = Random.Range(0, depth);
+			int w = Random.Range(1, width - x + 1);
+			int h = Random.Range(1, depth - y + 1);
 			return new Rect(x, y, w, h);
 		}
 
 		private void GrowRect (Rect rect) {
 			for (int y = (int)rect.yMin; y < (int)rect.yMax; ++y) {
 				for (int x = (int)rect.xMin; x < (int)rect.xMax; ++x) {
-					Point p = new Point(x, y);
+					var p = new Point(x, y);
 					GrowSingle(p);
 				}
 			}
@@ -110,7 +108,7 @@ namespace Tactical.Grid.DevTools {
 		private void ShrinkRect (Rect rect) {
 			for (int y = (int)rect.yMin; y < (int)rect.yMax; ++y) {
 				for (int x = (int)rect.xMin; x < (int)rect.xMax; ++x) {
-					Point p = new Point(x, y);
+					var p = new Point(x, y);
 					ShrinkSingle(p);
 				}
 			}
@@ -118,7 +116,7 @@ namespace Tactical.Grid.DevTools {
 
 		private Tile Create () {
 			var tileViewPrefab = tileViewPrefabs[Random.Range(0, tileViewPrefabs.Length)];
-			GameObject instance = Instantiate(tileViewPrefab) as GameObject;
+			var instance = Instantiate(tileViewPrefab);
 			instance.transform.parent = transform;
 			return instance.GetComponent<Tile>();
 		}
@@ -170,7 +168,7 @@ namespace Tactical.Grid.DevTools {
 	}
 
 	[CustomEditor(typeof(BoardCreator))]
-	public class BoardCreatorInspector : Editor {
+	public class BoardCreatorInspector : UnityEditor.Editor {
 
 		public BoardCreator current {
 			get {
