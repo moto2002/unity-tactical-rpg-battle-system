@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Tactical.Actor.Component;
 
 namespace Tactical.Battle.BattleState {
 
@@ -19,11 +20,26 @@ namespace Tactical.Battle.BattleState {
 			yield return null;
 			ApplyAbility();
 
-			if (turn.hasUnitMoved) {
+			// The battle is over.
+			if (IsBattleOver()) {
+				owner.ChangeState<CutSceneState>();
+			}
+			// The unit finished their turn.
+			else if (!UnitHasControl()) {
+				owner.ChangeState<SelectUnitState>();
+			}
+			// The unit can still move.
+			else if (turn.hasUnitMoved) {
 				owner.ChangeState<EndFacingState>();
-			} else {
+			}
+			// The unit is starting their turn.
+			else {
 				owner.ChangeState<CommandSelectionState>();
 			}
+		}
+
+		private bool UnitHasControl () {
+			return turn.actor.GetComponentInChildren<DeadStatusEffect>() == null;
 		}
 
 		private void ApplyAbility () {

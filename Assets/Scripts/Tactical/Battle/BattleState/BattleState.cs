@@ -110,6 +110,14 @@ namespace Tactical.Battle.BattleState {
 			}
 		}
 
+		protected virtual bool DidPlayerWin () {
+			return owner.GetComponent<BaseVictoryCondition>().Victor == Tactical.Core.Enums.Alliance.Hero;
+		}
+
+		protected virtual bool IsBattleOver () {
+			return owner.GetComponent<BaseVictoryCondition>().Victor != Tactical.Core.Enums.Alliance.None;
+		}
+
 	}
 
 }

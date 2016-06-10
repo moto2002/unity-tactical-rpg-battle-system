@@ -1,19 +1,21 @@
 using UnityEngine;
-using Tactical.Core.Enums;
 using Tactical.Battle.Controller;
 using Tactical.Actor.Component;
+
+using AllianceEnum = Tactical.Core.Enums.Alliance;
+using StatType = Tactical.Core.Enums.StatType;
 
 namespace Tactical.Core.Controller {
 
 	public abstract class BaseVictoryCondition : MonoBehaviour {
 
-		public Enums.Alliance Victor {
+		public AllianceEnum Victor {
 			get { return victor; }
 			protected set { victor = value; }
 		}
 		protected BattleController bc;
 
-		private Enums.Alliance victor = Enums.Alliance.None;
+		private AllianceEnum victor = AllianceEnum.None;
 
 		protected virtual void Awake () {
 			bc = GetComponent<BattleController>();
@@ -28,7 +30,7 @@ namespace Tactical.Core.Controller {
 		}
 
 		protected virtual void OnHPDidChangeNotification (object sender, object args) {
-			// CheckForGameOver();
+			CheckForGameOver();
 		}
 
 		protected virtual bool IsDefeated (Unit unit) {
@@ -39,6 +41,26 @@ namespace Tactical.Core.Controller {
 
 			Stats stats = unit.GetComponent<Stats>();
 			return stats[StatType.HP] == 0;
+		}
+
+		protected virtual bool PartyDefeated (AllianceEnum type) {
+			for (int i = 0; i < bc.units.Count; ++i) {
+				Alliance a = bc.units[i].GetComponent<Alliance>();
+				if (a == null) {
+					continue;
+				}
+
+				if (a.type == type && !IsDefeated(bc.units[i])) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		protected virtual void CheckForGameOver () {
+			if (PartyDefeated(AllianceEnum.Hero)) {
+				Victor = AllianceEnum.Enemy;
+			}
 		}
 
 	}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Tactical.Core.EventArgs;
 using Tactical.Core.Controller;
 using Tactical.Core.Model;
@@ -7,31 +8,43 @@ namespace Tactical.Battle.BattleState {
 
 	public class CutSceneState : BattleState {
 
+		private const string introScene = "IntroScene";
+		private const string outroWinScene = "OutroSceneWin";
+		private const string outroLoseScene = "OutroSceneLose";
+
 		private ConversationController conversationController;
 		private ConversationData data;
 
 		protected override void Awake () {
 			base.Awake();
 			conversationController = owner.GetComponentInChildren<ConversationController>();
-			// data = Resources.Load<ConversationData>("Conversations/Battle1 - Intro");
-
-			if (data == null) {
-				Debug.Log("No cutscene data, changing to SelectUnitState.");
-				owner.ChangeState<SelectUnitState>();
-			}
-		}
-
-		protected override void OnDestroy () {
-			base.OnDestroy();
-			if (data) {
-				Resources.UnloadAsset(data);
-			}
 		}
 
 		public override void Enter () {
 			base.Enter();
-			if (data != null) {
-				conversationController.Show(data);
+			if (IsBattleOver()) {
+				if (DidPlayerWin()) {
+					data = Resources.Load<ConversationData>("Conversations/" + outroWinScene);
+				} else {
+					data = Resources.Load<ConversationData>("Conversations/" + outroLoseScene);
+				}
+			} else {
+				data = Resources.Load<ConversationData>("Conversations/" + introScene);
+			}
+
+			if (data == null) {
+				Debug.Log("No conversation data to display.");
+				StartCoroutine("NextStateCoroutine");
+				return;
+			}
+
+			conversationController.Show(data);
+		}
+
+		public override void Exit () {
+			base.Exit();
+			if (data) {
+				Resources.UnloadAsset(data);
 			}
 		}
 
@@ -51,7 +64,20 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void OnCompleteConversation (object sender, System.EventArgs e) {
-			owner.ChangeState<SelectUnitState>();
+			NextState();
+		}
+
+		private void NextState () {
+			if (IsBattleOver()) {
+				owner.ChangeState<EndBattleState>();
+			} else {
+				owner.ChangeState<SelectUnitState>();
+			}
+		}
+
+		private IEnumerator NextStateCoroutine () {
+			yield return null;
+			NextState();
 		}
 
 	}

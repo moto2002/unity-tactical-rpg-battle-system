@@ -16,8 +16,7 @@ namespace Tactical.Battle.BattleState {
 			startDir = turn.actor.dir;
 			SelectTile(turn.actor.tile.pos);
 
-			// Move and show the unit direction indicator.
-			MoveUnitDirectionIndicator(turn.actor.tile.pos);
+			// Show the unit direction indicator.
 			unitDirectionController.Show(startDir);
 		}
 
@@ -43,14 +42,6 @@ namespace Tactical.Battle.BattleState {
 					owner.ChangeState<CommandSelectionState>();
 					break;
 				}
-		}
-
-		private void MoveUnitDirectionIndicator (Point p) {
-			if (!board.tiles.ContainsKey(p)) {
-				return;
-			}
-
-			unitDirectionController.SetPosition(board.tiles[p].center);
 		}
 
 	}

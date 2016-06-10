@@ -91,7 +91,7 @@ namespace Tactical.Actor.Factory {
 			main.AddComponent<AbilityCatalog>();
 
 			if (name == "") {
-				Debug.LogWarning("No Ability Catalog Recipe specified.");
+				// Debug.LogWarning("No Ability Catalog Recipe specified.");
 				return;
 			}
 

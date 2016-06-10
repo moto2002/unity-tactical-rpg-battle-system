@@ -23,7 +23,7 @@ GameObject:
   - 135: {fileID: 135000010184271180}
   - 23: {fileID: 23000013299909530}
   m_Layer: 0
-  m_Name: Sphere East
+  m_Name: Sphere Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - 135: {fileID: 135000013364527730}
   - 23: {fileID: 23000014196350026}
   m_Layer: 0
-  m_Name: Sphere North
+  m_Name: Sphere Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ GameObject:
   - 135: {fileID: 135000011447562818}
   - 23: {fileID: 23000014178863402}
   m_Layer: 0
-  m_Name: Sphere West
+  m_Name: Sphere Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ GameObject:
   - 135: {fileID: 135000010423447534}
   - 23: {fileID: 23000011861041820}
   m_Layer: 0
-  m_Name: Sphere South
+  m_Name: Sphere Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,10 +320,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directions:
-  - {fileID: 4000013517825612}
-  - {fileID: 4000011942329322}
-  - {fileID: 4000014286512572}
-  - {fileID: 4000012516835310}
+  - {fileID: 23000014196350026}
+  - {fileID: 23000013299909530}
+  - {fileID: 23000011861041820}
+  - {fileID: 23000014178863402}
   materialDefault: {fileID: 2100000, guid: 0be8a6ee5952b486fb1d5432b1a08433, type: 2}
   materialActive: {fileID: 2100000, guid: 2ee174a67572b43dea81cc8490bcbf48, type: 2}
 --- !u!135 &135000010184271180

@@ -6,7 +6,7 @@ namespace Tactical.UI.Controller {
 
 	public class UnitDirectionController : MonoBehaviour {
 
-		[SerializeField] private Transform[] directions;
+		[SerializeField] private Renderer[] directions;
 		[SerializeField] private Material materialDefault;
 		[SerializeField] private Material materialActive;
 		private Direction dir;
@@ -36,23 +36,17 @@ namespace Tactical.UI.Controller {
 			gameObject.transform.localPosition = position;
 		}
 
-		public void SetDirection (Direction direction) {
-			dir = direction;
-
-			for (var i = 0; i < directions.Length; i++) {
-				var directionRenderer = directions[i].GetComponent<Renderer>();
-
-				if (i == (int) dir) {
-					directionRenderer.material = materialActive;
-				}	else {
-					directionRenderer.material = materialDefault;
-				}
+		public void SetDirection (Direction dir) {
+			int index = (int) dir;
+			for (int i = 0; i < directions.Length; ++i) {
+				directions[i].material = (i == index) ? materialActive : materialDefault;
 			}
+
 		}
 
 		private void SetVisibility (bool visibility) {
-			foreach (Transform direction in directions) {
-				direction.GetComponent<Renderer>().enabled = visibility;
+			foreach (Renderer direction in directions) {
+				direction.enabled = visibility;
 			}
 		}
 

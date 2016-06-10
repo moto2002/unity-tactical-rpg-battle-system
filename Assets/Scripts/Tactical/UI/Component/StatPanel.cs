@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Tactical.Core.Enums;
 using Tactical.Actor.Component;
+
+using StatType = Tactical.Core.Enums.StatType;
+using AllianceEnum = Tactical.Core.Enums.Alliance;
 
 namespace Tactical.UI.Component {
 
@@ -18,9 +20,11 @@ namespace Tactical.UI.Component {
 		public Text lvLabel;
 
 		public void Display (GameObject obj) {
-			// TODO: Choose the sprites depending on the actor.
-			background.sprite = allyBackground;
-			// avatar.sprite = null; Need a component which provides this data
+			Alliance alliance = obj.GetComponent<Alliance>();
+			background.sprite = alliance.type == AllianceEnum.Enemy ? enemyBackground : allyBackground;
+
+			// TODO: Need a component which provides this data.
+			// avatar.sprite = null;
 
 			nameLabel.text = obj.name;
 			Stats stats = obj.GetComponent<Stats>();

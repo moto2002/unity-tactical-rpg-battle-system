@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.Enums;
+using Tactical.Core.Controller;
 using Tactical.Battle.Controller;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
@@ -31,6 +33,8 @@ namespace Tactical.Battle.BattleState {
 			yield return null;
 			owner.round = owner.gameObject.AddComponent<TurnOrderController>().Round();
 
+			AddVictoryCondition();
+
 			// Load the Cut scene state.
 			owner.ChangeState<CutSceneState>();
 		}
@@ -47,16 +51,16 @@ namespace Tactical.Battle.BattleState {
 
 			var locations = new List<Tile>(board.tiles.Values);
 			for (int i = 0; i < recipes.Length; ++i) {
-				int level = Random.Range(9, 12);
+				int level = UnityEngine.Random.Range(9, 12);
 				GameObject instance = UnitFactory.Create(recipes[i], level);
 
-				int random = Random.Range(0, locations.Count);
+				int random = UnityEngine.Random.Range(0, locations.Count);
 				Tile randomTile = locations[ random ];
 				locations.RemoveAt(random);
 
 				Unit unit = instance.GetComponent<Unit>();
 				unit.Place(randomTile);
-				unit.dir = (Direction) Random.Range(0, 4);
+				unit.dir = (Direction) UnityEngine.Random.Range(0, 4);
 				unit.Match();
 
 				units.Add(unit);
@@ -64,6 +68,16 @@ namespace Tactical.Battle.BattleState {
 
 			SelectTile(units[0].tile.pos);
 		}
+
+		private void AddVictoryCondition () {
+			DefeatTargetVictoryCondition vc = owner.gameObject.AddComponent<DefeatTargetVictoryCondition>();
+			Unit enemy = units[units.Count - 1];
+			if (enemy == null) {
+				throw new Exception("Could not find any unit set as DefeatTargetVictoryCondition's target.");
+			}
+			vc.target = enemy;
+		}
+
 	}
 
 }
