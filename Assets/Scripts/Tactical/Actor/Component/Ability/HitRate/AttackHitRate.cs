@@ -26,14 +26,14 @@ namespace Tactical.Actor.Component {
 
 		private int GetEvade (Unit target) {
 			Stats s = target.GetComponentInParent<Stats>();
-			return Mathf.Clamp(s[StatType.EVD], 0, 100);
+			return Mathf.Clamp(s[StatTypes.EVD], 0, 100);
 		}
 
 		private int AdjustForRelativeFacing (Unit target, int rate) {
 			switch (attacker.GetFacing(target)) {
-			case Facing.Front:
+			case Facings.Front:
 				return rate;
-			case Facing.Side:
+			case Facings.Side:
 				return rate / 2;
 			default:
 				return rate / 4;

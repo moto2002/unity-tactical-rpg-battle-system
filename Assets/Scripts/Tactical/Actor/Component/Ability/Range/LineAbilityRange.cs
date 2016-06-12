@@ -19,13 +19,13 @@ namespace Tactical.Actor.Component {
 			var retValue = new List<Tile>();
 
 			switch (unit.dir) {
-				case Direction.North:
+				case Directions.North:
 					endPos = new Point(startPos.x, board.max.y);
 					break;
-				case Direction.East:
+				case Directions.East:
 					endPos = new Point(board.max.x, startPos.y);
 					break;
-				case Direction.South:
+				case Directions.South:
 					endPos = new Point(startPos.x, board.min.y);
 					break;
 				default: // West

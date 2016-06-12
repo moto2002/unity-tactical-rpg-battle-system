@@ -46,16 +46,16 @@ namespace Tactical.Actor.Editor {
 				job.baseStats[i - 1] = Convert.ToInt32(elements[i]);
 			}
 
-			StatModifierFeature evade = GetFeature (obj, StatType.EVD);
+			StatModifierFeature evade = GetFeature (obj, StatTypes.EVD);
 			evade.amount = Convert.ToInt32(elements[8]);
 
-			StatModifierFeature res = GetFeature (obj, StatType.RES);
+			StatModifierFeature res = GetFeature (obj, StatTypes.RES);
 			res.amount = Convert.ToInt32(elements[9]);
 
-			StatModifierFeature move = GetFeature (obj, StatType.MOV);
+			StatModifierFeature move = GetFeature (obj, StatTypes.MOV);
 			move.amount = Convert.ToInt32(elements[10]);
 
-			StatModifierFeature jump = GetFeature (obj, StatType.JMP);
+			StatModifierFeature jump = GetFeature (obj, StatTypes.JMP);
 			jump.amount = Convert.ToInt32(elements[11]);
 		}
 
@@ -76,7 +76,7 @@ namespace Tactical.Actor.Editor {
 			}
 		}
 
-		private static StatModifierFeature GetFeature (GameObject obj, StatType type) {
+		private static StatModifierFeature GetFeature (GameObject obj, StatTypes type) {
 			StatModifierFeature[] smf = obj.GetComponents<StatModifierFeature>();
 			for (int i = 0; i < smf.Length; ++i) {
 				if (smf[i].type == type) {

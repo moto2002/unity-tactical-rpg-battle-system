@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Tactical.Core.Enums {
 
-	public enum StatType {
+	public enum StatTypes {
 		LVL, // Level
 		EXP, // Experience
 		HP,  // Hit Points

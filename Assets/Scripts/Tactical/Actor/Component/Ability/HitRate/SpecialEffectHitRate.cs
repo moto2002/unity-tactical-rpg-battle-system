@@ -26,14 +26,14 @@ namespace Tactical.Actor.Component {
 
 		private int GetResistance (Unit target) {
 			Stats s = target.GetComponentInParent<Stats>();
-			return s[StatType.RES];
+			return s[StatTypes.RES];
 		}
 
 		private int AdjustForRelativeFacing (Unit target, int rate) {
 			switch (attacker.GetFacing(target)) {
-			case Facing.Front:
+			case Facings.Front:
 				return rate;
-			case Facing.Side:
+			case Facings.Side:
 				return rate - 10;
 			default:
 				return rate - 20;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Tactical.Core.Enums {
 
-	public enum MovementType {
+	public enum MovementTypes {
 		Walk,
 		Fly,
 		Teleport

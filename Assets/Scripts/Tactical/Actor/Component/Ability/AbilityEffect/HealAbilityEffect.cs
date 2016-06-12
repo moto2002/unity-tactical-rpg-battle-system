@@ -26,7 +26,7 @@ namespace Tactical.Actor.Component {
 
 			// Apply the amount to the target
 			Stats s = defender.GetComponent<Stats>();
-			s[StatType.HP] += value;
+			s[StatTypes.HP] += value;
 			return value;
 		}
 

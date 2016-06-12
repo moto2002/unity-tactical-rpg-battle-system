@@ -7,45 +7,45 @@ namespace Tactical.Core.Extensions {
 
 	public static class DirectionExtensions {
 
-		public static Direction GetDirection (this Tile t1, Tile t2) {
+		public static Directions GetDirection (this Tile t1, Tile t2) {
 			if (t1.pos.y < t2.pos.y) {
-				return Direction.North;
+				return Directions.North;
 			}
 			if (t1.pos.x < t2.pos.x) {
-				return Direction.East;
+				return Directions.East;
 			}
 			if (t1.pos.y > t2.pos.y) {
-				return Direction.South;
+				return Directions.South;
 			}
-			return Direction.West;
+			return Directions.West;
 		}
 
-		public static Direction GetDirection (this Point p) {
+		public static Directions GetDirection (this Point p) {
 			if (p.y > 0) {
-				return Direction.North;
+				return Directions.North;
 			}
 			if (p.x > 0) {
-				return Direction.East;
+				return Directions.East;
 			}
 			if (p.y < 0) {
-				return Direction.South;
+				return Directions.South;
 			}
-			return Direction.West;
+			return Directions.West;
 		}
 
-		public static Vector3 ToEuler (this Direction d) {
+		public static Vector3 ToEuler (this Directions d) {
 			return new Vector3(0, (int)d * 90, 0);
 		}
 
-		public static Point GetNormal (this Direction dir) {
+		public static Point GetNormal (this Directions dir) {
 			switch (dir) {
-			case Direction.North:
+			case Directions.North:
 				return new Point(0, 1);
-			case Direction.East:
+			case Directions.East:
 				return new Point(1, 0);
-			case Direction.South:
+			case Directions.South:
 				return new Point(0, -1);
-			default: // Direction.West:
+			default: // Directions.West:
 				return new Point(-1, 0);
 			}
 		}

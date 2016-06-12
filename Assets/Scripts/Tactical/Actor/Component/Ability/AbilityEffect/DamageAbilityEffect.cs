@@ -52,7 +52,7 @@ namespace Tactical.Actor.Component {
 
 			// Apply the damage to the target
 			Stats s = defender.GetComponent<Stats>();
-			s[StatType.HP] += value;
+			s[StatTypes.HP] += value;
 			return value;
 		}
 

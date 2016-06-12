@@ -50,7 +50,7 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private void ChangeDirection (Point p) {
-			Direction dir = p.GetDirection();
+			Directions dir = p.GetDirection();
 			if (turn.actor.dir != dir) {
 				board.DeSelectTiles(tiles);
 				turn.actor.dir = dir;

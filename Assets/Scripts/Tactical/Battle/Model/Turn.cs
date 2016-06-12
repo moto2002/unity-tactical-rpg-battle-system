@@ -16,7 +16,7 @@ namespace Tactical.Battle.Model {
 		public List<Tile> targets;
 
 		private Tile startTile;
-		private Direction startDir;
+		private Directions startDir;
 
 		public void Change (Unit current) {
 			actor = current;

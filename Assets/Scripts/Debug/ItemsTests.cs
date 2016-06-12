@@ -44,7 +44,7 @@ public class ItemsTests : MonoBehaviour {
 		Debug.Log(message);
 	}
 
-	GameObject CreateItem (string title, StatType type, int amount) {
+	GameObject CreateItem (string title, StatTypes type, int amount) {
 		GameObject item = new GameObject(title);
 		StatModifierFeature smf = item.AddComponent<StatModifierFeature>();
 		smf.type = type;
@@ -52,13 +52,13 @@ public class ItemsTests : MonoBehaviour {
 		return item;
 	}
 
-	GameObject CreateConsumableItem (string title, StatType type, int amount) {
+	GameObject CreateConsumableItem (string title, StatTypes type, int amount) {
 		GameObject item = CreateItem(title, type, amount);
 		item.AddComponent<Consumable>();
 		return item;
 	}
 
-	GameObject CreateEquippableItem (string title, StatType type, int amount, EquipSlots slot) {
+	GameObject CreateEquippableItem (string title, StatTypes type, int amount, EquipSlots slot) {
 		GameObject item = CreateItem(title, type, amount);
 		Equippable equip = item.AddComponent<Equippable>();
 		equip.defaultSlots = slot;
@@ -74,18 +74,18 @@ public class ItemsTests : MonoBehaviour {
 	GameObject CreateActor (string title) {
 		GameObject actor = new GameObject(title);
 		Stats s = actor.AddComponent<Stats>();
-		s[StatType.HP] = s[StatType.MHP] = UnityEngine.Random.Range(500, 1000);
-		s[StatType.ATK] = UnityEngine.Random.Range(30, 50);
-		s[StatType.DEF] = UnityEngine.Random.Range(30, 50);
+		s[StatTypes.HP] = s[StatTypes.MHP] = UnityEngine.Random.Range(500, 1000);
+		s[StatTypes.ATK] = UnityEngine.Random.Range(30, 50);
+		s[StatTypes.DEF] = UnityEngine.Random.Range(30, 50);
 		return actor;
 	}
 
 	private void CreateItems () {
-		inventory.Add( CreateConsumableItem("Health Potion", StatType.HP, 300) );
-		inventory.Add( CreateConsumableItem("Bomb", StatType.HP, -150) );
-		inventory.Add( CreateEquippableItem("Sword", StatType.ATK, 10, EquipSlots.Primary) );
-		inventory.Add( CreateEquippableItem("Broad Sword", StatType.ATK, 15, (EquipSlots.Primary | EquipSlots.Secondary)) );
-		inventory.Add( CreateEquippableItem("Shield", StatType.DEF, 10, EquipSlots.Secondary) );
+		inventory.Add( CreateConsumableItem("Health Potion", StatTypes.HP, 300) );
+		inventory.Add( CreateConsumableItem("Bomb", StatTypes.HP, -150) );
+		inventory.Add( CreateEquippableItem("Sword", StatTypes.ATK, 10, EquipSlots.Primary) );
+		inventory.Add( CreateEquippableItem("Broad Sword", StatTypes.ATK, 15, (EquipSlots.Primary | EquipSlots.Secondary)) );
+		inventory.Add( CreateEquippableItem("Shield", StatTypes.DEF, 10, EquipSlots.Secondary) );
 	}
 
 	private void CreateCombatants () {
@@ -123,8 +123,8 @@ public class ItemsTests : MonoBehaviour {
 	private void Attack (GameObject attacker, GameObject defender) {
 		Stats s1 = attacker.GetComponent<Stats>();
 		Stats s2 = defender.GetComponent<Stats>();
-		int damage = Mathf.FloorToInt((s1[StatType.ATK] * 4 - s2[StatType.DEF] * 2) * UnityEngine.Random.Range(0.9f, 1.1f));
-		s2[StatType.HP] -= damage;
+		int damage = Mathf.FloorToInt((s1[StatTypes.ATK] * 4 - s2[StatTypes.DEF] * 2) * UnityEngine.Random.Range(0.9f, 1.1f));
+		s2[StatTypes.HP] -= damage;
 		string message = string.Format("{0} hits {1} for {2} damage!", attacker.name, defender.name, damage);
 		Debug.Log(message);
 	}
@@ -163,7 +163,7 @@ public class ItemsTests : MonoBehaviour {
 	private bool VictoryCheck () {
 		for (int i = 0; i < 2; ++i) {
 			Stats s = combatants[i].GetComponent<Stats>();
-			if (s[StatType.HP] <= 0) {
+			if (s[StatTypes.HP] <= 0) {
 				return true;
 			}
 		}
@@ -178,7 +178,7 @@ public class ItemsTests : MonoBehaviour {
 
 	private void LogToConsole (GameObject actor) {
 		Stats s = actor.GetComponent<Stats>();
-		string message = string.Format("Name:{0} HP:{1}/{2} ATK:{3} DEF:{4}", actor.name, s[StatType.HP], s[StatType.MHP], s[StatType.ATK], s[StatType.DEF]);
+		string message = string.Format("Name:{0} HP:{1}/{2} ATK:{3} DEF:{4}", actor.name, s[StatTypes.HP], s[StatTypes.MHP], s[StatTypes.ATK], s[StatTypes.DEF]);
 		Debug.Log( message );
 	}
 

@@ -11,12 +11,12 @@ namespace Tactical.Actor.Component {
 		public const int EXPERIENCE_PER_LEVEL = 100;
 
 		public int Level {
-			get { return stats[StatType.LVL]; }
+			get { return stats[StatTypes.LVL]; }
 		}
 
 		public int Experience {
-			get { return stats[StatType.EXP]; }
-			set { stats[StatType.EXP] = value; }
+			get { return stats[StatTypes.EXP]; }
+			set { stats[StatTypes.EXP] = value; }
 		}
 
 		public float LevelPercent {
@@ -30,13 +30,13 @@ namespace Tactical.Actor.Component {
 		}
 
 		private void OnEnable () {
-			this.AddObserver(OnExpWillChange, Stats.WillChangeNotification(StatType.EXP), stats);
-			this.AddObserver(OnExpDidChange, Stats.DidChangeNotification(StatType.EXP), stats);
+			this.AddObserver(OnExpWillChange, Stats.WillChangeNotification(StatTypes.EXP), stats);
+			this.AddObserver(OnExpDidChange, Stats.DidChangeNotification(StatTypes.EXP), stats);
 		}
 
 		private void OnDisable () {
-			this.RemoveObserver(OnExpWillChange, Stats.WillChangeNotification(StatType.EXP), stats);
-			this.RemoveObserver(OnExpDidChange, Stats.DidChangeNotification(StatType.EXP), stats);
+			this.RemoveObserver(OnExpWillChange, Stats.WillChangeNotification(StatTypes.EXP), stats);
+			this.RemoveObserver(OnExpDidChange, Stats.DidChangeNotification(StatTypes.EXP), stats);
 		}
 
 		private void OnExpWillChange (object sender, object args) {
@@ -47,7 +47,7 @@ namespace Tactical.Actor.Component {
 		}
 
 		private void OnExpDidChange (object sender, object args) {
-			stats.SetValue(StatType.LVL, LevelForExperience(Experience), false);
+			stats.SetValue(StatTypes.LVL, LevelForExperience(Experience), false);
 		}
 
 		public static int ExperienceForLevel (int level) {
@@ -64,8 +64,8 @@ namespace Tactical.Actor.Component {
 		}
 
 		public void Init (int level) {
-			stats.SetValue(StatType.LVL, level, false);
-			stats.SetValue(StatType.EXP, ExperienceForLevel(level), false);
+			stats.SetValue(StatTypes.LVL, level, false);
+			stats.SetValue(StatTypes.EXP, ExperienceForLevel(level), false);
 		}
 
 	}

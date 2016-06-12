@@ -11,12 +11,12 @@ namespace Tactical.Actor.Component {
 
 		public override int Predict (Tile target) {
 			Stats s = target.content.GetComponent<Stats>();
-			return Mathf.FloorToInt(s[StatType.MHP] * percent / 100);
+			return Mathf.FloorToInt(s[StatTypes.MHP] * percent / 100);
 		}
 
 		protected override int OnApply (Tile target) {
 			Stats s = target.content.GetComponent<Stats>();
-			int value = s[StatType.HP] = Predict(target);
+			int value = s[StatTypes.HP] = Predict(target);
 			return value;
 		}
 

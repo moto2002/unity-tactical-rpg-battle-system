@@ -25,7 +25,7 @@ namespace Tactical.Actor.Component {
 				Tile from = targets[i - 1];
 				Tile to = targets[i];
 
-				Direction dir = from.GetDirection(to);
+				Directions dir = from.GetDirection(to);
 				if (unit.dir != dir) {
 					yield return StartCoroutine(Turn(dir));
 				}

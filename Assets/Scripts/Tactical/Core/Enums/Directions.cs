@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Tactical.Core.Enums {
 
-	public enum Direction {
+	public enum Directions {
 		North,
 		East,
 		South,

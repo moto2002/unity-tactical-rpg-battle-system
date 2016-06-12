@@ -21,10 +21,10 @@ namespace Tactical.Actor.Component {
 
 		private void OnNewTurn (object sender, object args) {
 			Stats s = GetComponentInParent<Stats>();
-			int currentHP = s[StatType.HP];
-			int maxHP = s[StatType.MHP];
+			int currentHP = s[StatTypes.HP];
+			int maxHP = s[StatTypes.MHP];
 			int reduce = Mathf.FloorToInt(maxHP * 0.1f);
-			s.SetValue(StatType.HP, (currentHP - reduce), false);
+			s.SetValue(StatTypes.HP, (currentHP - reduce), false);
 		}
 
 	}

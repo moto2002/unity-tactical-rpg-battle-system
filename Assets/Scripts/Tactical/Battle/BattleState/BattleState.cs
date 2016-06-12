@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
 using Tactical.Core.StateMachine;
 using Tactical.Core.Controller;
@@ -111,11 +112,11 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		protected virtual bool DidPlayerWin () {
-			return owner.GetComponent<BaseVictoryCondition>().Victor == Tactical.Core.Enums.Alliance.Hero;
+			return owner.GetComponent<BaseVictoryCondition>().Victor == Alliances.Hero;
 		}
 
 		protected virtual bool IsBattleOver () {
-			return owner.GetComponent<BaseVictoryCondition>().Victor != Tactical.Core.Enums.Alliance.None;
+			return owner.GetComponent<BaseVictoryCondition>().Victor != Alliances.None;
 		}
 
 	}

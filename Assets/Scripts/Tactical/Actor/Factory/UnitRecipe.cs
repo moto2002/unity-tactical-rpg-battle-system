@@ -9,8 +9,8 @@ namespace Tactical.Actor.Factory {
 		public string job;
 		public string attack;
 		public string abilityCatalog;
-		public MovementType movementType;
-		public Alliance alliance;
+		public MovementTypes movementType;
+		public Alliances alliance;
 
 	}
 

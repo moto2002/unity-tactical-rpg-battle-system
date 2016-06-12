@@ -25,7 +25,7 @@ namespace Tactical.Actor.Component {
 
 		private void OnCanPerformCheck (object sender, object args) {
 			Stats s = GetComponentInParent<Stats>();
-			if (s[StatType.MP] < amount) {
+			if (s[StatTypes.MP] < amount) {
 				var exc = (BaseException)args;
 				exc.FlipToggle();
 			}
@@ -33,7 +33,7 @@ namespace Tactical.Actor.Component {
 
 		private void OnDidPerformNotification (object sender, object args) {
 			Stats s = GetComponentInParent<Stats>();
-			s[StatType.MP] -= amount;
+			s[StatTypes.MP] -= amount;
 		}
 
 	}

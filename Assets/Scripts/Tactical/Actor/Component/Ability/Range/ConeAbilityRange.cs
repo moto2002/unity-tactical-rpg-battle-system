@@ -14,10 +14,10 @@ namespace Tactical.Actor.Component {
 		public override List<Tile> GetTilesInRange (Board board) {
 			Point pos = unit.tile.pos;
 			List<Tile> retValue = new List<Tile>();
-			int dir = (unit.dir == Direction.North || unit.dir == Direction.East) ? 1 : -1;
+			int dir = (unit.dir == Directions.North || unit.dir == Directions.East) ? 1 : -1;
 			int lateral = 1;
 
-			if (unit.dir == Direction.North || unit.dir == Direction.South) {
+			if (unit.dir == Directions.North || unit.dir == Directions.South) {
 				for (int y = 1; y <= horizontal; ++y) {
 					int min = -(lateral / 2);
 					int max = (lateral / 2);

@@ -18,14 +18,14 @@ namespace Tactical.Actor.Component {
 			PlayEnableAnimation();
 
 			this.AddObserver(OnTurnCheck, TurnOrderController.TurnCheckNotification, owner);
-			this.AddObserver(OnStatCounterWillChange, Stats.WillChangeNotification(StatType.CTR), stats);
+			this.AddObserver(OnStatCounterWillChange, Stats.WillChangeNotification(StatTypes.CTR), stats);
 		}
 
 		private void OnDisable () {
 			PlayDisableAnimation();
 
 			this.RemoveObserver(OnTurnCheck, TurnOrderController.TurnCheckNotification, owner);
-			this.RemoveObserver(OnStatCounterWillChange, Stats.WillChangeNotification(StatType.CTR), stats);
+			this.RemoveObserver(OnStatCounterWillChange, Stats.WillChangeNotification(StatTypes.CTR), stats);
 		}
 
 		private void OnTurnCheck (object sender, object args) {

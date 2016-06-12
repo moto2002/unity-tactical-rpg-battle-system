@@ -12,7 +12,7 @@ namespace Tactical.Actor.Component {
 			}
 
 			Stats s = tile.content.GetComponent<Stats>();
-			return s != null && s[StatType.HP] > 0;
+			return s != null && s[StatTypes.HP] > 0;
 		}
 
 	}

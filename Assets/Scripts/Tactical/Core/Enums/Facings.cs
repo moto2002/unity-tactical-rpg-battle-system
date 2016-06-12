@@ -11,7 +11,7 @@ namespace Tactical.Core.Enums {
 	/// B B S F F
 	/// B S S S F
 	/// </summary>
-	public enum Facing {
+	public enum Facings {
 		Front,
 		Side,
 		Back

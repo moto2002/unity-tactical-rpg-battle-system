@@ -6,13 +6,13 @@ namespace Tactical.Actor.Component {
 	public class Health : MonoBehaviour {
 
 		public int HP {
-			get { return stats[StatType.HP]; }
-			set { stats[StatType.HP] = value; }
+			get { return stats[StatTypes.HP]; }
+			set { stats[StatTypes.HP] = value; }
 		}
 
 		public int MaxHP {
-			get { return stats[StatType.MHP]; }
-			set { stats[StatType.MHP] = value; }
+			get { return stats[StatTypes.MHP]; }
+			set { stats[StatTypes.MHP] = value; }
 		}
 
 		public int MinHP;
@@ -24,18 +24,18 @@ namespace Tactical.Actor.Component {
 		}
 
 		private void OnEnable () {
-			this.AddObserver(OnHPWillChange, Stats.WillChangeNotification(StatType.HP), stats);
-			this.AddObserver(OnMaxPDidChange, Stats.DidChangeNotification(StatType.MHP), stats);
+			this.AddObserver(OnHPWillChange, Stats.WillChangeNotification(StatTypes.HP), stats);
+			this.AddObserver(OnMaxPDidChange, Stats.DidChangeNotification(StatTypes.MHP), stats);
 		}
 
 		private void OnDisable () {
-			this.RemoveObserver(OnHPWillChange, Stats.WillChangeNotification(StatType.HP), stats);
-			this.RemoveObserver(OnMaxPDidChange, Stats.DidChangeNotification(StatType.MHP), stats);
+			this.RemoveObserver(OnHPWillChange, Stats.WillChangeNotification(StatTypes.HP), stats);
+			this.RemoveObserver(OnMaxPDidChange, Stats.DidChangeNotification(StatTypes.MHP), stats);
 		}
 
 		private void OnHPWillChange (object sender, object args) {
 			var vce = args as ValueChangeException;
-			vce.AddModifier(new ClampValueModifier(int.MaxValue, MinHP, stats[StatType.MHP]));
+			vce.AddModifier(new ClampValueModifier(int.MaxValue, MinHP, stats[StatTypes.MHP]));
 		}
 
 		private void OnMaxPDidChange (object sender, object args) {

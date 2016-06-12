@@ -60,7 +60,7 @@ namespace Tactical.Battle.BattleState {
 
 				Unit unit = instance.GetComponent<Unit>();
 				unit.Place(randomTile);
-				unit.dir = (Direction) UnityEngine.Random.Range(0, 4);
+				unit.dir = (Directions) UnityEngine.Random.Range(0, 4);
 				unit.Match();
 
 				units.Add(unit);

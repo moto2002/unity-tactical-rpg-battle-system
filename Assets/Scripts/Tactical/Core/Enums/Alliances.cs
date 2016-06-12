@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Tactical.Core.Enums {
 
-	public enum Alliance {
+	public enum Alliances {
 		None = 0,
 		Neutral = 1 << 0,
 		Hero = 1 << 1,

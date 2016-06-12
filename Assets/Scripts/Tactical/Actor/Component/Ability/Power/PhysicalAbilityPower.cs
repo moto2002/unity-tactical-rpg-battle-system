@@ -8,11 +8,11 @@ namespace Tactical.Actor.Component {
 		public int level;
 
 		protected override int GetBaseAttack () {
-			return GetComponentInParent<Stats>()[StatType.ATK];
+			return GetComponentInParent<Stats>()[StatTypes.ATK];
 		}
 
 		protected override int GetBaseDefense (Unit target) {
-			return target.GetComponent<Stats>()[StatType.DEF];
+			return target.GetComponent<Stats>()[StatTypes.DEF];
 		}
 
 		protected override int GetPower () {

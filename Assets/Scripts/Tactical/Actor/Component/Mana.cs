@@ -7,13 +7,13 @@ namespace Tactical.Actor.Component {
 	public class Mana : MonoBehaviour {
 
 		public int MP {
-			get { return stats[StatType.MP]; }
-			set { stats[StatType.MP] = value; }
+			get { return stats[StatTypes.MP]; }
+			set { stats[StatTypes.MP] = value; }
 		}
 
 		public int MMP {
-			get { return stats[StatType.MMP]; }
-			set { stats[StatType.MMP] = value; }
+			get { return stats[StatTypes.MMP]; }
+			set { stats[StatTypes.MMP] = value; }
 		}
 
 		private Unit unit;
@@ -25,20 +25,20 @@ namespace Tactical.Actor.Component {
 		}
 
 		private void OnEnable () {
-			this.AddObserver(OnMPWillChange, Stats.WillChangeNotification(StatType.MP), stats);
-			this.AddObserver(OnMMPDidChange, Stats.DidChangeNotification(StatType.MMP), stats);
+			this.AddObserver(OnMPWillChange, Stats.WillChangeNotification(StatTypes.MP), stats);
+			this.AddObserver(OnMMPDidChange, Stats.DidChangeNotification(StatTypes.MMP), stats);
 			this.AddObserver(OnTurnBegan, TurnOrderController.TurnBeganNotification, unit);
 		}
 
 		private void OnDisable () {
-			this.RemoveObserver(OnMPWillChange, Stats.WillChangeNotification(StatType.MP), stats);
-			this.RemoveObserver(OnMMPDidChange, Stats.DidChangeNotification(StatType.MMP), stats);
+			this.RemoveObserver(OnMPWillChange, Stats.WillChangeNotification(StatTypes.MP), stats);
+			this.RemoveObserver(OnMMPDidChange, Stats.DidChangeNotification(StatTypes.MMP), stats);
 			this.RemoveObserver(OnTurnBegan, TurnOrderController.TurnBeganNotification, unit);
 		}
 
 		private void OnMPWillChange (object sender, object args) {
 			var vce = args as ValueChangeException;
-			vce.AddModifier(new ClampValueModifier(int.MaxValue, 0, stats[StatType.MHP]));
+			vce.AddModifier(new ClampValueModifier(int.MaxValue, 0, stats[StatTypes.MHP]));
 		}
 
 		private void OnMMPDidChange (object sender, object args) {

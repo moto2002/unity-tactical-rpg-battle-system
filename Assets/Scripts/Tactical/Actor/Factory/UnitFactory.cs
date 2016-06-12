@@ -45,7 +45,7 @@ namespace Tactical.Actor.Factory {
 
 		private static void AddStats (GameObject obj) {
 			Stats s = obj.AddComponent<Stats>();
-			s.SetValue(StatType.LVL, 1, false);
+			s.SetValue(StatTypes.LVL, 1, false);
 		}
 
 		private static void AddJob (GameObject obj, string name) {
@@ -56,21 +56,21 @@ namespace Tactical.Actor.Factory {
 			job.LoadDefaultStats();
 		}
 
-		private static void AddMovementType (GameObject obj, MovementType type) {
+		private static void AddMovementType (GameObject obj, MovementTypes type) {
 			switch (type) {
-			case MovementType.Walk:
+			case MovementTypes.Walk:
 				obj.AddComponent<WalkMovement>();
 				break;
-			case MovementType.Fly:
+			case MovementTypes.Fly:
 				obj.AddComponent<FlyMovement>();
 				break;
-			case MovementType.Teleport:
+			case MovementTypes.Teleport:
 				obj.AddComponent<TeleportMovement>();
 				break;
 			}
 		}
 
-		private static void AddAlliance (GameObject obj, Tactical.Core.Enums.Alliance type) {
+		private static void AddAlliance (GameObject obj, Alliances type) {
 			Tactical.Actor.Component.Alliance alliance = obj.AddComponent<Tactical.Actor.Component.Alliance>();
 			alliance.type = type;
 		}

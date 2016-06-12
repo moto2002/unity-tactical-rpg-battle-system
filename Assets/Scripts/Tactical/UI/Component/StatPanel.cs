@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Tactical.Core.Enums;
 using Tactical.Actor.Component;
-
-using StatType = Tactical.Core.Enums.StatType;
-using AllianceEnum = Tactical.Core.Enums.Alliance;
 
 namespace Tactical.UI.Component {
 
@@ -21,7 +19,7 @@ namespace Tactical.UI.Component {
 
 		public void Display (GameObject obj) {
 			Alliance alliance = obj.GetComponent<Alliance>();
-			background.sprite = alliance.type == AllianceEnum.Enemy ? enemyBackground : allyBackground;
+			background.sprite = alliance.type == Alliances.Enemy ? enemyBackground : allyBackground;
 
 			// TODO: Need a component which provides this data.
 			// avatar.sprite = null;
@@ -29,9 +27,9 @@ namespace Tactical.UI.Component {
 			nameLabel.text = obj.name;
 			Stats stats = obj.GetComponent<Stats>();
 			if (stats) {
-				hpLabel.text = string.Format( "HP {0} / {1}", stats[StatType.HP], stats[StatType.MHP] );
-				mpLabel.text = string.Format( "MP {0} / {1}", stats[StatType.MP], stats[StatType.MMP] );
-				lvLabel.text = string.Format( "LV. {0}", stats[StatType.LVL]);
+				hpLabel.text = string.Format( "HP {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
+				mpLabel.text = string.Format( "MP {0} / {1}", stats[StatTypes.MP], stats[StatTypes.MMP] );
+				lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LVL]);
 			}
 		}
 	}

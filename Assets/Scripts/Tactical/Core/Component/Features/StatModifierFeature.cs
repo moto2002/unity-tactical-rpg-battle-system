@@ -5,7 +5,7 @@ namespace Tactical.Core.Component {
 
 	public class StatModifierFeature : Feature {
 
-		public StatType type;
+		public StatTypes type;
 		public int amount;
 
 		private Stats stats {

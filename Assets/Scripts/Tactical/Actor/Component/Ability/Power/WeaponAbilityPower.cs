@@ -8,11 +8,11 @@ namespace Tactical.Actor.Component {
 	public class WeaponAbilityPower : BaseAbilityPower {
 
 		protected override int GetBaseAttack () {
-			return GetComponentInParent<Stats>()[StatType.ATK];
+			return GetComponentInParent<Stats>()[StatTypes.ATK];
 		}
 
 		protected override int GetBaseDefense (Unit target) {
-			return target.GetComponent<Stats>()[StatType.DEF];
+			return target.GetComponent<Stats>()[StatTypes.DEF];
 		}
 
 		protected override int GetPower () {
@@ -27,7 +27,7 @@ namespace Tactical.Actor.Component {
 			StatModifierFeature[] features = item.GetComponentsInChildren<StatModifierFeature>();
 
 			for (int i = 0; i < features.Length; ++i) {
-				if (features[i].type == StatType.ATK) {
+				if (features[i].type == StatTypes.ATK) {
 					power += features[i].amount;
 				}
 			}
@@ -38,7 +38,7 @@ namespace Tactical.Actor.Component {
 		private int UnarmedPower () {
 			Job job = GetComponentInParent<Job>();
 			for (int i = 0; i < Job.statOrder.Length; ++i) {
-				if (Job.statOrder[i] == StatType.ATK) {
+				if (Job.statOrder[i] == StatTypes.ATK) {
 					return job.baseStats[i];
 				}
 			}

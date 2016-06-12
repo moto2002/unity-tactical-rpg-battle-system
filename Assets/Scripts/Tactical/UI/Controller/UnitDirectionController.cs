@@ -9,7 +9,7 @@ namespace Tactical.UI.Controller {
 		[SerializeField] private Renderer[] directions;
 		[SerializeField] private Material materialDefault;
 		[SerializeField] private Material materialActive;
-		private Direction dir;
+		private Directions dir;
 
 		private void Start () {
 			Hide();
@@ -23,7 +23,7 @@ namespace Tactical.UI.Controller {
 			SetVisibility(true);
 		}
 
-		public void Show (Direction direction) {
+		public void Show (Directions direction) {
 			SetDirection(direction);
 			Show();
 		}
@@ -36,7 +36,7 @@ namespace Tactical.UI.Controller {
 			gameObject.transform.localPosition = position;
 		}
 
-		public void SetDirection (Direction dir) {
+		public void SetDirection (Directions dir) {
 			int index = (int) dir;
 			for (int i = 0; i < directions.Length; ++i) {
 				directions[i].material = (i == index) ? materialActive : materialDefault;

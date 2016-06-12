@@ -8,7 +8,7 @@ namespace Tactical.Actor.Component {
 	public class Unit : MonoBehaviour {
 
 		public Tile tile { get; protected set; }
-		public Direction dir;
+		public Directions dir;
 
 		public void Place (Tile target) {
 			// Make sure old tile location is not still pointing to this unit

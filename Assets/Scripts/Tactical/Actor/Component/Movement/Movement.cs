@@ -10,8 +10,8 @@ namespace Tactical.Actor.Component {
 
 	public abstract class Movement : MonoBehaviour {
 
-		public int range { get { return stats[StatType.MOV]; }}
-		public int jumpHeight { get { return stats[StatType.JMP]; }}
+		public int range { get { return stats[StatTypes.MOV]; }}
+		public int jumpHeight { get { return stats[StatTypes.JMP]; }}
 		protected Stats stats;
 		protected Unit unit;
 		protected Transform jumper;
@@ -44,7 +44,7 @@ namespace Tactical.Actor.Component {
 				}
 		}
 
-		protected virtual IEnumerator Turn (Direction dir) {
+		protected virtual IEnumerator Turn (Directions dir) {
 			var t = (TransformLocalEulerTweener) transform.RotateToLocal(dir.ToEuler(), 0.25f, EasingEquations.EaseInOutQuad);
 
 			// When rotating between North and West, we must make an exception so it looks like the unit

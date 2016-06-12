@@ -8,7 +8,7 @@ namespace Tactical.Battle.BattleState {
 
 	public class EndFacingState : BattleState {
 
-		private Direction startDir;
+		private Directions startDir;
 
 		public override void Enter () {
 			base.Enter();

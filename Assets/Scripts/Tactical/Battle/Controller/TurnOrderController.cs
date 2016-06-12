@@ -28,7 +28,7 @@ namespace Tactical.Battle.Controller {
 				var units = new List<Unit>( bc.units );
 				for (int i = 0; i < units.Count; ++i) {
 					Stats s = units[i].GetComponent<Stats>();
-					s[StatType.CTR] += s[StatType.SPD];
+					s[StatTypes.CTR] += s[StatTypes.SPD];
 				}
 
 				// Sort the units by CTR
@@ -53,7 +53,7 @@ namespace Tactical.Battle.Controller {
 
 						// And substract it to the CTR.
 
-						s.SetValue(StatType.CTR, s[StatType.CTR] - cost, false);
+						s.SetValue(StatTypes.CTR, s[StatTypes.CTR] - cost, false);
 
 						units[i].PostNotification(TurnCompletedNotification);
 					}
@@ -70,7 +70,7 @@ namespace Tactical.Battle.Controller {
 		}
 
 		private int GetCounter (Unit target) {
-			return target.GetComponent<Stats>()[StatType.CTR];
+			return target.GetComponent<Stats>()[StatTypes.CTR];
 		}
 	}
 

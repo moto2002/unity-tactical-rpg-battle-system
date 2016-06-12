@@ -10,13 +10,13 @@ namespace Tactical.Actor.Component {
 	public class ExperienceRankTests : MonoBehaviour {
 
 		private void OnEnable () {
-			this.AddObserver(OnLevelChange, Stats.DidChangeNotification(StatType.LVL));
-			this.AddObserver(OnExperienceException, Stats.WillChangeNotification(StatType.EXP));
+			this.AddObserver(OnLevelChange, Stats.DidChangeNotification(StatTypes.LVL));
+			this.AddObserver(OnExperienceException, Stats.WillChangeNotification(StatTypes.EXP));
 		}
 
 		private void OnDisable () {
-			this.RemoveObserver(OnLevelChange, Stats.DidChangeNotification(StatType.LVL));
-			this.RemoveObserver(OnExperienceException, Stats.WillChangeNotification(StatType.EXP));
+			this.RemoveObserver(OnLevelChange, Stats.DidChangeNotification(StatTypes.LVL));
+			this.RemoveObserver(OnExperienceException, Stats.WillChangeNotification(StatTypes.EXP));
 		}
 
 		[Test]

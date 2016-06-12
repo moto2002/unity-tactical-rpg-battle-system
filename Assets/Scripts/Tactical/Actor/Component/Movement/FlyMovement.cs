@@ -23,12 +23,12 @@ namespace Tactical.Actor.Component {
 			}
 
 			// Turn to face the general direction
-			Direction dir;
+			Directions dir;
 			Vector3 toTile = (tile.center - transform.position);
 			if (Mathf.Abs(toTile.x) > Mathf.Abs(toTile.z)) {
-				dir = toTile.x > 0 ? Direction.East : Direction.West;
+				dir = toTile.x > 0 ? Directions.East : Directions.West;
 			} else {
-				dir = toTile.z > 0 ? Direction.North : Direction.South;
+				dir = toTile.z > 0 ? Directions.North : Directions.South;
 			}
 			yield return StartCoroutine(Turn(dir));
 

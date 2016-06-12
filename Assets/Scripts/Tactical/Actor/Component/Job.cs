@@ -6,14 +6,14 @@ namespace Tactical.Actor.Component {
 
 	public class Job : MonoBehaviour {
 
-		public static readonly StatType[] statOrder = new StatType[] {
-			StatType.MHP,
-			StatType.MMP,
-			StatType.ATK,
-			StatType.DEF,
-			StatType.MAT,
-			StatType.MDF,
-			StatType.SPD
+		public static readonly StatTypes[] statOrder = new StatTypes[] {
+			StatTypes.MHP,
+			StatTypes.MMP,
+			StatTypes.ATK,
+			StatTypes.DEF,
+			StatTypes.MAT,
+			StatTypes.MDF,
+			StatTypes.SPD
 		};
 
 		public int[] baseStats = new int[ statOrder.Length ];
@@ -21,12 +21,12 @@ namespace Tactical.Actor.Component {
 		private Stats stats;
 
 		private void OnDestroy () {
-			this.RemoveObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatType.LVL));
+			this.RemoveObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LVL));
 		}
 
 		public void Employ () {
 			stats = gameObject.GetComponentInParent<Stats>();
-			this.AddObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatType.LVL), stats);
+			this.AddObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LVL), stats);
 
 			Feature[] features = GetComponentsInChildren<Feature>();
 			for (int i = 0; i < features.Length; ++i) {
@@ -40,23 +40,23 @@ namespace Tactical.Actor.Component {
 				features[i].Deactivate();
 			}
 
-			this.RemoveObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatType.LVL), stats);
+			this.RemoveObserver(OnLvlChangeNotification, Stats.DidChangeNotification(StatTypes.LVL), stats);
 			stats = null;
 		}
 
 		public void LoadDefaultStats () {
 			for (int i = 0; i < statOrder.Length; ++i) {
-				StatType type = statOrder[i];
+				StatTypes type = statOrder[i];
 				stats.SetValue(type, baseStats[i], false);
 			}
 
-			stats.SetValue(StatType.HP, stats[StatType.MHP], false);
-			stats.SetValue(StatType.MP, stats[StatType.MMP], false);
+			stats.SetValue(StatTypes.HP, stats[StatTypes.MHP], false);
+			stats.SetValue(StatTypes.MP, stats[StatTypes.MMP], false);
 		}
 
 		protected virtual void OnLvlChangeNotification (object sender, object args) {
 			int oldValue = (int)args;
-			int newValue = stats[StatType.LVL];
+			int newValue = stats[StatTypes.LVL];
 
 			for (int i = oldValue; i < newValue; ++i) {
 				LevelUp();
@@ -65,7 +65,7 @@ namespace Tactical.Actor.Component {
 
 		private void LevelUp () {
 			for (int i = 0; i < statOrder.Length; ++i) {
-				StatType type = statOrder[i];
+				StatTypes type = statOrder[i];
 				int whole = Mathf.FloorToInt(growStats[i]);
 				float fraction = growStats[i] - whole;
 
@@ -78,8 +78,8 @@ namespace Tactical.Actor.Component {
 				stats.SetValue(type, value, false);
 			}
 
-			stats.SetValue(StatType.HP, stats[StatType.MHP], false);
-			stats.SetValue(StatType.MP, stats[StatType.MMP], false);
+			stats.SetValue(StatTypes.HP, stats[StatTypes.MHP], false);
+			stats.SetValue(StatTypes.MP, stats[StatTypes.MMP], false);
 		}
 
 	}

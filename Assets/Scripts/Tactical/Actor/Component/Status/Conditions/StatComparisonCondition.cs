@@ -6,7 +6,7 @@ namespace Tactical.Actor.Component {
 
 	public class StatComparisonCondition : StatusCondition {
 
-		public StatType type { get; private set; }
+		public StatTypes type { get; private set; }
 		public int value { get; private set; }
 		public Func<bool> condition { get; private set; }
 		private Stats stats;
@@ -19,7 +19,7 @@ namespace Tactical.Actor.Component {
 			this.RemoveObserver(OnStatChanged, Stats.DidChangeNotification(type), stats);
 		}
 
-		public void Init (StatType type, int value, Func<bool> condition) {
+		public void Init (StatTypes type, int value, Func<bool> condition) {
 			this.type = type;
 			this.value = value;
 			this.condition = condition;

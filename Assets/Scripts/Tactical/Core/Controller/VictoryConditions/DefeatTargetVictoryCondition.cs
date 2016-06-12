@@ -9,8 +9,8 @@ namespace Tactical.Core.Controller {
 
 		protected override void CheckForGameOver () {
 			base.CheckForGameOver();
-			if (Victor == Alliance.None && IsDefeated(target)) {
-				Victor = Alliance.Hero;
+			if (Victor == Alliances.None && IsDefeated(target)) {
+				Victor = Alliances.Hero;
 			}
 		}
 

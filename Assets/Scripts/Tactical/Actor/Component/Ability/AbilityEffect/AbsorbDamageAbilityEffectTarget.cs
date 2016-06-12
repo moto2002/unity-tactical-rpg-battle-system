@@ -30,7 +30,7 @@ namespace Tactical.Actor.Component {
 
 		protected override int OnApply (Tile target) {
 			Stats s = GetComponentInParent<Stats>();
-			s[StatType.HP] += amount;
+			s[StatTypes.HP] += amount;
 			return amount;
 		}
 
