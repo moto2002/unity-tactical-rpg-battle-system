@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
@@ -25,6 +27,11 @@ namespace Tactical.Battle.BattleState {
 			if (turn.targets.Count > 0) {
 				hitIndicatorPanelController.Show();
 				SetTarget(0);
+			}
+
+			// Only show this UI for AI controlled units
+			if (driver.Current == Drivers.Computer) {
+				StartCoroutine(ComputerDisplayAbilitySelection());
 			}
 		}
 
@@ -110,6 +117,12 @@ namespace Tactical.Battle.BattleState {
 			}
 
 			hitIndicatorPanelController.SetStats(chance, amount);
+		}
+
+		private IEnumerator ComputerDisplayAbilitySelection () {
+			owner.battleMessageController.Display(turn.ability.name);
+			yield return new WaitForSeconds(1f);
+			owner.ChangeState<PerformAbilityState>();
 		}
 
 	}

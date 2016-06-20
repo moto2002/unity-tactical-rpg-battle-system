@@ -64,8 +64,16 @@ namespace Tactical.Battle.Controller {
 		}
 
 		private bool CanTakeTurn (Unit target) {
+			// TODO: Remove me
+			// Debug code to test the AI.
+			Alliance a = target.GetComponentInChildren<Alliance>();
+			if (a.type == Alliances.Hero) {
+				return false;
+			}
+			// === END DEBUG
+
 			var exc = new BaseException( GetCounter(target) >= turnActivation );
-			target.PostNotification(TurnCheckNotification, exc);
+			target.PostNotification( TurnCheckNotification, exc );
 			return exc.toggle;
 		}
 

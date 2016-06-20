@@ -1,8 +1,11 @@
+using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using Tactical.Core.Enums;
+using Tactical.Core.EventArgs;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
-using Tactical.Core.EventArgs;
 
 namespace Tactical.Battle.BattleState {
 
@@ -16,6 +19,11 @@ namespace Tactical.Battle.BattleState {
 			tiles = mover.GetTilesInRange(board);
 			board.SelectTiles(tiles);
 			RefreshPrimaryStatPanel(pos);
+
+			// Computer turn
+			if (driver.Current == Drivers.Computer) {
+				StartCoroutine(ComputerHighlightMoveTarget());
+			}
 		}
 
 		public override void Exit () {
@@ -39,6 +47,21 @@ namespace Tactical.Battle.BattleState {
 				owner.ChangeState<CommandSelectionState>();
 			}
 		}
+
+		private IEnumerator ComputerHighlightMoveTarget () {
+			Point cursorPos = pos;
+			while (cursorPos != turn.plan.moveLocation) {
+				if (cursorPos.x < turn.plan.moveLocation.x) { cursorPos.x++; }
+				if (cursorPos.x > turn.plan.moveLocation.x) { cursorPos.x--; }
+				if (cursorPos.y < turn.plan.moveLocation.y) { cursorPos.y++; }
+				if (cursorPos.y > turn.plan.moveLocation.y) { cursorPos.y--; }
+				SelectTile(cursorPos);
+				yield return new WaitForSeconds(0.15f);
+			}
+			yield return new WaitForSeconds(0.5f);
+			owner.ChangeState<MoveSequenceState>();
+		}
+
 	}
 
 }

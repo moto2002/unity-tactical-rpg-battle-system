@@ -59,7 +59,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 434844}
-  - 114: {fileID: 114000010892484898}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -306,15 +305,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163214}
   m_IsPrefabParent: 1
---- !u!114 &114000010892484898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00b3496924f4497d9fd9dd7ee22987b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dir: 0

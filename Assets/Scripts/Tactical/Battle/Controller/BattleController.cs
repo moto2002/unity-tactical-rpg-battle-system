@@ -1,10 +1,12 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.StateMachine;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
+using Tactical.Actor.Controller;
 using Tactical.Battle.Model;
 using Tactical.Battle.Component;
 using Tactical.Battle.BattleState;
@@ -31,8 +33,14 @@ namespace Tactical.Battle.Controller {
 		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;
 		public IEnumerator round;
+		public BattleMessageController battleMessageController;
+		public ComputerPlayerController cpu;
 
 		private void Start () {
+			if (cpu == null) {
+				throw new Exception("Missing reference to CPU.");
+			}
+
 			ChangeState<InitBattleState>();
 		}
 	}

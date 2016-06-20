@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using Tactical.Grid.Model;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
+using Tactical.Grid.Model;
 
 namespace Tactical.Battle.BattleState {
 
@@ -12,7 +13,10 @@ namespace Tactical.Battle.BattleState {
 		public override void Enter () {
 			base.Enter();
 			SelectTile(turn.actor.tile.pos);
-			LoadMenu();
+
+			if (driver.Current == Drivers.Human) {
+				LoadMenu();
+			}
 		}
 
 		public override void Exit () {

@@ -30,6 +30,7 @@ namespace Tactical.Actor.Factory {
 			AddAttack(obj, recipe.attack);
 			AddAbilityCatalog(obj, recipe.abilityCatalog);
 			AddAlliance(obj, recipe.alliance);
+			AddAttackPattern(obj, recipe.strategy);
 			return obj;
 		}
 
@@ -40,6 +41,8 @@ namespace Tactical.Actor.Factory {
 				return new GameObject(name);
 			}
 			GameObject instance = GameObject.Instantiate(prefab);
+			instance.name = instance.name.Replace("(Clone)", "");
+
 			return instance;
 		}
 
@@ -114,5 +117,18 @@ namespace Tactical.Actor.Factory {
 				}
 			}
 		}
+
+		private static void AddAttackPattern (GameObject obj, string name) {
+			Driver driver = obj.AddComponent<Driver>();
+			if (string.IsNullOrEmpty(name)) {
+				driver.normal = Drivers.Human;
+			} else {
+				driver.normal = Drivers.Computer;
+				GameObject instance = InstantiatePrefab("Attack Patterns/" + name);
+				instance.transform.SetParent(obj.transform);
+			}
+		}
+
 	}
+
 }

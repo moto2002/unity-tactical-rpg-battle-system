@@ -55,14 +55,22 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		protected BattleController owner;
+		protected Driver driver;
 
 		protected virtual void Awake () {
 			owner = GetComponent<BattleController>();
 		}
 
+		public override void Enter () {
+			driver = (turn.actor != null) ? turn.actor.GetComponent<Driver>() : null;
+			base.Enter ();
+		}
+
 		protected override void AddListeners () {
-			InputController.moveEvent += OnMove;
-			InputController.fireEvent += OnFire;
+			if (driver == null || driver.Current == Drivers.Human) {
+				InputController.moveEvent += OnMove;
+				InputController.fireEvent += OnFire;
+			}
 		}
 
 		protected override void RemoveListeners () {

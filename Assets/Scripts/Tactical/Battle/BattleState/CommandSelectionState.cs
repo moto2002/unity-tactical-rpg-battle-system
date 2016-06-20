@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using Tactical.Core.Enums;
 
 namespace Tactical.Battle.BattleState {
 
@@ -8,6 +10,10 @@ namespace Tactical.Battle.BattleState {
 		public override void Enter () {
 			base.Enter();
 			statPanelController.ShowPrimary(turn.actor.gameObject);
+
+			if (driver.Current == Drivers.Computer) {
+				StartCoroutine(ComputerTurn());
+			}
 		}
 
 		public override void Exit () {
@@ -50,6 +56,23 @@ namespace Tactical.Battle.BattleState {
 				SelectTile(turn.actor.tile.pos);
 			} else {
 				owner.ChangeState<ExploreState>();
+			}
+		}
+
+		private IEnumerator ComputerTurn () {
+			if (turn.plan == null) {
+				turn.plan = owner.cpu.Evaluate();
+				turn.ability = turn.plan.ability;
+			}
+
+			yield return new WaitForSeconds (0.5f);
+
+			if (!turn.hasUnitMoved && turn.plan.moveLocation != turn.actor.tile.pos) {
+				owner.ChangeState<MoveTargetState>();
+			} else if (!turn.hasUnitActed && turn.plan.ability != null) {
+				owner.ChangeState<AbilityTargetState>();
+			} else {
+				owner.ChangeState<EndFacingState>();
 			}
 		}
 

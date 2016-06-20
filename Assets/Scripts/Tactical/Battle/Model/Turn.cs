@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Tactical.Core.Enums;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
+using Tactical.Actor.Component.AI;
 
 namespace Tactical.Battle.Model {
 
@@ -14,6 +15,7 @@ namespace Tactical.Battle.Model {
 		public bool lockMove;
 		public Ability ability;
 		public List<Tile> targets;
+		public PlanOfAttack plan;
 
 		private Tile startTile;
 		private Directions startDir;
@@ -25,6 +27,7 @@ namespace Tactical.Battle.Model {
 			lockMove = false;
 			startTile = actor.tile;
 			startDir = actor.dir;
+			plan = null;
 		}
 
 		public void UndoMove () {

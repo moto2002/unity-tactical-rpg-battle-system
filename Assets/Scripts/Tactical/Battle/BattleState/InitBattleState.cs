@@ -53,6 +53,7 @@ namespace Tactical.Battle.BattleState {
 			for (int i = 0; i < recipes.Length; ++i) {
 				int level = UnityEngine.Random.Range(9, 12);
 				GameObject instance = UnitFactory.Create(recipes[i], level);
+				instance.transform.parent = owner.board.unitsContainer;
 
 				int random = UnityEngine.Random.Range(0, locations.Count);
 				Tile randomTile = locations[ random ];

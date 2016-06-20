@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Collections;
 using Tactical.Actor.Component;
 
@@ -6,7 +7,7 @@ namespace Tactical.Battle.BattleState {
 	public class MoveSequenceState : BattleState {
 
 		public override void Enter () {
-			base.Enter ();
+			base.Enter();
 			StartCoroutine("Sequence");
 		}
 

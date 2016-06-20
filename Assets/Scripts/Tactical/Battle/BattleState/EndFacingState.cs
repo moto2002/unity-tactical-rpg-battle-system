@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Tactical.Core.Enums;
 using Tactical.Core.Extensions;
 using Tactical.Core.EventArgs;
@@ -18,6 +19,11 @@ namespace Tactical.Battle.BattleState {
 
 			// Show the unit direction indicator.
 			unitDirectionController.Show(startDir);
+
+			// Computer turn
+			if (driver.Current == Drivers.Computer) {
+				StartCoroutine(ComputerControl());
+			}
 		}
 
 		public override void Exit () {
@@ -33,15 +39,24 @@ namespace Tactical.Battle.BattleState {
 
 		protected override void OnFire (object sender, InfoEventArgs<int> e) {
 			switch (e.info) {
-				case 0:
-					owner.ChangeState<SelectUnitState>();
-					break;
-				case 1:
-					turn.actor.dir = startDir;
-					turn.actor.Match();
-					owner.ChangeState<CommandSelectionState>();
-					break;
-				}
+			case 0:
+				owner.ChangeState<SelectUnitState>();
+				break;
+			case 1:
+				turn.actor.dir = startDir;
+				turn.actor.Match();
+				owner.ChangeState<CommandSelectionState>();
+				break;
+			}
+		}
+
+		private IEnumerator ComputerControl () {
+			yield return new WaitForSeconds(0.5f);
+			turn.actor.dir = owner.cpu.DetermineEndFacingDirection();
+			turn.actor.Match();
+			owner.unitDirectionController.SetDirection(turn.actor.dir);
+			yield return new WaitForSeconds(0.5f);
+			owner.ChangeState<SelectUnitState>();
 		}
 
 	}

@@ -33,7 +33,6 @@ namespace Tactical.Battle.BattleState {
 			}
 
 			if (data == null) {
-				Debug.Log("No conversation data to display.");
 				StartCoroutine("NextStateCoroutine");
 				return;
 			}
