@@ -226,24 +226,24 @@ namespace Tactical.AI.Controller {
 
 		/// <summary>
 		/// Updates the nearestFoe property to be the first foe that is not dead.
+		///
+		/// @todo Replace this with something that takes into account the
+		/// HP / debuffs / armor of the targets to find the highest priority target.
 		/// </summary>
 		private void UpdateNearestFoe () {
 			nearestFoe = null;
 			bc.board.Search(actor.tile, delegate(Tile tile, Tile otherTile) {
 
-				// If there is already a nearest foe or the other tile has no content, return false.
-				if (nearestFoe != null || otherTile.content == null) {
-					return false;
-				}
-
 				// If the other tile is a foe and alive, set it as the nearest for and return true.
-				Alliance otherAlliance = otherTile.content.GetComponentInChildren<Alliance>();
-				if (otherAlliance != null && alliance.IsMatch(otherAlliance, Targets.Foe)) {
-					Unit unit = otherAlliance.GetComponent<Unit>();
-					Stats stats = unit.GetComponent<Stats>();
-					if (stats[StatTypes.HP] > 0) {
-						nearestFoe = unit;
-						return true;
+				if (nearestFoe == null && otherTile.content != null) {
+					Alliance otherAlliance = otherTile.content.GetComponentInChildren<Alliance>();
+					if (otherAlliance != null && alliance.IsMatch(otherAlliance, Targets.Foe)) {
+						Unit unit = otherAlliance.GetComponent<Unit>();
+						Stats stats = unit.GetComponent<Stats>();
+						if (stats[StatTypes.HP] > 0) {
+							nearestFoe = unit;
+							return true;
+						}
 					}
 				}
 
@@ -254,6 +254,8 @@ namespace Tactical.AI.Controller {
 		/// <summary>
 		/// Sets the plan of attack's move location to the closest tile possible to
 		/// the nearest foe.
+		///
+		/// @todo What if not moving is the better move?
 		/// </summary>
 		///
 		/// <param name="poa">The plan of attack.</param>
@@ -284,7 +286,7 @@ namespace Tactical.AI.Controller {
 		/// <returns>True if the ability is position independent, False otherwise.</returns>
 		private bool IsPositionIndependent (PlanOfAttack poa) {
 			var range = poa.ability.GetComponent<AbilityRange>();
-			return range.positionOriented == false;
+			return !range.positionOriented;
 		}
 
 		/// <summary>
