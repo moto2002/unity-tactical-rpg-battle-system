@@ -6,11 +6,11 @@ using Tactical.Core.StateMachine;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
-using Tactical.Actor.Controller;
 using Tactical.Battle.Model;
 using Tactical.Battle.Component;
 using Tactical.Battle.BattleState;
 using Tactical.UI.Controller;
+using Tactical.AI.Controller;
 
 namespace Tactical.Battle.Controller {
 

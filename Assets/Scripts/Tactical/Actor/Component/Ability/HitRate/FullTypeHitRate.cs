@@ -14,6 +14,10 @@ namespace Tactical.Actor.Component {
 			return Final (0);
 		}
 
+		public override bool IsAngleBased {
+			get { return false; }
+		}
+
 	}
 
 }

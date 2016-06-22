@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tactical.Core.Enums;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
-using Tactical.Actor.Component.AI;
+using Tactical.AI.Component;
 
 namespace Tactical.Battle.Model {
 

@@ -41,6 +41,10 @@ namespace Tactical.Actor.Component {
 			return roll <= chance;
 		}
 
+		public virtual bool IsAngleBased {
+			get { return true; }
+		}
+
 		protected virtual bool AutomaticHit (Unit target) {
 			var exc = new MatchException(attacker, target);
 			this.PostNotification(AutomaticHitCheckNotification, exc);

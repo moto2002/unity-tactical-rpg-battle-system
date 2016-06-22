@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Tactical.Actor.Component.AI {
+namespace Tactical.AI.Component {
 
 	public class AttackPattern : MonoBehaviour {
 

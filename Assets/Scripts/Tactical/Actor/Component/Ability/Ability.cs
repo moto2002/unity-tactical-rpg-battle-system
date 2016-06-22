@@ -30,6 +30,17 @@ namespace Tactical.Actor.Component {
 			this.PostNotification(DidPerformNotification);
 		}
 
+		public bool IsTarget (Tile tile) {
+			Transform obj = transform;
+			for (int i = 0; i < obj.childCount; ++i) {
+				AbilityEffectTarget targeter = obj.GetChild(i).GetComponent<AbilityEffectTarget>();
+				if (targeter.IsTarget(tile)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		private void Perform (Tile target) {
 			for (int i = 0; i < transform.childCount; ++i) {
 				Transform child = transform.GetChild(i);

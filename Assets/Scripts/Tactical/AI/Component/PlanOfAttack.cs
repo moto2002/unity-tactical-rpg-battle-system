@@ -1,8 +1,9 @@
 using UnityEngine;
 using Tactical.Core.Enums;
 using Tactical.Grid.Model;
+using Tactical.Actor.Component;
 
-namespace Tactical.Actor.Component.AI {
+namespace Tactical.AI.Component {
 
 	public class PlanOfAttack {
 

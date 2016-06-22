@@ -1,6 +1,7 @@
 using UnityEngine;
+using Tactical.Actor.Component;
 
-namespace Tactical.Actor.Component.AI {
+namespace Tactical.AI.Component {
 
 	public abstract class BaseAbilityPicker : MonoBehaviour {
 

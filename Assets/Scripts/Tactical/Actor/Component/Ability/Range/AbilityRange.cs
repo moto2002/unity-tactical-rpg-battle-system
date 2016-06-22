@@ -12,6 +12,10 @@ namespace Tactical.Actor.Component {
 		public virtual bool directionOriented {
 			get { return false; }
 		}
+		public virtual bool positionOriented {
+			get { return true; }
+		}
+
 		protected Unit unit {
 			get { return GetComponentInParent<Unit>(); }
 		}

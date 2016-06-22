@@ -1,7 +1,7 @@
 using UnityEngine;
 using Tactical.Core.Enums;
 
-namespace Tactical.Actor.Component.AI {
+namespace Tactical.AI.Component {
 
 	public class FixedAbilityPicker : BaseAbilityPicker {
 

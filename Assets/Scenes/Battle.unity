@@ -321,7 +321,7 @@ Prefab:
     - target: {fileID: 224000010472832148, guid: d6a7828adc0c0440fa84d56125cec154,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6a7828adc0c0440fa84d56125cec154, type: 2}
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594789432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a81f47109e343c9aa809356bb020e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bcfe9274c78240e89b3c1a3d9e44315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1599048714 stripped
