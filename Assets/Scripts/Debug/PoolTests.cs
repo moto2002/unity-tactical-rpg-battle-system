@@ -10,9 +10,9 @@ public class PoolTests : MonoBehaviour {
 
 	void Start () {
 		if (GameObjectPoolController.AddEntry(PoolKey, prefab, 10, 15)) {
-			Debug.Log("Pre-populating pool");
+			Debug.Log("Pre-populating pool", this);
 		} else {
-			Debug.Log("Pool already configured");
+			Debug.Log("Pool already configured", this);
 		}
 	}
 

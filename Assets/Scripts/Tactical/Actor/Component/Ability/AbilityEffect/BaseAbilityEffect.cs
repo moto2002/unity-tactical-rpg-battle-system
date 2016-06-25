@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
+using Tactical.Core.Exceptions;
 using Tactical.Grid.Component;
 using Tactical.Actor.Model;
 
@@ -57,15 +58,22 @@ namespace Tactical.Actor.Component {
 		protected const int maxDamage = 99999;
 
 		/// <summary>
+		/// The effect target of the Ability.
+		/// </summary>
+		private AbilityEffectTarget abilityEffectTarget;
+
+		protected virtual void Awake () {
+			abilityEffectTarget = GetComponent<AbilityEffectTarget>();
+			Assert.IsNotNull(abilityEffectTarget, "Missing component: AbilityEffectTarget.");
+		}
+
+		/// <summary>
 		/// Applies the effect to the target if the target is valid.
 		/// </summary>
 		///
-		/// <param name="target">The targetted tile.</param>
+		/// <param name="target">The targeted tile.</param>
 		public void Apply (Tile target) {
-
 			// Check if the target is valid.
-			var abilityEffectTarget = GetComponent<AbilityEffectTarget>();
-			Assert.IsNotNull(abilityEffectTarget);
 			if (!abilityEffectTarget.IsTarget(target)) {
 				return;
 			}
@@ -74,10 +82,10 @@ namespace Tactical.Actor.Component {
 			var hitRate = GetComponent<HitRate>();
 			Assert.IsNotNull(hitRate);
 			if (hitRate.RollForHit(target)) {
-				Debug.Log("Ability hit.");
+				Debug.Log("Ability landed.", this);
 				this.PostNotification(HitNotification, OnApply(target));
 			} else {
-				Debug.Log("Ability missed.");
+				Debug.Log("Ability missed.", this);
 				this.PostNotification(MissedNotification);
 			}
 		}

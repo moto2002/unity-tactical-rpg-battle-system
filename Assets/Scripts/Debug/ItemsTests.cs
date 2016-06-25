@@ -33,7 +33,7 @@ public class ItemsTests : MonoBehaviour {
 		Equippable item = args as Equippable;
 		inventory.Remove(item.gameObject);
 		string message = string.Format("{0} equipped {1}", eq.name, item.name);
-		Debug.Log(message);
+		Debug.Log(message, this);
 	}
 
 	private void OnUnEquippedItem (object sender, object args) {
@@ -41,7 +41,7 @@ public class ItemsTests : MonoBehaviour {
 		Equippable item = args as Equippable;
 		inventory.Add(item.gameObject);
 		string message = string.Format("{0} un-equipped {1}", eq.name, item.name);
-		Debug.Log(message);
+		Debug.Log(message, this);
 	}
 
 	GameObject CreateItem (string title, StatTypes type, int amount) {
@@ -101,7 +101,7 @@ public class ItemsTests : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 		}
 		LogCombatants();
-		Debug.Log("Battle Completed");
+		Debug.Log("Battle Completed", this);
 	}
 
 	private void HeroTurn () {
@@ -126,7 +126,7 @@ public class ItemsTests : MonoBehaviour {
 		int damage = Mathf.FloorToInt((s1[StatTypes.ATK] * 4 - s2[StatTypes.DEF] * 2) * UnityEngine.Random.Range(0.9f, 1.1f));
 		s2[StatTypes.HP] -= damage;
 		string message = string.Format("{0} hits {1} for {2} damage!", attacker.name, defender.name, damage);
-		Debug.Log(message);
+		Debug.Log(message, this);
 	}
 
 	private void UseInventory () {
@@ -146,15 +146,15 @@ public class ItemsTests : MonoBehaviour {
 		StatModifierFeature smf = item.GetComponent<StatModifierFeature>();
 		if (smf.amount > 0) {
 			item.GetComponent<Consumable>().Consume( combatants[0] );
-			Debug.Log("Ah... a potion!");
+			Debug.Log("Ah... a potion!", this);
 		} else {
 			item.GetComponent<Consumable>().Consume( combatants[1] );
-			Debug.Log("Take this you stupid monster!");
+			Debug.Log("Take this you stupid monster!", this);
 		}
 	}
 
 	private void EquipItem (GameObject item) {
-		Debug.Log("Perhaps this will help...");
+		Debug.Log("Perhaps this will help...", this);
 		Equippable toEquip = item.GetComponent<Equippable>();
 		Equipment equipment = combatants[0].GetComponent<Equipment>();
 		equipment.Equip (toEquip, toEquip.defaultSlots );
@@ -179,7 +179,7 @@ public class ItemsTests : MonoBehaviour {
 	private void LogToConsole (GameObject actor) {
 		Stats s = actor.GetComponent<Stats>();
 		string message = string.Format("Name:{0} HP:{1}/{2} ATK:{3} DEF:{4}", actor.name, s[StatTypes.HP], s[StatTypes.MHP], s[StatTypes.ATK], s[StatTypes.DEF]);
-		Debug.Log( message );
+		Debug.Log( message , this);
 	}
 
 }

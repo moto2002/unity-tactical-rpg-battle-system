@@ -1,9 +1,13 @@
 using UnityEngine;
+using Tactical.Core.Exceptions;
 using Tactical.Actor.Model;
 using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {
 
+	/// <summary>
+	/// The base class for Ability hit rate.
+	/// </summary>
 	public abstract class HitRate : MonoBehaviour {
 
 		/// <summary>

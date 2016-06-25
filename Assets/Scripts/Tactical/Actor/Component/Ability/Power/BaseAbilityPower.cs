@@ -1,4 +1,5 @@
 using UnityEngine;
+using Tactical.Core.Exceptions;
 using Tactical.Actor.Model;
 
 namespace Tactical.Actor.Component {

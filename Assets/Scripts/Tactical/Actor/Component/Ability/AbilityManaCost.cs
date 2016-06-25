@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Core.Enums;
+using Tactical.Core.Exceptions;
 using Tactical.Actor.Component;
 
 namespace Tactical.Actor.Component {

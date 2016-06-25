@@ -14,7 +14,7 @@ MonoBehaviour:
   model: Hero
   job: Wizard
   attack: Common/Attack
-  abilityCatalog: White Magic
+  abilityCatalog: DEBUG
   movementType: 0
   alliance: 2
   strategy: 

@@ -32,7 +32,9 @@ namespace Tactical.Actor.Component {
 			return 0;
 		}
 
-		private void Awake () {
+		protected override void Awake () {
+			base.Awake();
+
 			statusType = Type.GetType(string.Format("{0}.{1}", statusTypeNamespace, statusName));
 
 			Assert.IsNotNull(statusType);

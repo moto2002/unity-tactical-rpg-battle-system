@@ -20,12 +20,11 @@ namespace Tactical.Actor.Component {
 		/// </summary>
 		private int amount;
 
-		private void Awake () {
-			effect = GetTrackedEffect();
-		}
+		protected override void Awake () {
+			base.Awake();
 
-		private void OnValiddate () {
-			Assert.IsNotNull(effect);
+			effect = GetTrackedEffect();
+			Assert.IsNotNull(effect, "Missing property: effect.");
 		}
 
 		private void OnEnable () {
@@ -86,6 +85,8 @@ namespace Tactical.Actor.Component {
 		/// <returns>The tracked effect.</returns>
 		private BaseAbilityEffect GetTrackedEffect () {
 			Transform owner = GetComponentInParent<Ability>().transform;
+
+			// FIXME: Is this useless?
 			int trackedSiblingIndex = 0;
 
 			if (trackedSiblingIndex >= 0 && trackedSiblingIndex < owner.childCount) {

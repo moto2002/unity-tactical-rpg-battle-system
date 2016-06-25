@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.Enums;
+using Tactical.Core.Exceptions;
 using Tactical.Actor.Component;
 
 namespace Tactical.Battle.Controller {
@@ -22,7 +23,7 @@ namespace Tactical.Battle.Controller {
 		public IEnumerator Round () {
 			BattleController bc = GetComponent<BattleController>();
 			while (true) {
-				Debug.Log("New turn");
+				Debug.Log("New turn", this);
 				this.PostNotification(RoundBeganNotification);
 
 				// Increase the CTR of each units with its SPD

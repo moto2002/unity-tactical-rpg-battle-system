@@ -7,6 +7,9 @@ namespace Tactical.Battle.BattleState {
 
 	public abstract class BaseActionMenuState : BattleState {
 
+		/// <summary>
+		/// The title of the menu.
+		/// </summary>
 		protected string menuTitle;
 		protected List<string> menuOptions;
 
@@ -40,8 +43,17 @@ namespace Tactical.Battle.BattleState {
 			}
 		}
 
+		/// <summary>
+		/// Called when the owner is controlled by a player to initialize the menu.
+		/// </summary>
 		protected abstract void LoadMenu ();
+		/// <summary>
+		/// Called when the player select a menu item.
+		/// </summary>
 		protected abstract void Confirm ();
+		/// <summary>
+		/// Called when the player cancels.
+		/// </summary>
 		protected abstract void Cancel ();
 
 	}

@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections.Generic;
+using Tactical.Core.Exceptions;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
 
@@ -10,6 +12,15 @@ namespace Tactical.Actor.Component {
 		public const string CanPerformCheck = "Ability.CanPerformCheck";
 		public const string FailedNotification = "Ability.FailedNotification";
 		public const string DidPerformNotification = "Ability.DidPerformNotification";
+
+		private void OnValidate () {
+			Assert.IsNotNull(GetComponent<AbilityRange>(), "Missing component: AbilityRange.");
+			Assert.IsNotNull(GetComponent<AbilityArea>(), "Missing component: AbilityArea.");
+
+			Assert.IsNotNull(GetComponentInChildren<BaseAbilityEffect>(), "Missing component: BaseAbilityEffect in Children.");
+			Assert.IsNotNull(GetComponentInChildren<AbilityEffectTarget>(), "Missing component: AbilityEffectTarget in Children.");
+			Assert.IsNotNull(GetComponentInChildren<HitRate>(), "Missing component: HitRate in Children.");
+		}
 
 		public bool CanPerform () {
 			var exc = new BaseException(true);

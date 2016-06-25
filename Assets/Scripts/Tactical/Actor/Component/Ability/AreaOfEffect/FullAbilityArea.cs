@@ -6,6 +6,10 @@ using Tactical.Battle.Component;
 
 namespace Tactical.Actor.Component {
 
+	/// <summary>
+	/// An AbilityArea to select an area of ALL the tiles in
+	/// the range of the ability (AbilityRange).
+	/// </summary>
 	public class FullAbilityArea : AbilityArea {
 
 		public override List<Tile> GetTilesInArea (Board board, Point pos) {

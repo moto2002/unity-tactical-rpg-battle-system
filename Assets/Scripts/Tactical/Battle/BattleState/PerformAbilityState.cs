@@ -48,7 +48,7 @@ namespace Tactical.Battle.BattleState {
 				turn.actor.name,
 				turn.ability.name,
 				turn.targets.Count == 0 ? "no target" : (turn.targets.Count == 1 ? turn.targets[0].content.name : string.Format("{0} targets", turn.targets.Count))
-			));
+			), this);
 			turn.ability.Perform(turn.targets);
 		}
 

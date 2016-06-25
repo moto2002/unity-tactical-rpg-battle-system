@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Tactical.Core.Exceptions;
 using Tactical.Actor.Component;
 
 namespace Tactical.Actor.Model {

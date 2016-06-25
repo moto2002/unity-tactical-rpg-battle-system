@@ -14,7 +14,7 @@ MonoBehaviour:
   model: Hero
   job: Warrior
   attack: Common/Attack
-  abilityCatalog: 
+  abilityCatalog: DEBUG
   movementType: 0
   alliance: 2
   strategy: 
