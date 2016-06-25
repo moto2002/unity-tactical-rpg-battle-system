@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.Enums;
 using Tactical.Core.Extensions;
+using Tactical.Core.Controller;
 using Tactical.Grid.Component;
 using Tactical.Battle.Component;
 
@@ -12,6 +13,9 @@ namespace Tactical.Actor.Component {
 
 		public int range { get { return stats[StatTypes.MOV]; }}
 		public int jumpHeight { get { return stats[StatTypes.JMP]; }}
+		public float speed = 0.5f;
+		public float timeScale;
+
 		protected Stats stats;
 		protected Unit unit;
 		protected Transform jumper;

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.StateMachine;
+using Tactical.Core.Controller;
 using Tactical.Grid.Model;
 using Tactical.Grid.Component;
 using Tactical.Actor.Component;
@@ -22,6 +24,9 @@ namespace Tactical.Battle.Controller {
 		public Transform tileSelectionIndicator;
 		public Point pos;
 		public GameObject heroPrefab;
+		public List<Unit> units = new List<Unit>();
+		public Turn turn = new Turn();
+		public IEnumerator round;
 		public Tile currentTile {
 			get { return board.GetTile(pos); }
 		}
@@ -29,19 +34,24 @@ namespace Tactical.Battle.Controller {
 		public TurnOrderPanelController turnOrderPanelController;
 		public HitIndicatorPanelController hitIndicatorPanelController;
 		public UnitDirectionController unitDirectionController;
-		public Turn turn = new Turn();
-		public List<Unit> units = new List<Unit>();
 		public StatPanelController statPanelController;
-		public IEnumerator round;
 		public BattleMessageController battleMessageController;
 		public ComputerPlayerController cpu;
+		public TimeController timeController;
 
 		private void Start () {
-			if (cpu == null) {
-				throw new Exception("Missing reference to CPU.");
-			}
-
 			ChangeState<InitBattleState>();
+		}
+
+		private void OnValidate () {
+			Assert.IsNotNull(actionMenuPanelController, "Missing component: ActionMenuPanelController");
+			Assert.IsNotNull(turnOrderPanelController, "Missing component: TurnOrderPanelController");
+			Assert.IsNotNull(hitIndicatorPanelController, "Missing component: HitIndicatorPanelController");
+			Assert.IsNotNull(unitDirectionController, "Missing component: UnitDirectionController");
+			Assert.IsNotNull(statPanelController, "Missing component: StatPanelController");
+			Assert.IsNotNull(battleMessageController, "Missing component: BattleMessageController");
+			Assert.IsNotNull(cpu, "Missing component: ComputerPlayerController");
+			Assert.IsNotNull(timeController, "Missing component: TimeController");
 		}
 	}
 

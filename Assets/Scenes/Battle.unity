@@ -887,6 +887,7 @@ GameObject:
   - 114: {fileID: 1594789433}
   - 114: {fileID: 1594789436}
   - 114: {fileID: 1594789437}
+  - 114: {fileID: 1594789438}
   m_Layer: 0
   m_Name: Battle Controller
   m_TagString: Untagged
@@ -925,14 +926,15 @@ MonoBehaviour:
     x: 0
     y: 0
   heroPrefab: {fileID: 152258, guid: cb798a9e2a93e414b8960bdac45e8f1f, type: 2}
+  units: []
   actionMenuPanelController: {fileID: 280723862}
   turnOrderPanelController: {fileID: 1062705014}
   hitIndicatorPanelController: {fileID: 1093785486}
   unitDirectionController: {fileID: 562145581}
-  units: []
   statPanelController: {fileID: 2130070660}
   battleMessageController: {fileID: 1902816435}
   cpu: {fileID: 1594789437}
+  timeController: {fileID: 1594789438}
 --- !u!4 &1594789435
 Transform:
   m_ObjectHideFlags: 0
@@ -977,6 +979,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcfe9274c78240e89b3c1a3d9e44315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1594789438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594789432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b1792b0c24f4a15bc5ef516ff9d5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 5
 --- !u!4 &1599048714 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447854, guid: 1bf3b77dca96c45c4a96e826319ca704, type: 2}

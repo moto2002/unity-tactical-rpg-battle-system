@@ -9,6 +9,8 @@ namespace Tactical.Actor.Component {
 
 	public class WalkMovement : Movement {
 
+		private float jumpSpeed = 0.5f;
+
 		public override IEnumerator Traverse (Tile tile) {
 			unit.Place(tile);
 
@@ -55,14 +57,14 @@ namespace Tactical.Actor.Component {
 		}
 
 		private IEnumerator Walk (Tile target) {
-			Tweener tweener = transform.MoveTo(target.center, 0.5f, EasingEquations.Linear);
+			Tweener tweener = transform.MoveTo(target.center, speed / timeScale, EasingEquations.Linear);
 			while (tweener != null) {
 				yield return null;
 			}
 		}
 
 		private IEnumerator Jump (Tile to) {
-			Tweener tweener = transform.MoveTo(to.center, 0.5f, EasingEquations.Linear);
+			Tweener tweener = transform.MoveTo(to.center, jumpSpeed / timeScale, EasingEquations.Linear);
 
 			Tweener t2 = jumper.MoveToLocal(new Vector3(0, Tile.STEP_HEIGHT * 2f, 0), tweener.duration / 2f, EasingEquations.EaseOutQuad);
 			t2.loopCount = 1;
