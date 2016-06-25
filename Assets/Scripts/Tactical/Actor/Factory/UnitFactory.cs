@@ -94,7 +94,7 @@ namespace Tactical.Actor.Factory {
 			main.AddComponent<AbilityCatalog>();
 
 			if (name == "") {
-				// Debug.LogWarning("No Ability Catalog Recipe specified.");
+				Debug.LogWarning("No Ability Catalog Recipe specified.");
 				return;
 			}
 
@@ -110,10 +110,12 @@ namespace Tactical.Actor.Factory {
 				category.transform.SetParent(main.transform);
 
 				for (int j = 0; j < recipe.categories[i].entries.Length; ++j) {
-					string abilityName = string.Format("Abilities/{0}/{1}", recipe.categories[i].name, recipe.categories[i].entries[j]);
-					GameObject ability = InstantiatePrefab(abilityName);
-					ability.name = recipe.categories[i].entries[j];
-					ability.transform.SetParent(category.transform);
+					if (recipe.categories[i].entries[j] != "") {
+						string abilityName = string.Format("Abilities/{0}/{1}", recipe.categories[i].name, recipe.categories[i].entries[j]);
+						GameObject ability = InstantiatePrefab(abilityName);
+						ability.name = recipe.categories[i].entries[j];
+						ability.transform.SetParent(category.transform);
+					}
 				}
 			}
 		}

@@ -22,6 +22,7 @@ namespace Tactical.Battle.Controller {
 		public IEnumerator Round () {
 			BattleController bc = GetComponent<BattleController>();
 			while (true) {
+				Debug.Log("New turn");
 				this.PostNotification(RoundBeganNotification);
 
 				// Increase the CTR of each units with its SPD
