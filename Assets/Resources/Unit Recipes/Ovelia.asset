@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ovelia
   m_EditorClassIdentifier: 
   model: Hero
-  job: Wizard
+  job: Rogue
   attack: Common/Attack
   abilityCatalog: DEBUG
   movementType: 0

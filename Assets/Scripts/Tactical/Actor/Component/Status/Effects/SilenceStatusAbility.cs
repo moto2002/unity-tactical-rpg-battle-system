@@ -30,7 +30,7 @@ namespace Tactical.Actor.Component {
 			var info = args as StatusInfo;
 			var owner = GetComponentInParent<Unit>();
 
-			if (info.target == owner) {
+			if (info != null && info.target == owner) {
 				info.enabled = true;
 			}
 		}

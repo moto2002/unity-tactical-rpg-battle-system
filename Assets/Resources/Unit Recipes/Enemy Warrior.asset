@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Enemy Warrior
   m_EditorClassIdentifier: 
   model: Monster
-  job: Warrior
+  job: Rogue
   attack: Common/Attack
   abilityCatalog: 
   movementType: 0

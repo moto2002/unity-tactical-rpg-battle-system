@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Delita
   m_EditorClassIdentifier: 
   model: Hero
-  job: Warrior
+  job: Rogue
   attack: Common/Attack
   abilityCatalog: DEBUG
   movementType: 0

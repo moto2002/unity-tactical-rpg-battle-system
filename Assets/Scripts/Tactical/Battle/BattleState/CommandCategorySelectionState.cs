@@ -55,7 +55,6 @@ namespace Tactical.Battle.BattleState {
 			actionMenuPanelController.Show(menuTitle, menuOptions);
 
 			for (int i = 1; i < menuOptions.Count + 1; ++i) {
-				Debug.Log("CanUseAbilities " + CanUseAbilities());
 				// If the player can't use abilites, disable the category.
 				if (!CanUseAbilities()) {
 					actionMenuPanelController.SetLocked(i, true);

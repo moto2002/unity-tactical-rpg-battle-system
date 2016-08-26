@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Enemy Wizard
   m_EditorClassIdentifier: 
   model: Monster
-  job: Wizard
+  job: Rogue
   attack: Common/Attack
   abilityCatalog: 
   movementType: 0
