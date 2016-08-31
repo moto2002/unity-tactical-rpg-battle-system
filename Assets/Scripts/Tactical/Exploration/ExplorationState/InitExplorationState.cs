@@ -45,6 +45,15 @@ namespace Tactical.Exploration.ExplorationState {
 			unit.dir = (Directions) Random.Range(0, 4);
 			unit.Match();
 
+			// Add a box collider to trigger the battle.
+			instance.AddComponent<BoxCollider>();
+			instance.GetComponent<BoxCollider>().isTrigger = true;
+			// instance.AddComponent<Rigidbody>();
+			// instance.GetComponent<Rigidbody>().isKinematic = true;
+
+			// Tag the player.
+			instance.tag = "Player";
+
 			owner.player = unit;
 		}
 

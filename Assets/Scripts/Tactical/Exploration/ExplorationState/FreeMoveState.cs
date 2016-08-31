@@ -27,10 +27,13 @@ namespace Tactical.Exploration.ExplorationState {
 
 			// Set the destination tile and set the prev tile to the current
 			// player tile to start the movement from there.
-			owner.destinationTile = board.GetTile(playerTile.pos + e.info);
-			owner.destinationTile.prev = playerTile;
+			var destinationTile = board.GetTile(playerTile.pos + e.info);
 
-			owner.ChangeState<MoveSequenceState>();
+			if (destinationTile) {
+				destinationTile.prev = playerTile;
+				owner.destinationTile = destinationTile;
+				owner.ChangeState<MoveSequenceState>();
+			}
 		}
 
 	}
