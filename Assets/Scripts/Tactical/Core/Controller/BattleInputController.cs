@@ -65,7 +65,6 @@ namespace Tactical.Core.Controller {
 			foreach (var item in actionButtons) {
 				if (item.Value.wasJustPressed) {
 					if (ActionEvent != null) {
-						Debug.Log(string.Format("Sending ActionEvent: {0}", item.Value.name));
 						ActionEvent(this, new InfoEventArgs<BattleInputs>(item.Key));
 					}
 				}

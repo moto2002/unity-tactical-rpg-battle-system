@@ -1561,7 +1561,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  rotateSpeed: 300
   follow: {fileID: 981009713}
+  rotateTowards: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &543803084
 Transform:
   m_ObjectHideFlags: 0
@@ -1752,7 +1754,6 @@ MonoBehaviour:
   battleMessageController: {fileID: 2105082794}
   cpu: {fileID: 592896699}
   timeController: {fileID: 592896698}
-  playerInput: {fileID: 592896704}
 --- !u!4 &592896703
 Transform:
   m_ObjectHideFlags: 0

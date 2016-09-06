@@ -22,6 +22,8 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			base.OnAction(sender, e);
+
 			if (e.info == BattleInputs.Confirm || e.info == BattleInputs.Cancel) {
 				owner.ChangeState<CommandSelectionState>();
 			}

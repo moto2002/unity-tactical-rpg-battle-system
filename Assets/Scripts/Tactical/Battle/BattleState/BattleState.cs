@@ -80,7 +80,16 @@ namespace Tactical.Battle.BattleState {
 
 		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {}
 
-		protected virtual void OnAction (object sender, InfoEventArgs<BattleInputs> e) {}
+		protected virtual void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			switch (e.info) {
+			case BattleInputs.RotateCameraLeft:
+				owner.cameraRig.rotateTowards += Vector3.up * 90f;
+				break;
+			case BattleInputs.RotateCameraRight:
+				owner.cameraRig.rotateTowards += Vector3.up * -90f;
+				break;
+			}
+		}
 
 		protected virtual void SelectTile (Point p) {
 			if (pos == p || !board.tiles.ContainsKey(p)) {

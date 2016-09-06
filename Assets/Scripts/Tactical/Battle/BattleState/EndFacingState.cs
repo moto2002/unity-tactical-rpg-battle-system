@@ -38,6 +38,8 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			base.OnAction(sender, e);
+
 			switch (e.info) {
 			case BattleInputs.Confirm:
 				owner.ChangeState<SelectUnitState>();

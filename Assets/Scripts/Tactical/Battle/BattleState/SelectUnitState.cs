@@ -15,9 +15,6 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private IEnumerator ChangeCurrentUnit () {
-			// Show the turn order panel.
-			// turnOrderPanelController.Show();
-
 			owner.round.MoveNext();
 			SelectTile(turn.actor.tile.pos);
 			RefreshPrimaryStatPanel(pos);
