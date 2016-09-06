@@ -9,6 +9,7 @@ namespace Tactical.Grid.Component {
 		public const float STEP_HEIGHT = 0.25f;
 		public Point pos;
 		public int height;
+		public int width = 1;
 		public Vector3 center {
 			get { return new Vector3(pos.x, height * STEP_HEIGHT, pos.y); }
 		}
@@ -42,7 +43,7 @@ namespace Tactical.Grid.Component {
 
 		private void Match () {
 			transform.localPosition = new Vector3(pos.x, height * STEP_HEIGHT / 2f, pos.y );
-			transform.localScale = new Vector3(1, height * STEP_HEIGHT, 1);
+			transform.localScale = new Vector3(width, height * STEP_HEIGHT, width);
 		}
 	}
 

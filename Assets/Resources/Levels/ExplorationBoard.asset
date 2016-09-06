@@ -9,6 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c11703404f4926900d5eaf47b42df, type: 3}
-  m_Name: Gariland_1
-  m_EditorClassIdentifier: 
-  tiles: []
+  m_Name: ExplorationBoard
+  m_EditorClassIdentifier:
+  tiles:
+  - {x: 1, y: 0, z: 1}

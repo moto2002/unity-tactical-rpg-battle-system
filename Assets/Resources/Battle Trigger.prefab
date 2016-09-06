@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfb1c80bce2c4e86a970f812e788afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: InitBattleState
+  state: Tactical.Battle.BattleState.InitBattleState
   tags:
   - Player

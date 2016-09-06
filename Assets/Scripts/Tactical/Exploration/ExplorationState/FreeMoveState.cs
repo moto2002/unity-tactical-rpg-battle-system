@@ -9,6 +9,8 @@ namespace Tactical.Exploration.ExplorationState {
 
 	public class FreeMoveState : ExplorationState {
 
+		private FreeMovement movement;
+
 		public override void Enter () {
 			base.Enter();
 
@@ -16,24 +18,21 @@ namespace Tactical.Exploration.ExplorationState {
 		}
 
 		private IEnumerator Init () {
+			movement = player.GetComponent<FreeMovement>();
+
 			yield return null;
 		}
 
-		protected override void OnMove (object sender, InfoEventArgs<Point> e) {
-			// Get the player tile and reset the prev tile to make sure the movement
-			// starts from the current position.
-			var playerTile = player.tile;
-			playerTile.prev = null;
+		protected override void OnMove (object sender, InfoEventArgs<Vector2> e) {
+			if (movement == null) { return; }
 
-			// Set the destination tile and set the prev tile to the current
-			// player tile to start the movement from there.
-			var destinationTile = board.GetTile(playerTile.pos + e.info);
+			movement.MoveHorizontally(e.info);
+		}
 
-			if (destinationTile) {
-				destinationTile.prev = playerTile;
-				owner.destinationTile = destinationTile;
-				owner.ChangeState<MoveSequenceState>();
-			}
+		protected override void OnJump (object sender, InfoEventArgs<float> e) {
+			if (movement == null) { return; }
+
+			movement.Jump();
 		}
 
 	}

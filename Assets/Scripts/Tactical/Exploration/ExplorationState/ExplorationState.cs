@@ -36,22 +36,22 @@ namespace Tactical.Exploration.ExplorationState {
 		}
 
 		protected override void AddListeners () {
-			InputController.moveEvent += OnMove;
-			InputController.fireEvent += OnFire;
+			InputController.MoveEvent += OnMove;
+			InputController.JumpEvent += OnJump;
+			// InputController.moveEvent += OnMove;
+			// InputController.fireEvent += OnFire;
 		}
 
 		protected override void RemoveListeners () {
-			InputController.moveEvent -= OnMove;
-			InputController.fireEvent -= OnFire;
+			InputController.MoveEvent -= OnMove;
+			InputController.JumpEvent -= OnJump;
+			// InputController.moveEvent -= OnMove;
+			// InputController.fireEvent -= OnFire;
 		}
 
-		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {
+		protected virtual void OnMove (object sender, InfoEventArgs<Vector2> e) {}
 
-		}
-
-		protected virtual void OnFire (object sender, InfoEventArgs<int> e) {
-
-		}
+		protected virtual void OnJump (object sender, InfoEventArgs<float> e) {}
 
 	}
 

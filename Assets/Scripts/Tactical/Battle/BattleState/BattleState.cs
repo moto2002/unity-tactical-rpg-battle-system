@@ -68,14 +68,14 @@ namespace Tactical.Battle.BattleState {
 
 		protected override void AddListeners () {
 			if (driver == null || driver.Current == Drivers.Human) {
-				InputController.moveEvent += OnMove;
-				InputController.fireEvent += OnFire;
+				// InputController.moveEvent += OnMove;
+				// InputController.fireEvent += OnFire;
 			}
 		}
 
 		protected override void RemoveListeners () {
-			InputController.moveEvent -= OnMove;
-			InputController.fireEvent -= OnFire;
+			// InputController.moveEvent -= OnMove;
+			// InputController.fireEvent -= OnFire;
 		}
 
 		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {

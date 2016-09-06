@@ -13,8 +13,8 @@ namespace Tactical.Actor.Component {
 
 		public int range { get { return stats[StatTypes.MOV]; }}
 		public int jumpHeight { get { return stats[StatTypes.JMP]; }}
-		public float speed = 0.5f;
 		public float timeScale;
+		public float speed = 0.5f; // This property is used for the battle movement.
 
 		protected Stats stats;
 		protected Unit unit;
