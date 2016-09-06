@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.InputNew;
 using UnityEngine.Assertions;
 using System;
+using System.Collections.Generic;
 using Tactical.Grid.Model;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
 
 namespace Tactical.Core.Controller {
@@ -10,41 +12,61 @@ namespace Tactical.Core.Controller {
 	public class BattleInputController : MonoBehaviour {
 
 		public static event EventHandler<InfoEventArgs<Point>> MoveEvent;
-		public static event EventHandler<InfoEventArgs<int>> ActionEvent;
+		public static event EventHandler<InfoEventArgs<BattleInputs>> ActionEvent;
+		public PlayerInput playerInput;
 
-		private PlayerInput playerInput;
+		private ExplorationControls explorationControls;
 		private BattleControls battleControls;
 		private Repeater horizontal;
 		private Repeater vertical;
-		private readonly string[] actionButtons = { "Confirm" };
+		private Dictionary<BattleInputs, ButtonInputControl> actionButtons = new Dictionary<BattleInputs, ButtonInputControl> ();
 
 		private void Start () {
-			playerInput = GetComponent<PlayerInput>();
+			explorationControls = playerInput.GetActions<ExplorationControls>();
 			battleControls = playerInput.GetActions<BattleControls>();
+
+			// Create the repeaters for the axis.
 			horizontal = new Repeater(battleControls.moveX);
 			vertical = new Repeater(battleControls.moveY);
 
-			Assert.IsNotNull(playerInput, "playerInput required");
+			// Create the action buttons.
+			actionButtons.Add(BattleInputs.Confirm, battleControls.confirm);
+			actionButtons.Add(BattleInputs.Cancel, battleControls.cancel);
+			actionButtons.Add(BattleInputs.RotateCameraLeft, explorationControls.rotateCameraLeft);
+			actionButtons.Add(BattleInputs.RotateCameraRight, explorationControls.rotateCameraRight);
+
+			Assert.IsNotNull(explorationControls, "explorationControls required");
 			Assert.IsNotNull(battleControls, "battleControls required");
 		}
 
+		private void OnValidate () {
+			Assert.IsNotNull(playerInput, "playerInput required");
+		}
+
 		private void Update () {
+			HandleMove();
+			HandleAction();
+		}
+
+		private void HandleMove () {
 			int x = horizontal.Update();
 			int y = vertical.Update();
 
-			// Handle movement events.
+			// Handle movement inputs.
 			if (x != 0 || y != 0) {
 				if (MoveEvent != null) {
 					MoveEvent(this, new InfoEventArgs<Point>(new Point(x, y)));
 				}
 			}
+		}
 
-			// Handle action events.
-			for (int i = 0; i < actionButtons.Length; ++i) {
-				var button = battleControls[actionButtons[i]] as ButtonInputControl;
-				if (button != null && button.wasJustPressed) {
+		private void HandleAction () {
+			// Handle action inputs.
+			foreach (var item in actionButtons) {
+				if (item.Value.wasJustPressed) {
 					if (ActionEvent != null) {
-						ActionEvent(this, new InfoEventArgs<int>(i));
+						Debug.Log(string.Format("Sending ActionEvent: {0}", item.Value.name));
+						ActionEvent(this, new InfoEventArgs<BattleInputs>(item.Key));
 					}
 				}
 			}

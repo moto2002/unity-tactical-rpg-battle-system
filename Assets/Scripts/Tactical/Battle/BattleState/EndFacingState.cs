@@ -37,12 +37,12 @@ namespace Tactical.Battle.BattleState {
 			turn.actor.Match();
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
 			switch (e.info) {
-			case 0:
+			case BattleInputs.Confirm:
 				owner.ChangeState<SelectUnitState>();
 				break;
-			case 1:
+			case BattleInputs.Cancel:
 				turn.actor.dir = startDir;
 				turn.actor.Match();
 				owner.ChangeState<CommandSelectionState>();

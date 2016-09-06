@@ -1,4 +1,5 @@
 using Tactical.Grid.Model;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
 
 namespace Tactical.Battle.BattleState {
@@ -20,8 +21,10 @@ namespace Tactical.Battle.BattleState {
 			RefreshPrimaryStatPanel(pos);
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
-			owner.ChangeState<CommandSelectionState>();
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			if (e.info == BattleInputs.Confirm || e.info == BattleInputs.Cancel) {
+				owner.ChangeState<CommandSelectionState>();
+			}
 		}
 
 	}

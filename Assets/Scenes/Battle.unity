@@ -1721,6 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8a75b9b1ccd406a9e8ea69d0c64643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 592896704}
 --- !u!114 &592896702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,6 +1752,7 @@ MonoBehaviour:
   battleMessageController: {fileID: 2105082794}
   cpu: {fileID: 592896699}
   timeController: {fileID: 592896698}
+  playerInput: {fileID: 592896704}
 --- !u!4 &592896703
 Transform:
   m_ObjectHideFlags: 0
@@ -1789,7 +1791,10 @@ MonoBehaviour:
   actionMaps:
   - actionMap: {fileID: 11400000, guid: 6165e1ac0927b478c883e35b0bfa0f9e, type: 2}
     active: 1
-    blockSubsequent: 1
+    blockSubsequent: 0
+  - actionMap: {fileID: 11400000, guid: e022c6196d0524be994afd7b12531d98, type: 2}
+    active: 1
+    blockSubsequent: 0
 --- !u!1 &673390320
 GameObject:
   m_ObjectHideFlags: 0

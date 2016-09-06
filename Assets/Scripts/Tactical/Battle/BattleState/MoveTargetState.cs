@@ -38,12 +38,12 @@ namespace Tactical.Battle.BattleState {
 			RefreshPrimaryStatPanel(pos);
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
-			if (e.info == 0) {
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			if (e.info == BattleInputs.Confirm) {
 				if (tiles.Contains(owner.currentTile)) {
 					owner.ChangeState<MoveSequenceState>();
 				}
-			} else {
+			} else if (e.info == BattleInputs.Cancel) {
 				owner.ChangeState<CommandSelectionState>();
 			}
 		}

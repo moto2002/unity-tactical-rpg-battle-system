@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Tactical.Core.Enums;
 using Tactical.Core.EventArgs;
 using Tactical.Core.Controller;
 using Tactical.Core.Model;
@@ -57,7 +58,7 @@ namespace Tactical.Battle.BattleState {
 			ConversationController.completeEvent -= OnCompleteConversation;
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
 			base.OnAction(sender, e);
 			conversationController.Next();
 		}

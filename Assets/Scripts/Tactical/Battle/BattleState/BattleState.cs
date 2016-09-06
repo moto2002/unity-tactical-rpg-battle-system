@@ -80,7 +80,7 @@ namespace Tactical.Battle.BattleState {
 
 		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {}
 
-		protected virtual void OnAction (object sender, InfoEventArgs<int> e) {}
+		protected virtual void OnAction (object sender, InfoEventArgs<BattleInputs> e) {}
 
 		protected virtual void SelectTile (Point p) {
 			if (pos == p || !board.tiles.ContainsKey(p)) {

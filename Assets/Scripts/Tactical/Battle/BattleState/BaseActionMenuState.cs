@@ -27,10 +27,10 @@ namespace Tactical.Battle.BattleState {
 			actionMenuPanelController.Hide();
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
-			if (e.info == 0) {
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			if (e.info == BattleInputs.Confirm) {
 				Confirm();
-			} else {
+			} else if (e.info == BattleInputs.Cancel) {
 				Cancel();
 			}
 		}

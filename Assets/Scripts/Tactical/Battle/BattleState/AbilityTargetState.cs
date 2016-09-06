@@ -46,12 +46,12 @@ namespace Tactical.Battle.BattleState {
 			}
 		}
 
-		protected override void OnAction (object sender, InfoEventArgs<int> e) {
-			if (e.info == 0) {
+		protected override void OnAction (object sender, InfoEventArgs<BattleInputs> e) {
+			if (e.info == BattleInputs.Confirm) {
 				if (ar.directionOriented || tiles.Contains(board.GetTile(pos))) {
 					owner.ChangeState<ConfirmAbilityTargetState>();
 				}
-			} else {
+			} else if (e.info == BattleInputs.Cancel) {
 				owner.ChangeState<CommandCategorySelectionState>();
 			}
 		}

@@ -8,4 +8,5 @@ public class BattleControls : ActionMapInput {
 	public ButtonInputControl @confirm { get { return (ButtonInputControl)this[0]; } }
 	public AxisInputControl @moveX { get { return (AxisInputControl)this[1]; } }
 	public AxisInputControl @moveY { get { return (AxisInputControl)this[2]; } }
+	public ButtonInputControl @cancel { get { return (ButtonInputControl)this[3]; } }
 }
