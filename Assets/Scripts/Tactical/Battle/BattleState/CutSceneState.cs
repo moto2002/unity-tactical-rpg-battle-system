@@ -57,8 +57,8 @@ namespace Tactical.Battle.BattleState {
 			ConversationController.completeEvent -= OnCompleteConversation;
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
-			base.OnFire(sender, e);
+		protected override void OnAction (object sender, InfoEventArgs<int> e) {
+			base.OnAction(sender, e);
 			conversationController.Next();
 		}
 

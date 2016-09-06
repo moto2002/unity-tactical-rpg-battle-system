@@ -20,7 +20,7 @@ namespace Tactical.Battle.BattleState {
 			RefreshPrimaryStatPanel(pos);
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<int> e) {
 			owner.ChangeState<CommandSelectionState>();
 		}
 

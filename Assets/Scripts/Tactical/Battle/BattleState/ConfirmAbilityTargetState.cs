@@ -51,7 +51,7 @@ namespace Tactical.Battle.BattleState {
 			}
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<int> e) {
 			if (e.info == 0) {
 				if (turn.targets.Count > 0) {
 					owner.ChangeState<PerformAbilityState>();

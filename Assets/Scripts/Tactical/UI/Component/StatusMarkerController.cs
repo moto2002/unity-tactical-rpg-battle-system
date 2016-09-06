@@ -43,6 +43,11 @@ namespace Tactical.UI.Component {
  		///
  		/// <param name="statusName">The marker name.</param>
 		private void CreateMarker (string statusName) {
+			if (!markers.ContainsKey(statusName)) {
+				Debug.LogWarning(string.Format("Missing marker for status: {0}", statusName));
+				return;
+			}
+
 			var marker = markers[statusName];
 			GameObject prefab = Resources.Load<GameObject>(prefabPath + marker);
 			GameObject instance = Instantiate(prefab);

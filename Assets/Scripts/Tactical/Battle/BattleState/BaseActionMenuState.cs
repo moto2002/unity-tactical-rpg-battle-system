@@ -27,7 +27,7 @@ namespace Tactical.Battle.BattleState {
 			actionMenuPanelController.Hide();
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<int> e) {
 			if (e.info == 0) {
 				Confirm();
 			} else {

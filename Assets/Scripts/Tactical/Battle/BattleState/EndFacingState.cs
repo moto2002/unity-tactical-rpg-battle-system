@@ -37,7 +37,7 @@ namespace Tactical.Battle.BattleState {
 			turn.actor.Match();
 		}
 
-		protected override void OnFire (object sender, InfoEventArgs<int> e) {
+		protected override void OnAction (object sender, InfoEventArgs<int> e) {
 			switch (e.info) {
 			case 0:
 				owner.ChangeState<SelectUnitState>();

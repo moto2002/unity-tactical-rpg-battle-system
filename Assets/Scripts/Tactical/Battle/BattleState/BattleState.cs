@@ -68,23 +68,19 @@ namespace Tactical.Battle.BattleState {
 
 		protected override void AddListeners () {
 			if (driver == null || driver.Current == Drivers.Human) {
-				// InputController.moveEvent += OnMove;
-				// InputController.fireEvent += OnFire;
+				BattleInputController.MoveEvent += OnMove;
+				BattleInputController.ActionEvent += OnAction;
 			}
 		}
 
 		protected override void RemoveListeners () {
-			// InputController.moveEvent -= OnMove;
-			// InputController.fireEvent -= OnFire;
+			BattleInputController.MoveEvent -= OnMove;
+			BattleInputController.ActionEvent -= OnAction;
 		}
 
-		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {
+		protected virtual void OnMove (object sender, InfoEventArgs<Point> e) {}
 
-		}
-
-		protected virtual void OnFire (object sender, InfoEventArgs<int> e) {
-
-		}
+		protected virtual void OnAction (object sender, InfoEventArgs<int> e) {}
 
 		protected virtual void SelectTile (Point p) {
 			if (pos == p || !board.tiles.ContainsKey(p)) {
