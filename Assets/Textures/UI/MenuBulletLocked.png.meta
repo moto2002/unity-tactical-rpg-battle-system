@@ -1,9 +1,18 @@
 fileFormatVersion: 2
 guid: fc5fced0a7afe4aae843c674d621e495
-timeCreated: 1431552424
-licenseType: Pro
+timeCreated: 1473247230
+licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MenuBulletLocked_0
+    21300002: MenuBulletLocked_1
+    21300004: MenuBulletLocked_2
+    21300006: MenuBulletLocked_3
+    21300008: MenuBulletLocked_4
+    21300010: MenuBulletLocked_5
+    21300012: MenuBulletLocked_6
+    21300014: MenuBulletLocked_7
+    21300016: MenuBulletLocked_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -17,7 +26,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -37,18 +46,139 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MenuBulletLocked_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12.666666
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 12.666666
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_2
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 12.666666
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_5
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 6.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_7
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MenuBulletLocked_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0.6666665
+        width: 6.3333335
+        height: 6.3333335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
   spritePackingTag: UI
   userData: 
   assetBundleName: 

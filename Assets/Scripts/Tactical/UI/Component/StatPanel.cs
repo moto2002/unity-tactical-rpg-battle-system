@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using Tactical.Core.Enums;
 using Tactical.Actor.Component;
@@ -14,7 +15,9 @@ namespace Tactical.UI.Component {
 		public Image avatar;
 		public Text nameLabel;
 		public Text hpLabel;
+		public Slider hpSlider;
 		public Text mpLabel;
+		public Slider mpSlider;
 		public Text lvLabel;
 
 		public void Display (GameObject obj) {
@@ -25,12 +28,30 @@ namespace Tactical.UI.Component {
 			// avatar.sprite = null;
 
 			nameLabel.text = obj.name;
-			Stats stats = obj.GetComponent<Stats>();
+			var stats = obj.GetComponent<Stats>();
 			if (stats) {
-				hpLabel.text = string.Format( "HP {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP] );
-				mpLabel.text = string.Format( "MP {0} / {1}", stats[StatTypes.MP], stats[StatTypes.MMP] );
-				lvLabel.text = string.Format( "LV. {0}", stats[StatTypes.LVL]);
+				hpLabel.text = string.Format("HP {0} / {1}", stats[StatTypes.HP], stats[StatTypes.MHP]);
+				hpSlider.value = (float) stats[StatTypes.HP] / stats[StatTypes.MHP];
+
+				mpLabel.text = string.Format("MP {0} / {1}", stats[StatTypes.MP], stats[StatTypes.MMP]);
+				mpSlider.value = (float) stats[StatTypes.MP] / stats[StatTypes.MMP];
+
+				lvLabel.text = string.Format("Lv. {0}", stats[StatTypes.LVL]);
 			}
+		}
+
+		public void OnValidate () {
+			Assert.IsNotNull(panel, "panel required");
+			Assert.IsNotNull(allyBackground, "allyBackground required");
+			Assert.IsNotNull(enemyBackground, "enemyBackground required");
+			Assert.IsNotNull(background, "background required");
+			Assert.IsNotNull(avatar, "avatar required");
+			Assert.IsNotNull(nameLabel, "nameLabel required");
+			Assert.IsNotNull(hpLabel, "hpLabel required");
+			Assert.IsNotNull(hpSlider, "hpSlider required");
+			Assert.IsNotNull(mpLabel, "mpLabel required");
+			Assert.IsNotNull(mpSlider, "mpSlider required");
+			Assert.IsNotNull(lvLabel, "lvLabel required");
 		}
 	}
 
