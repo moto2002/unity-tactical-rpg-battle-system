@@ -14,11 +14,13 @@ namespace Tactical.UI.Component {
 		public Image background;
 		public Image avatar;
 		public Text nameLabel;
+		public Text lvLabel;
 		public Text hpLabel;
 		public Slider hpSlider;
 		public Text mpLabel;
 		public Slider mpSlider;
-		public Text lvLabel;
+		public Text ctLabel;
+		public Slider ctSlider;
 
 		public void Display (GameObject obj) {
 			Alliance alliance = obj.GetComponent<Alliance>();
@@ -36,6 +38,9 @@ namespace Tactical.UI.Component {
 				mpLabel.text = string.Format("MP {0} / {1}", stats[StatTypes.MP], stats[StatTypes.MMP]);
 				mpSlider.value = (float) stats[StatTypes.MP] / stats[StatTypes.MMP];
 
+				ctLabel.text = string.Format("CT {0} / {1}", Mathf.Min(stats[StatTypes.CTR], 100), 100);
+				ctSlider.value = (float) Mathf.Min(stats[StatTypes.CTR], 100) / 100;
+
 				lvLabel.text = string.Format("Lv. {0}", stats[StatTypes.LVL]);
 			}
 		}
@@ -47,11 +52,13 @@ namespace Tactical.UI.Component {
 			Assert.IsNotNull(background, "background required");
 			Assert.IsNotNull(avatar, "avatar required");
 			Assert.IsNotNull(nameLabel, "nameLabel required");
+			Assert.IsNotNull(lvLabel, "lvLabel required");
 			Assert.IsNotNull(hpLabel, "hpLabel required");
 			Assert.IsNotNull(hpSlider, "hpSlider required");
 			Assert.IsNotNull(mpLabel, "mpLabel required");
 			Assert.IsNotNull(mpSlider, "mpSlider required");
-			Assert.IsNotNull(lvLabel, "lvLabel required");
+			Assert.IsNotNull(ctLabel, "ctLabel required");
+			Assert.IsNotNull(ctSlider, "ctSlider required");
 		}
 	}
 
