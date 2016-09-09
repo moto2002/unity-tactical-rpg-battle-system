@@ -13,6 +13,8 @@ namespace Tactical.UI.Controller {
 		[SerializeField] private Text titleLabel;
 		[SerializeField] private Panel panel;
 		[SerializeField] private GameObject canvas;
+		[SerializeField] private AudioClip selectionClip;
+		[SerializeField] private AudioSource audioSource;
 		private List<ActionMenuEntry> menuEntries = new List<ActionMenuEntry>(MenuCount);
 		private const string ShowKey = "Show";
 		private const string HideKey = "Hide";
@@ -124,6 +126,12 @@ namespace Tactical.UI.Controller {
 			// Select the new entry
 			if (selection >= 0 && selection < menuEntries.Count) {
 				menuEntries[selection].IsSelected = true;
+			}
+
+			// Play the selection clip.
+			if (audioSource && selectionClip) {
+				audioSource.clip = selectionClip;
+				audioSource.Play();
 			}
 
 			return true;

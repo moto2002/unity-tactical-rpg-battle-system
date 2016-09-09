@@ -96,6 +96,14 @@ namespace Tactical.Battle.BattleState {
 				return;
 			}
 
+			// Play the selection clip.
+			if (owner.audioSource && owner.tileSelectionClip) {
+				if (driver && driver.Current == Drivers.Human) {
+					owner.audioSource.clip = owner.tileSelectionClip;
+					owner.audioSource.Play();
+				}
+			}
+
 			pos = p;
 			tileSelectionIndicator.localPosition = board.tiles[p].center;
 		}

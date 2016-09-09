@@ -119,7 +119,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!1001 &1483285364
+--- !u!1001 &943879376
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -158,16 +158,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012854021672, guid: 5baf5d35a91d34de1b614908424a094f,
-        type: 2}
-      propertyPath: tilesContainer
-      value: 
-      objectReference: {fileID: 2007301017}
-    - target: {fileID: 114000012854021672, guid: 5baf5d35a91d34de1b614908424a094f,
-        type: 2}
-      propertyPath: unitsContainer
-      value: 
-      objectReference: {fileID: 21386287}
     - target: {fileID: 224000010924021172, guid: 5baf5d35a91d34de1b614908424a094f,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -224,16 +214,6 @@ Prefab:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 224000012197362006, guid: 5baf5d35a91d34de1b614908424a094f,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010734052120, guid: 5baf5d35a91d34de1b614908424a094f,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010734052120, guid: 5baf5d35a91d34de1b614908424a094f,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1

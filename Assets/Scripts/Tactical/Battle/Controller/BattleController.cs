@@ -30,6 +30,7 @@ namespace Tactical.Battle.Controller {
 		public Tile currentTile {
 			get { return board.GetTile(pos); }
 		}
+		[Header("- UI -")]
 		public ActionMenuPanelController actionMenuPanelController;
 		public TurnOrderPanelController turnOrderPanelController;
 		public HitIndicatorPanelController hitIndicatorPanelController;
@@ -38,6 +39,9 @@ namespace Tactical.Battle.Controller {
 		public BattleMessageController battleMessageController;
 		public ComputerPlayerController cpu;
 		public TimeController timeController;
+		[Header("- Audio -")]
+		public AudioSource audioSource;
+		public AudioClip tileSelectionClip;
 
 		private void Start () {
 			ChangeState<InitBattleState>();
@@ -52,6 +56,7 @@ namespace Tactical.Battle.Controller {
 			Assert.IsNotNull(battleMessageController, "Missing component: BattleMessageController");
 			Assert.IsNotNull(cpu, "Missing component: ComputerPlayerController");
 			Assert.IsNotNull(timeController, "Missing component: TimeController");
+			Assert.IsNotNull(audioSource, "Missing component: AudioSource");
 		}
 	}
 
