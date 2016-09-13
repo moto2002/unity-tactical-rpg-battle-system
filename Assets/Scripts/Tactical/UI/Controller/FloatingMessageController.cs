@@ -12,12 +12,12 @@ namespace Tactical.UI.Controller {
 
 		private void OnEnable () {
 			this.AddObserver(OnEffectHit, BaseAbilityEffect.HitNotification);
-			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification);
+			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissNotification);
 		}
 
 		private void OnDisable () {
 			this.RemoveObserver(OnEffectHit, BaseAbilityEffect.HitNotification);
-			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification);
+			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissNotification);
 		}
 
 		/// <summary>
@@ -40,9 +40,9 @@ namespace Tactical.UI.Controller {
 		/// <param name="sender">The sender</param>
 		/// <param name="args">The arguments</param>
 		private void OnEffectMiss (object sender, object args) {
-			var tile = args as Tile;
-			if (tile != null) {
-				CreateFloatingMessage(tile, "Missed");
+			var info = args as MissInfo;
+			if (info != null) {
+				CreateFloatingMessage(info.tile, "Miss");
 			}
 		}
 
@@ -62,6 +62,8 @@ namespace Tactical.UI.Controller {
 			instance.transform.position = tile.transform.position;
 			var floatingMessage = instance.GetComponent<FloatingMessage>();
 			floatingMessage.message = message;
+			floatingMessage.duration = 20f;
+			Debug.Log("msg:" + floatingMessage.message + " | duration: " +floatingMessage.duration);
 		}
 
 	}

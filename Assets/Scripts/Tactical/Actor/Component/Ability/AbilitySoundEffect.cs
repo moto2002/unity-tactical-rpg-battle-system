@@ -14,12 +14,12 @@ namespace Tactical.Actor.Component {
 
 		private void OnEnable () {
 			this.AddObserver(OnEffectHit, BaseAbilityEffect.HitNotification);
-			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification);
+			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissNotification);
 		}
 
 		private void OnDisable () {
 			this.RemoveObserver(OnEffectHit, BaseAbilityEffect.HitNotification);
-			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification);
+			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissNotification);
 		}
 
 		/// <summary>

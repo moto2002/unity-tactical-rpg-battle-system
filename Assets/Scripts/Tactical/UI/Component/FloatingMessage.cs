@@ -10,11 +10,11 @@ namespace Tactical.UI.Component {
 	public class FloatingMessage : MonoBehaviour {
 
 		public string message;
+		public float duration = 1f;
 
 		[Header("- Options -")]
 		[SerializeField] private Color32 color = Color.white;
 		[SerializeField] private int fontSize = 18;
-		[SerializeField] private float duration = 1f;
 		[SerializeField] private float speed = 2f;
 		[Header("- Components -")]
 		[SerializeField] private Text text;

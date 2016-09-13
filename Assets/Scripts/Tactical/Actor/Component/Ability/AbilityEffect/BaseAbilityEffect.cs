@@ -16,14 +16,6 @@ namespace Tactical.Actor.Component {
 	public abstract class BaseAbilityEffect : MonoBehaviour {
 
 		/// <summary>
-		/// A notification sent when an attack landed it's target(s).
-		/// </summary>
-		public const string AttackLandedNotification = "BaseAbilityEffect.AttackLandedNotification";
-		/// <summary>
-		/// A notification sent when an attack missed it's target(s).
-		/// </summary>
-		public const string AttackMissedNotification = "BaseAbilityEffect.AttackMissedNotification";
-		/// <summary>
 		/// A notification sent before trying to get the Attack Stats.
 		/// </summary>
 		public const string GetAttackNotification = "BaseAbilityEffect.GetAttackNotification";
@@ -42,7 +34,7 @@ namespace Tactical.Actor.Component {
 		/// <summary>
 		/// A notification sent when an Ability missed it's target.
 		/// </summary>
-		public const string MissedNotification = "BaseAbilityEffect.MissedNotification";
+		public const string MissNotification = "BaseAbilityEffect.MissNotification";
 		/// <summary>
 		/// A notification sent when an Ability hits it's target.
 		/// </summary>
@@ -99,7 +91,7 @@ namespace Tactical.Actor.Component {
 				this.PostNotification(HitNotification, info);
 			} else {
 				var info = new MissInfo(target, audioSource);
-				this.PostNotification(MissedNotification, info);
+				this.PostNotification(MissNotification, info);
 			}
 		}
 

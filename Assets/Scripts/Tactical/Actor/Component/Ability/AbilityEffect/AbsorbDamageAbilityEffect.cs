@@ -30,12 +30,12 @@ namespace Tactical.Actor.Component {
 
 		private void OnEnable () {
 			this.AddObserver(OnEffectHit, BaseAbilityEffect.HitNotification, effect);
-			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification, effect);
+			this.AddObserver(OnEffectMiss, BaseAbilityEffect.MissNotification, effect);
 		}
 
 		private void OnDisable () {
 			this.RemoveObserver(OnEffectHit, BaseAbilityEffect.HitNotification, effect);
-			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissedNotification, effect);
+			this.RemoveObserver(OnEffectMiss, BaseAbilityEffect.MissNotification, effect);
 		}
 
 		public override int Predict (Tile target) {
