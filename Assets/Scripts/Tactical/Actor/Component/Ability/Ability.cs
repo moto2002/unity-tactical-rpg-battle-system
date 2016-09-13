@@ -28,17 +28,25 @@ namespace Tactical.Actor.Component {
 			return exc.toggle;
 		}
 
-		public void Perform (List<Tile> targets) {
+		public void Perform (List<Tile> targets, AudioSource audioSource) {
 			if (!CanPerform()) {
 				this.PostNotification(FailedNotification);
 				return;
 			}
 
 			for (int i = 0; i < targets.Count; ++i) {
-				Perform(targets[i]);
+				Perform(targets[i], audioSource);
 			}
 
 			this.PostNotification(DidPerformNotification);
+		}
+
+		private void Perform (Tile target, AudioSource audioSource) {
+			for (int i = 0; i < transform.childCount; ++i) {
+				Transform child = transform.GetChild(i);
+				var effect = child.GetComponent<BaseAbilityEffect>();
+				effect.Apply(target, audioSource);
+			}
 		}
 
 		public bool IsTarget (Tile tile) {
@@ -52,13 +60,6 @@ namespace Tactical.Actor.Component {
 			return false;
 		}
 
-		private void Perform (Tile target) {
-			for (int i = 0; i < transform.childCount; ++i) {
-				Transform child = transform.GetChild(i);
-				var effect = child.GetComponent<BaseAbilityEffect>();
-				effect.Apply(target);
-			}
-		}
 	}
 
 }

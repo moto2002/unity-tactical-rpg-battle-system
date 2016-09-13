@@ -16,6 +16,7 @@ namespace Tactical.Actor.Model {
 			this.target = target;
 			this.mods = mods;
 		}
+
 	}
 
 }

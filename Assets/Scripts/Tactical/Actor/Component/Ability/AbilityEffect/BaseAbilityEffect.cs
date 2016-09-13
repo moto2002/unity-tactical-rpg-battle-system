@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
+using Tactical.Core.Component;
 using Tactical.Core.Exceptions;
 using Tactical.Grid.Component;
 using Tactical.Actor.Model;
@@ -14,6 +15,14 @@ namespace Tactical.Actor.Component {
 	/// </summary>
 	public abstract class BaseAbilityEffect : MonoBehaviour {
 
+		/// <summary>
+		/// A notification sent when an attack landed it's target(s).
+		/// </summary>
+		public const string AttackLandedNotification = "BaseAbilityEffect.AttackLandedNotification";
+		/// <summary>
+		/// A notification sent when an attack missed it's target(s).
+		/// </summary>
+		public const string AttackMissedNotification = "BaseAbilityEffect.AttackMissedNotification";
 		/// <summary>
 		/// A notification sent before trying to get the Attack Stats.
 		/// </summary>
@@ -72,7 +81,8 @@ namespace Tactical.Actor.Component {
 		/// </summary>
 		///
 		/// <param name="target">The targeted tile.</param>
-		public void Apply (Tile target) {
+		/// <param name="audioSource">The audio source used to play ability sound effects.</param>
+		public void Apply (Tile target, AudioSource audioSource) {
 			// Check if the target is valid.
 			if (!abilityEffectTarget.IsTarget(target)) {
 				return;
@@ -82,11 +92,14 @@ namespace Tactical.Actor.Component {
 			var hitRate = GetComponent<HitRate>();
 			Assert.IsNotNull(hitRate);
 			if (hitRate.RollForHit(target)) {
-				Debug.Log("Ability landed.", this);
-				this.PostNotification(HitNotification, OnApply(target));
+				// TODO: Wait for the animation to finish before moving the camera
+				//       back to the caster.
+				int damage = OnApply(target);
+				var info = new HitInfo(target, damage, audioSource);
+				this.PostNotification(HitNotification, info);
 			} else {
-				Debug.Log("Ability missed.", this);
-				this.PostNotification(MissedNotification);
+				var info = new MissInfo(target, audioSource);
+				this.PostNotification(MissedNotification, info);
 			}
 		}
 

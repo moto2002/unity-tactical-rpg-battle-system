@@ -1,5 +1,6 @@
 using UnityEngine;
 using Tactical.Core.Enums;
+using Tactical.Core.Component;
 using Tactical.Grid.Component;
 
 namespace Tactical.Actor.Component {

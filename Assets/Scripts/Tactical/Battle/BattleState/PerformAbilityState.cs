@@ -7,7 +7,7 @@ namespace Tactical.Battle.BattleState {
 	public class PerformAbilityState : BattleState {
 
 		public override void Enter () {
-			base.Enter ();
+			base.Enter();
 			turn.hasUnitActed = true;
 			if (turn.hasUnitMoved) {
 				turn.lockMove = true;
@@ -16,8 +16,8 @@ namespace Tactical.Battle.BattleState {
 		}
 
 		private IEnumerator Animate () {
-			// TODO: Play animations, etc
 			yield return null;
+
 			ApplyAbility();
 
 			// The battle is over.
@@ -49,7 +49,7 @@ namespace Tactical.Battle.BattleState {
 				turn.ability.name,
 				turn.targets.Count == 0 ? "no target" : (turn.targets.Count == 1 ? turn.targets[0].content.name : string.Format("{0} targets", turn.targets.Count))
 			), this);
-			turn.ability.Perform(turn.targets);
+			turn.ability.Perform(turn.targets, owner.audioSource);
 		}
 
 	}

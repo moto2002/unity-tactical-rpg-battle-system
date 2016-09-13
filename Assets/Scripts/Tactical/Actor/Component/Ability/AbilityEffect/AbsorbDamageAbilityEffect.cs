@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using Tactical.Actor.Model;
 using Tactical.Core.Enums;
 using Tactical.Grid.Component;
 
@@ -63,9 +64,10 @@ namespace Tactical.Actor.Component {
 		/// </summary>
 		///
 		/// <param name="sender">The sender.</param>
-		/// <param name="damage">The damage done by the Ability.</param>
-		private void OnEffectHit (object sender, object damage) {
-			amount = (int) damage;
+		/// <param name="args">The arguments.</param>
+		private void OnEffectHit (object sender, object args) {
+			var info = args as HitInfo;
+			amount = (int) info.damage;
 		}
 
 		/// <summary>
