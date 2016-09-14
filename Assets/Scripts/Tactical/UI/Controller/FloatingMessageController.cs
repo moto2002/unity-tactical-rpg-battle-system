@@ -62,8 +62,7 @@ namespace Tactical.UI.Controller {
 			instance.transform.position = tile.transform.position;
 			var floatingMessage = instance.GetComponent<FloatingMessage>();
 			floatingMessage.message = message;
-			floatingMessage.duration = 20f;
-			Debug.Log("msg:" + floatingMessage.message + " | duration: " +floatingMessage.duration);
+			floatingMessage.duration = 0.5f;
 		}
 
 	}

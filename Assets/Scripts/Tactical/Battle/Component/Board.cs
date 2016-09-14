@@ -34,9 +34,12 @@ namespace Tactical.Battle.Component {
 			_max = new Point(int.MinValue, int.MinValue);
 
 			for (int i = 0; i < data.tiles.Count; ++i) {
-				GameObject instance = Instantiate(tilePrefab) as GameObject;
+				var instance = Instantiate(tilePrefab) as GameObject;
 				instance.transform.parent = tilesContainer;
 				Tile t = instance.GetComponent<Tile>();
+				if (t == null) {
+					throw new Exception("Trying to instanciate an invalid tile: " + instance.name);
+				}
 				t.Load(data.tiles[i]);
 				tiles.Add(t.pos, t);
 
