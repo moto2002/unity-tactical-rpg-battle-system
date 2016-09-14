@@ -15,9 +15,11 @@ namespace Tactical.Battle.Component {
 		public Point max {
 			get { return _max; }
 		}
+
+		[Header(" - Required - ")]
 		public Transform tilesContainer;
 		public Transform unitsContainer;
-
+		[SerializeField] private GameObject tileOverlayPrefab;
 		[SerializeField] private GameObject tilePrefab;
 		private Point[] dirs = new Point[4] {
 			new Point(0, 1),
@@ -52,14 +54,17 @@ namespace Tactical.Battle.Component {
 
 		public void SelectTiles (List<Tile> tiles) {
 			for (int i = tiles.Count - 1; i >= 0; --i) {
-				tiles[i].GetComponent<Renderer>().material.SetColor("_DefaultColor", tiles[i].GetComponent<Renderer>().material.color);
-				tiles[i].GetComponent<Renderer>().material.SetColor("_Color", selectedTileColor);
+				GameObject instance = Instantiate(tileOverlayPrefab);
+				instance.transform.parent = tiles[i].transform;
+				instance.transform.localPosition = Vector3.up * 0.5f;
+				tiles[i].overlay = instance;
 			}
 		}
 
 		public void DeSelectTiles (List<Tile> tiles) {
 			for (int i = tiles.Count - 1; i >= 0; --i) {
-				tiles[i].GetComponent<Renderer>().material.SetColor("_Color", tiles[i].GetComponent<Renderer>().material.GetColor("_DefaultColor"));
+				Destroy(tiles[i].overlay);
+				tiles[i].overlay = null;
 			}
 		}
 

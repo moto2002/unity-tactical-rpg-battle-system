@@ -14,6 +14,7 @@ namespace Tactical.Grid.Component {
 			get { return new Vector3(pos.x, height * STEP_HEIGHT, pos.y); }
 		}
 		public GameObject content;
+		[HideInInspector] public GameObject overlay;
 		[HideInInspector] public Tile prev;
 		[HideInInspector] public int distance;
 
