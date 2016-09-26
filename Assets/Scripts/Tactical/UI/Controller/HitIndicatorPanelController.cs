@@ -12,22 +12,22 @@ namespace Tactical.UI.Controller {
 		[SerializeField] private Canvas canvas;
 		[SerializeField] private Panel panel;
 		[SerializeField] private Image arrow;
-		[SerializeField] private Text label;
+		[SerializeField] private Text damageText;
+		[SerializeField] private Text rateText;
 		private Tweener transition;
 
 		private void Start () {
 			panel.SetPosition(HideKey, false);
-			canvas.gameObject.SetActive(false);
 		}
 
-		public void SetStats (int chance, int amount) {
-			arrow.fillAmount = (chance / 100f);
+		public void SetStats (int rate, int amount) {
+			arrow.fillAmount = (rate / 100f);
 			string sign = (amount < 0) ? "" : "+";
-			label.text = string.Format("{0}% {1}{2} {3}", chance, sign, Mathf.Abs(amount), "HP");
+			damageText.text = string.Format("{0}{1} {2}", sign, Mathf.Abs(amount), "HP");
+			rateText.text = string.Format("{0}%", rate);
 		}
 
 		public void Show () {
-			canvas.gameObject.SetActive(true);
 			SetPanelPos(ShowKey);
 		}
 
@@ -40,7 +40,9 @@ namespace Tactical.UI.Controller {
 				transition.Stop();
 			}
 
-			transition = panel.SetPosition(pos, false);
+			transition = panel.SetPosition(pos, true);
+			transition.duration = 0.5f;
+			transition.equation = EasingEquations.EaseOutQuad;
 		}
 
 	}

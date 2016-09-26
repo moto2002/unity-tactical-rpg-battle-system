@@ -38,14 +38,16 @@ namespace Tactical.UI.Component {
 		}
 
 		[SerializeField] private Image bullet;
-		[SerializeField] private Sprite normalSprite;
-		[SerializeField] private Sprite selectedSprite;
-		[SerializeField] private Sprite disabledSprite;
+		[SerializeField] private Color normalColor = Color.white;
+		[SerializeField] private Color selectedColor = new Color32(217, 172, 51, 255);
+		[SerializeField] private Color disabledColor = new Color32(150, 150, 150, 255);
 		[SerializeField] private Text label;
 		private Outline outline;
+		private Image bulletImage;
 
 		private void Awake () {
 			outline = label.GetComponent<Outline>();
+			bulletImage = bullet.GetComponent<Image>();
 		}
 
 		public void Reset () {
@@ -61,17 +63,14 @@ namespace Tactical.UI.Component {
 				state = value;
 
 				if (IsLocked) {
-					bullet.sprite = disabledSprite;
-					label.color = Color.gray;
-					outline.effectColor = new Color32(20, 36, 44, 255);
+					bulletImage.color = disabledColor;
+					label.color = disabledColor;
 				} else if (IsSelected) {
-					bullet.sprite = selectedSprite;
-					label.color = new Color32(249, 210, 118, 255);
-					outline.effectColor = new Color32(255, 160, 72, 255);
+					bulletImage.color = selectedColor;
+					label.color = selectedColor;
 				} else {
-					bullet.sprite = normalSprite;
-					label.color = Color.white;
-					outline.effectColor = new Color32(20, 36, 44, 255);
+					bulletImage.color = normalColor;
+					label.color = normalColor;
 				}
 			}
 		}

@@ -50,7 +50,11 @@ namespace Tactical.Actor.Component {
     private StatusMarkerController GetOrCreateIconController () {
       var controller = GetComponentInChildren<StatusMarkerController>();
       if (controller == null) {
-        GameObject prefab = Resources.Load<GameObject>("UI/Status Markers/Status Marker Controller");
+        GameObject prefab = Resources.Load<GameObject>("UI/World Space/Status Markers/Status Marker Controller");
+        if (!prefab) {
+        	Debug.LogError("Missing prefab for Status Marker.");
+        	return null;
+        }
         var instance = Instantiate(prefab);
         instance.name = "Status Markers";
         instance.transform.SetParent(transform, false);
