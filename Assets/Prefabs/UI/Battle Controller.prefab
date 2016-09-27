@@ -3583,7 +3583,7 @@ MonoBehaviour:
   pos:
     x: 0
     y: 0
-  heroPrefab: {fileID: 152258, guid: cb798a9e2a93e414b8960bdac45e8f1f, type: 2}
+  heroPrefab: {fileID: 1000010530667240, guid: cb798a9e2a93e414b8960bdac45e8f1f, type: 2}
   units: []
   actionMenuPanelController: {fileID: 114000012880729788}
   turnOrderPanelController: {fileID: 114000013448901038}
@@ -6829,8 +6829,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 12.1, y: 44}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -1.1, y: 44.9}
+  m_SizeDelta: {x: 136, y: 137.3}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224000013261523048
 RectTransform:
@@ -6989,8 +6989,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 12.1, y: 44}
-  m_SizeDelta: {x: 95.3, y: 96.8}
+  m_AnchoredPosition: {x: -1.1, y: 44.9}
+  m_SizeDelta: {x: 129.6, y: 132.9}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224000013856335512
 RectTransform:

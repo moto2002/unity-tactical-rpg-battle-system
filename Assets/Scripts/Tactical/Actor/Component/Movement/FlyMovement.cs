@@ -41,7 +41,7 @@ namespace Tactical.Actor.Component {
 
 			// Land
 			duration = (y - tile.center.y) * 0.5f;
-			tweener = jumper.MoveToLocal(Vector3.zero, 0.5f, EasingEquations.EaseInOutQuad);
+			tweener = jumper.MoveToLocal(Vector3.down, 0.3f, EasingEquations.EaseInOutQuad);
 			while (tweener != null) {
 				yield return null;
 			}

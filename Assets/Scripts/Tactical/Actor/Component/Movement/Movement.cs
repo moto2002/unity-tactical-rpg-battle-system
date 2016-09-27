@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections;
 using System.Collections.Generic;
 using Tactical.Core.Enums;
@@ -23,6 +24,8 @@ namespace Tactical.Actor.Component {
 		protected virtual void Awake () {
 			unit = GetComponent<Unit>();
 			jumper = transform.FindChild("Jumper");
+
+			Assert.IsNotNull(jumper);
 		}
 
 		protected virtual void Start () {
