@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputNew;
+// using UnityEngine.InputNew;
 using UnityEngine.Assertions;
 using System;
 using System.Collections;
@@ -13,31 +13,31 @@ namespace Tactical.Core.Controller {
 		public static event EventHandler<InfoEventArgs<Vector2>> MoveEvent;
 		public static event EventHandler<InfoEventArgs<float>> JumpEvent;
 
-		private PlayerInput playerInput;
-		private ExplorationControls explorationControls;
+		// private PlayerInput playerInput;
+		// private ExplorationControls explorationControls;
 
-		private void Start () {
-			playerInput = GetComponent<PlayerInput>();
-			explorationControls = playerInput.GetActions<ExplorationControls>();
+		// private void Start () {
+		// 	playerInput = GetComponent<PlayerInput>();
+		// 	explorationControls = playerInput.GetActions<ExplorationControls>();
 
-			Assert.IsNotNull(playerInput, "playerInput required");
-			Assert.IsNotNull(explorationControls, "explorationControls required");
-		}
+		// 	Assert.IsNotNull(playerInput, "playerInput required");
+		// 	Assert.IsNotNull(explorationControls, "explorationControls required");
+		// }
 
-		private void Update () {
-			if (explorationControls != null) {
-				if (explorationControls.move.vector2 != Vector2.zero) {
-					if (MoveEvent != null) {
-						MoveEvent(this, new InfoEventArgs<Vector2>(explorationControls.move.vector2));
-					}
-				}
-				if (explorationControls.jump.isHeld) {
-					if (JumpEvent != null) {
-						JumpEvent(this, new InfoEventArgs<float>(explorationControls.jump.rawValue));
-					}
-				}
-			}
-		}
+		// private void Update () {
+		// 	if (explorationControls != null) {
+		// 		if (explorationControls.move.vector2 != Vector2.zero) {
+		// 			if (MoveEvent != null) {
+		// 				MoveEvent(this, new InfoEventArgs<Vector2>(explorationControls.move.vector2));
+		// 			}
+		// 		}
+		// 		if (explorationControls.jump.isHeld) {
+		// 			if (JumpEvent != null) {
+		// 				JumpEvent(this, new InfoEventArgs<float>(explorationControls.jump.rawValue));
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		// public static event EventHandler<InfoEventArgs<Point>> moveEvent;
 		// public static event EventHandler<InfoEventArgs<int>> fireEvent;

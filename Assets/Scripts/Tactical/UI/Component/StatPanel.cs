@@ -25,8 +25,8 @@ namespace Tactical.UI.Component {
 
 		public void Start () {
 			Assert.IsNotNull(panel, "panel required");
-			Assert.IsNotNull(allyBackground, "allyBackground required");
-			Assert.IsNotNull(enemyBackground, "enemyBackground required");
+			// Assert.IsNotNull(allyBackground, "allyBackground required");
+			// Assert.IsNotNull(enemyBackground, "enemyBackground required");
 			Assert.IsNotNull(background, "background required");
 			Assert.IsNotNull(avatar, "avatar required");
 			Assert.IsNotNull(nameLabel, "nameLabel required");
